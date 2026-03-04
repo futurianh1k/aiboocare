@@ -1,0 +1,114 @@
+# AI Care Companion - Docker Compose 설정
+# 
+# 사용법:
+#   개발 환경 시작: docker compose up -d
+#   로그 확인: docker compose logs -f
+#   중지: docker compose down
+#   볼륨 포함 삭제: docker compose down -v
+
+version: "3.9"
+
+services:
+  # ============== PostgreSQL + TimescaleDB ==============
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    container_name: aiboocare-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: aiboocare
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-devpassword123}
+      POSTGRES_DB: aiboocare
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aiboocare -d aiboocare"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiboocare-network
+
+  # ============== Redis ==============
+  redis:
+    image: redis:7-alpine
+    container_name: aiboocare-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiboocare-network
+
+  # ============== MQTT Broker (Mosquitto) ==============
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: aiboocare-mqtt
+    restart: unless-stopped
+    ports:
+      - "1883:1883"   # MQTT
+      - "9001:9001"   # WebSocket
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    networks:
+      - aiboocare-network
+
+  # ============== FastAPI Backend ==============
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: aiboocare-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: aiboocare
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-devpassword123}
+      DATABASE_NAME: aiboocare
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MQTT_BROKER_HOST: mqtt
+      MQTT_BROKER_PORT: 1883
+      DEBUG: "true"
+      ENVIRONMENT: development
+      SECRET_KEY: ${SECRET_KEY:-dev_secret_key_change_in_production}
+      PII_ENCRYPTION_KEY: ${PII_ENCRYPTION_KEY:-}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - aiboocare-network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  postgres_data:
+    name: aiboocare-postgres-data
+  redis_data:
+    name: aiboocare-redis-data
+  mosquitto_data:
+    name: aiboocare-mosquitto-data
+  mosquitto_log:
+    name: aiboocare-mosquitto-log
+
+networks:
+  aiboocare-network:
+    name: aiboocare-network
+    driver: bridge

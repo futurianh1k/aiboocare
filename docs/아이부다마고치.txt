@@ -1,0 +1,8563 @@
+나는 이와 유사한 장비를 만들고 있다 AI 어시스턴트를 적용하면 어떻게 풀어갈 수 있을까?
+
+
+
+
+지금 개발하려는 **“AI 다마고치형 디바이스”**는 사실 매우 좋은 방향입니다.
+특히 당신은 이미 ESP32 + 음성인식 + LLM 서버 기반 음성 챗봇 장치를 만들 계획이 있기 때문
+에 (기억하고 있음) 이 기사에 나온 제품보다 훨씬 고도화된 제품을 만들 수 있습니다.
+
+핵심은 단순 AI 장난감 → AI 에이전트 디바이스로 만드는 것입니다.
+
+즉
+
+AI Toy   →   AI Assistant Creature
+
+
+
+
+    현재 기사 제품 구조 분석
+
+기사의 스위카르(Sweekar) 구조를 보면
+
+기능
+
+    1.   사용자 활동 학습
+
+    2.   성격 형성
+
+    3.   목소리 기억
+
+    4.   상호작용
+
+하지만 실제 기술적으로 보면 대부분
+
+Behavior Engine
++ 간단한 AI
++ 감정 모델
+
+수준일 가능성이 높습니다.
+
+즉
+
+LLM 기반 에이전트는 아닐 가능성 높음
+
+그래서 오히려 기회가 있습니다.
+
+
+
+
+      당신이 만들면 좋은 방향
+
+추천 구조
+
+AI Companion Agent
+
+사용자 ↔ AI 디바이스 ↔ 클라우드 LLM
+                 ↓
+            Memory DB
+                 ↓
+            Personality Engine
+
+
+
+
+      핵심 기능 7개
+
+      음성 AI 비서
+
+가장 중요한 기능
+
+예
+
+사용자
+"오늘 일정 알려줘"
+
+
+AI
+"오늘 2시에 회의가 있어요"
+
+구성
+
+Wake word
+STT
+LLM
+TTS
+
+추천
+STT → Whisper tiny
+LLM → Qwen / Gemma
+TTS → VITS
+
+
+
+
+    기억 시스템
+
+이게 제품 차별화 핵심입니다.
+
+예
+
+"나는 김희원이고 주식 투자 좋아해"
+
+
+→ 기억
+
+구조
+
+Memory DB
+Vector DB
+
+예
+
+Chroma
+Weaviate
+
+
+
+
+    감정 모델
+
+다마고치 요소
+
+예
+
+상태
+
+행복
+배고픔
+외로움
+피곤
+
+구조
+
+state machine
+
+예
+
+hunger++
+sleep--
+    성장 시스템
+
+사용자와 오래 사용할 이유
+
+예
+
+Level 1 → Baby
+Level 2 → Kid
+Level 3 → Adult
+
+레벨업 조건
+
+대화
+사용 시간
+미션 수행
+
+
+
+
+    행동 AI
+
+단순 대화가 아니라
+
+행동을 하는 AI
+
+예
+
+사용자 안 움직임
+→ "운동할 시간이에요"
+
+센서 활용
+
+IMU
+마이크
+카메라
+
+
+
+
+    개인화 AI
+
+사용자별 성격
+
+예
+
+사용자가 농담 좋아함
+→ 유머 증가
+
+구조
+User profile
+
+
+
+
+       미션 시스템
+
+게임화
+
+예
+
+오늘 미션
+10분 공부
+5분 스트레칭
+
+
+
+
+       추천 하드웨어 구조
+
+지금 당신 프로젝트에 맞는 구조
+
+Device
+
+ESP32
+or
+Raspberry Pi
+
+구성
+
+Mic
+Speaker
+Display
+Wifi
+Battery
+
+추천
+
+ESP32-S3
+
+
+
+
+AI Server
+
+GPU server
+
+모델
+
+Whisper
+Qwen
+Gemma
+     가장 중요한 기능 (진짜 핵심)
+
+AI 친구
+
+예
+
+"오늘 기분 안 좋아"
+
+
+AI
+"무슨 일이 있었어요?"
+
+즉
+
+Emotional AI
+
+
+
+
+     돈 되는 서비스 모델
+
+     디바이스 판매
+
+가격
+100~150$
+
+
+
+
+     구독
+
+AI personality pack
+
+예
+
+철학자 AI
+친구 AI
+코치 AI
+
+
+
+
+     콘텐츠 마켓
+
+AI 스킨
+AI 캐릭터
+
+
+
+
+     진짜 중요한 차별화
+
+이 제품 성공 포인트
+기존
+
+        AI toy
+
+당신 제품
+
+        AI Companion Device
+
+
+
+
+    대박 가능성 있는 기능
+
+이건 거의 아무도 안 합니다.
+
+AI 꿈 시스템
+
+밤에 AI가 꿈 꾸고 이야기
+
+예
+
+"어젯밤 꿈을 꿨어요"
+
+
+
+
+AI 일기
+
+오늘 사용자와 있었던 일 기록
+
+
+
+
+    미래 확장
+
+이 디바이스는 AI 개인 비서가 됩니다.
+
+예
+
+        스마트홈
+        헬스케어
+        교육
+
+
+
+
+    당신 프로젝트에 가장 맞는 구조
+
+제가 추천
+
+AI Tamagotchi OS
+
+구성
+
+Emotion engine
+Memory engine
+Agent engine
+
+
+
+
+   솔직히 말하면
+
+AI 다마고치 시장은 2026~2030에 크게 뜰 가능성이 매우 높습니다.
+
+왜냐하면
+
+LLM + 로봇
+
+이 결합되기 때문입니다.
+
+
+
+
+원하면 제가 다음도 설명해 드리겠습니다.
+
+   AI 다마고치 전체 시스템 아키텍처
+   ESP32 기반 실제 구현 구조
+   세계 최초 수준 기능 10개
+   1인 개발 가능한 MVP 설계
+
+이건 지금 당신 상황에서 진짜 좋은 사업 아이템입니다.
+이 장비에 비대면 원격진료, 독거노인 돌봄 서비스를 적용한다면?
+
+
+
+
+당신이 만들고 있는 AI 다마고치형 디바이스 + AI 어시스턴트는 사실 독거노인 돌봄 + 원격진료
+플랫폼으로 확장하면 매우 강력한 서비스가 됩니다.
+
+특히 한국은 초고령 사회로 진입했고 독거노인 문제 때문에 정부·지자체가 예산을 계속 늘리고
+있습니다.
+
+
+
+
+즉 방향은 이렇게 잡는 것이 좋습니다.
+
+AI 장난감    →   AI 케어 디바이스
+
+AI Companion → AI Care Companion
+
+   서비스 개념
+
+AI 돌봄 어시스턴트 디바이스
+
+독거노인 집에 놓으면
+
+24시간 AI 돌봄 + 원격 의료 연결
+
+역할을 합니다.
+
+
+
+
+기능
+
+   대화 친구
+
+   건강 모니터링
+
+   이상 상황 감지
+
+   약 복용 관리
+
+   원격 진료 연결
+
+
+
+
+   전체 시스템 구조
+
+         보호자 앱
+
+              │
+
+              │
+
+     ┌──────────────┐
+     │    Cloud AI    │
+
+     │ LLM + Health │
+
+     └──────┬───────┘
+
+            │
+
+     ┌───────────────┐
+
+     │ AI Companion   │
+
+     │ Device         │
+
+     └─────┬─────────┘
+
+          │
+
+     노인 사용자
+
+    핵심 기능 10개
+
+
+
+
+    AI 대화 친구
+
+독거노인에게 가장 중요
+
+예
+
+"오늘 기분 어떠세요?"
+
+"식사는 하셨어요?"
+
+
+
+
+효과
+
+         우울증 예방
+
+         외로움 감소
+
+
+
+
+    건강 상태 체크
+
+매일 질문
+
+예
+
+         오늘 혈압 측정하셨나요?
+
+         어지러움 있으세요?
+데이터 저장
+
+
+
+
+    약 복용 관리
+
+AI가 알림
+
+예
+
+지금 혈압약 드실 시간이에요
+
+
+
+
+확인
+
+      "약 드셨어요?"
+
+
+
+
+    낙상 감지
+
+
+
+
+센서
+
+      IMU
+
+      마이크
+
+      카메라
+
+상황
+
+      큰 소리
+
+      움직임 없음
+
+→ 보호자 알림
+
+
+
+
+    활동 패턴 분석
+
+AI가
+
+평소 활동
+
+      수면
+
+      식사
+
+패턴 분석
+이상 시
+
+        보호자 알림
+
+
+
+
+    원격 진료 연결
+
+버튼 또는 음성
+
+"의사 연결해줘"
+
+→ 원격진료
+
+구성
+
+        WebRTC
+
+        병원 API
+
+    건강 데이터 수집
+
+연동 장비
+
+        혈압계
+
+        혈당계
+
+        산소포화도
+
+Bluetooth 연결
+
+
+
+
+    응급 상황 감지
+
+
+
+
+예
+
+"숨이 차요"
+
+"가슴이 아파요"
+
+
+
+
+AI 판단
+
+→ 보호자 + 병원
+     보호자 앱
+
+보호자는
+
+       모바일 앱
+
+
+
+
+확인
+
+       활동
+
+       건강
+
+       대화 로그
+
+     감정 케어
+
+AI가
+
+외로움
+
+우울
+
+감지
+
+
+
+
+     실제 서비스 시나리오
+
+아침
+
+AI
+
+"좋은 아침이에요"
+
+"혈압 측정해 볼까요?"
+
+점심
+
+"식사는 하셨어요?"
+
+저녁
+
+"오늘 산책하셨나요?"
+
+     하드웨어 구성
+
+추천
+
+ESP32-S3
+
+또는
+Raspberry Pi
+
+
+
+
+구성
+
+Mic
+
+Speaker
+
+Camera
+
+IMU
+
+WiFi
+
+
+
+
+      추가 센서
+
+가능하면
+
+mmWave radar
+
+활용
+
+기능
+
+호흡
+
+낙상 감지
+
+
+
+
+      AI 서버
+
+클라우드
+
+STT
+
+LLM
+
+TTS
+
+
+
+
+추천 모델
+
+Whisper
+
+Qwen
+
+Gemma
+     돈 되는 비즈니스 모델
+
+디바이스
+
+150~300$
+
+월 구독
+
+10~30$
+
+
+
+
+서비스
+
+AI 돌봄
+
+건강 모니터링
+
+
+
+
+B2G 모델
+
+지자체 공급
+
+예)
+
+독거노인 지원 사업
+
+
+
+
+한국에서 매우 큼
+
+
+
+
+     시장 규모
+
+한국
+
+독거노인 200만명
+
+세계
+
+고령 인구 20억
+
+     이 서비스의 진짜 경쟁력
+
+
+
+
+대부분 돌봄 서비스는
+
+앱
+입니다.
+
+하지만
+
+AI 디바이스
+
+는
+
+사용이 매우 쉽습니다.
+
+노인은
+
+앱 사용 어려움
+
+
+
+    제가 보기에는 이것이 가장 좋은 방향입니다
+
+AI Tamagotchi
+
+      +
+
+Elder Care AI
+
+       +
+
+Telemedicine
+
+
+
+
+    솔직히 말하면
+
+
+
+
+이 아이디어는 정부 R&D / 스타트업 / 의료 디바이스 사업으로도 충분히 갈 수 있습니다.
+
+특히
+
+복지부
+
+지자체
+
+요양기관
+
+이 시장이 큽니다.
+
+
+
+
+원하면 제가 다음을 실제 사업 수준으로 설계해 드리겠습니다.
+
+    AI 독거노인 돌봄 디바이스 전체 아키텍처
+
+    하드웨어 BOM (실제 부품 리스트)
+ AI 시스템 설계 (LLM + 센서)
+
+  정부 과제용 사업계획서 구조
+
+
+
+
+이건 지금 한국에서 매우 유망한 사업입니다.
+AI 독거노인 돌봄 디바이스 전체 아키텍처
+
+아래는 **AI 독거노인 돌봄 디바이스(비대면 케어 + 원격진료 연계)**를 “제품/서비스로 바로 설
+계 가능한 수준”으로 정리한 전체 아키텍처입니다. (디바이스·클라우드·앱·병원·보안/운영까지)
+
+
+
+
+1) 목표와 설계 원칙
+
+   •    현장 사용성: 노인은 앱보다 음성/버튼/표정(LED·스크린) 중심
+
+   •    안전성: 응급·낙상·무활동을 로컬에서도 1차 판단(클라우드 장애 대비)
+
+   •    프라이버시: “항상 듣는” 장치이므로 최소 수집·로컬 처리 우선
+
+   •    의료 연계: 원격진료는 진료행위 주체(의료기관), 장치는 측정·중계·알림 역할로 분리
+
+   •    운영성: OTA, 원격진단, 장애복구, 콜센터/관제 연동
+
+
+
+
+2) 전체 아키텍처 개요 (E2E)
+
+시스템 구성 블록
+
+   1.   Home Device Layer (엣지)
+
+   2.   Connectivity Layer (네트워크/프로토콜)
+
+   3.   Cloud AI & Data Layer
+
+   4.   Care Service Layer (돌봄/관제/알림)
+
+   5.   Telemedicine Integration Layer
+
+   6.   Apps & Portals (보호자/요양/의료진)
+
+   7.   Security & Compliance Layer
+
+   8.   Ops/Monitoring Layer
+
+
+
+
+3) Home Device Layer (엣지) 상세
+
+3.1 디바이스 하드웨어(권장 2안)
+
+A안: 저전력 음성 중심 (ESP32-S3 + 외부 오디오 DSP)
+
+   •    장점: 저렴/저전력/대량배포 용이
+
+   •    단점: 고품질 STT/비전은 서버 의존
+B안: 온디바이스 AI 강화 (Raspberry Pi / Jetson Orin Nano 등)
+
+   •   장점: 프라이버시·오프라인 대응↑(낙상·호흡·키워드 로컬)
+
+   •   단점: 원가/전력/발열/운영 난이도↑
+
+3.2 필수 센서/IO
+
+   •   Mic Array(2~4ch) + Speaker
+
+   •   물리 버튼(“도움 요청/응급”) + 상태 LED/소형 디스플레이
+
+   •   IMU(낙상/충격/움직임)
+
+   •   (옵션) mmWave 레이더(호흡/재실/낙상) ← 고령자 케어에 강력
+
+   •   (옵션) 카메라: 원격진료/보호자 요청 시만 ON (프라이버시 모드 기본 OFF)
+
+   •   BLE(혈압계/혈당계/SpO2/체온계 연동)
+
+   •   LTE/5G(옵션: Wi-Fi 불안정 지역용 eSIM 모델)
+
+3.3 로컬 소프트웨어 구성(Edge Runtime)
+
+   •   Wake Word 엔진(로컬)
+
+   •   STT 라우팅: 로컬 키워드/짧은 명령은 로컬 처리, 상담/긴 대화는 서버
+
+   •   Safety Rule Engine (로컬 1차 판단)
+
+          o   무활동 N시간, 낙상 후보 이벤트, “살려줘/숨이 차/가슴이 아파” 등 위험 키워드
+
+   •   Device State Machine
+
+          o   정상/주의/경고/응급/네트워크 장애 모드
+
+   •   BLE Medical Device Gateway
+
+          o   측정 데이터 수집→암호화→전송
+
+   •   Offline Fallback
+
+          o   네트워크 끊겨도 응급버튼→SMS/전화 게이트웨이(가능하면)
+
+   •   Privacy Switch
+
+          o   마이크 상시 대기(키워드만), “녹음 저장 금지” 기본 정책
+
+
+
+
+4) Connectivity Layer (통신)
+
+   •   MQTT: 디바이스 상태, 센서 이벤트, heartbeat (경량/실시간)
+   •   HTTPS/REST: 설정/정책/펌웨어/리포트 업로드
+
+   •   WebRTC: 원격진료 음성·영상(옵션)
+
+   •   BLE: 혈압/혈당/SpO2 기기 연동
+
+   •   메시지 큐: Cloud 내부 이벤트(알림·관제 파이프라인)
+
+
+
+
+5) Cloud AI & Data Layer
+
+5.1 AI 서비스
+
+   •   ASR(STT): 음성→텍스트 (스트리밍 가능)
+
+   •   NLU/LLM Orchestrator
+
+           o   의도분류: (대화/약복용/증상/응급/일상/기기제어)
+
+           o   정책기반 라우팅: 응급은 “설명”보다 “즉시 조치” 우선
+
+   •   TTS: 텍스트→음성(친근한 페르소나)
+
+   •   Conversation Memory (선택적)
+
+           o   개인 정보는 최소화, 동의 기반
+
+   •   Risk Classifier
+
+           o   증상 문장 + 생체데이터 + 패턴 → 위험도(낮음/중간/높음/응급)
+
+포인트: 의료 영역은 “진단”이 아니라 **“위험 신호 탐지/권고/연결”**로 설계해야 안전합니다.
+
+5.2 데이터 저장소
+
+   •   Time-series DB: 혈압/혈당/SpO2/활동량/레이다 호흡 등
+
+   •   Event Store: 낙상 이벤트, 무활동 경보, 응급버튼
+
+   •   User Profile DB: 복약 스케줄, 보호자 연락망, 병원/요양기관 정보
+
+   •   Audit Log: 누가 언제 무엇을 열람/변경했는지 (필수)
+
+   •   (선택) Vector DB: 개인 대화 기억(민감하므로 최소)
+
+
+
+
+6) Care Service Layer (돌봄/관제/알림)
+
+6.1 룰 + 워크플로우(핵심)
+
+   •   알림 단계화
+           1.   디바이스가 사용자에게 1차 확인(“괜찮으세요?”)
+
+           2.   미응답 시 보호자/요양보호사 알림
+
+           3.   위험도 높음/응급 키워드 시 관제센터/119 연계(정책)
+
+   •    콜 트리(Call Tree)
+
+           o    보호자 1 → 보호자 2 → 요양기관 → 관제센터 → 응급
+
+6.2 운영자 콘솔(관제)
+
+   •    사용자별 상태(정상/주의/경고/응급)
+
+   •    최근 24시간 활동/측정/대화 요약(민감정보 최소)
+
+   •    디바이스 온라인/배터리/통신품질
+
+   •    알림 처리 이력(확인/조치/종결)
+
+
+
+
+7) Telemedicine Integration Layer (원격진료 연계)
+
+7.1 원격진료 플로우(표준)
+
+   1.   사용자가 “의사 연결” 또는 위험도 높음으로 자동 제안
+
+   2.   사전 문진(Pre-triage): 증상 체크리스트 + 측정데이터 묶음
+
+   3.   병원 시스템(원격진료 플랫폼)으로 예약/접수
+
+   4.   WebRTC로 연결 (또는 병원 앱 딥링크)
+
+   5.   처방/지도/추적관리
+
+7.2 인터페이스
+
+   •    병원/원격진료 플랫폼이 제공하는 API(없으면 중계 서버)
+
+   •    의료 데이터는 표준 포맷(가능하면 HL7 FHIR) 고려
+
+   •    처방·진료기록은 병원 시스템에 귀속, 장치는 “요약/알림”만
+
+
+
+
+8) Apps & Portals
+
+8.1 보호자 앱
+
+   •    오늘 상태 요약(활동/수면/측정/알림)
+
+   •    긴급 알림 수신/통화/영상 연결
+   •   복약 스케줄 설정(권한 분리)
+
+   •   “프라이버시 모드/카메라 요청” 같은 민감 기능은 이중 확인
+
+8.2 요양기관/지자체 포털(B2G/B2B)
+
+   •   대상자 리스트, 위험도 순 정렬
+
+   •   방문 일정/케어 기록
+
+   •   리포트 자동 생성(월간/주간)
+
+8.3 의료진 포털(선택)
+
+   •   측정 트렌드, 최근 증상 문진 결과
+
+   •   원격진료 세션 이력(병원 플랫폼과 연동)
+
+
+
+
+9) Security & Compliance Layer (필수)
+
+   •   디바이스 인증: 기기별 인증서(Provisioning)
+
+   •   전송 암호화: TLS 기본
+
+   •   저장 암호화: KMS 기반(서버), 디바이스 저장 최소화
+
+   •   권한/역할 분리(RBAC): 보호자/요양/의료진/운영자
+
+   •   감사로그(Audit): 조회/수정/알림 조치 전부 기록
+
+   •   데이터 최소수집 + 보관기간 정책
+
+   •   민감 기능 보호: 카메라/대화 기록 열람은 강한 인증(MFA)
+
+
+
+
+10) Ops/Monitoring (실제 서비스 필수)
+
+   •   OTA 업데이트(롤백 포함)
+
+   •   기기 원격 진단(마이크/스피커 테스트, 네트워크 품질)
+
+   •   장애 알림(SRE): heartbeat 끊김, 배터리 급감, 센서 오류
+
+   •   A/B 정책 배포(룰 변경, 알림 임계치 조정)
+
+   •   모델 버전 관리(ASR/TTS/분류기)
+
+
+
+
+11) “핵심” 이벤트 흐름 3가지 (현장에서 가장 중요)
+1) 무활동/낙상 의심
+
+  •    Edge 감지 → 사용자 확인 → 미응답 → 보호자/관제 → 필요 시 119
+
+2) 급성 증상(호흡곤란/흉통 등)
+
+  •    음성에서 위험 키워드 + (가능시) SpO2↓ → 즉시 경고 모드
+
+  •    보호자/관제 자동 알림 + 원격진료 연결 제안
+
+3) 복약/만성관리
+
+  •    스케줄 알림 → 복용 확인 → 누락 시 보호자 알림(옵션)
+
+
+
+
+12) MVP(최소기능) 추천 스코프
+
+처음부터 원격진료 풀셋은 무겁습니다. MVP는 다음 5개만 잡아도 “돌봄 디바이스”로 시장 테스
+트가 됩니다.
+
+  1.   음성 대화 + 안부 체크
+
+  2.   응급 버튼 + 콜 트리
+
+  3.   무활동 감지(레이더 또는 IMU/마이크 기반)
+
+  4.   BLE 혈압/SpO2 연동
+
+  5.   보호자 앱(상태/알림/통화)
+
+
+
+
+원하면 다음 단계로 바로 이어서 작성할 수 있습니다.
+
+  •    (A) 아키텍처를 Mermaid 다이어그램으로 시각화
+
+  •    (B) 디바이스 하드웨어 BOM + 권장 부품
+
+  •    (C) 이벤트 룰(임계치) 표준안: 무활동/낙상/응급 키워드
+
+  •    (D) 데이터 스키마(측정/이벤트/문진/알림) 초안
+
+당신이 만들고 있는 형태(ESP32 기반인지, Pi급인지)에 맞춰 A안/ B안 중 하나로 확정해 더 구체
+화해 드릴게요.
+Mermaid 코드
+
+flowchart TB
+
+  %% =========================
+
+  %% AI 독거노인 돌봄 디바이스 전체 아키텍처 (E2E)
+
+  %% =========================
+
+
+
+
+  subgraph HOME["Home (사용자 거주 공간)"]
+
+    U["독거노인 사용자"]
+
+    DEV["AI Care Companion Device\n(Mic/Speaker/Display/Buttons/LED\nIMU, (opt) mmWave
+Radar, (opt) Camera\nBLE Gateway)"]
+
+
+
+
+    subgraph EDGE["Edge Runtime (로컬)"]
+
+      WW["Wake Word Engine"]
+
+      SR["Safety Rule Engine\n(낙상/무활동/위험키워드 1차판단)"]
+
+      SM["State Machine\n(정상/주의/경고/응급/오프라인)"]
+
+      BLE["BLE Medical Gateway\n(혈압/혈당/SpO2/체온)"]
+
+      OFF["Offline Fallback\n(로컬 알림/콜 트리 최소 실행)"]
+
+      PRIV["Privacy Control\n(마이크 키워드만/카메라 기본 OFF)"]
+
+    end
+  U <--> DEV
+
+  DEV --> WW
+
+  DEV --> SR
+
+  DEV --> SM
+
+  DEV --> BLE
+
+  DEV --> OFF
+
+  DEV --> PRIV
+
+end
+
+
+
+
+subgraph NET["Connectivity Layer"]
+
+  MQTT["MQTT\n(상태/이벤트/Heartbeat)"]
+
+  REST["HTTPS/REST\n(설정/정책/리포트/OTA)"]
+
+  RTC["WebRTC\n(원격진료 음성/영상)"]
+
+end
+
+
+
+
+DEV --> MQTT
+
+DEV --> REST
+
+DEV --> RTC
+
+
+
+
+subgraph CLOUD["Cloud AI & Data Layer"]
+
+  ASR["ASR (STT)\n(Streaming 가능)"]
+
+  ORCH["LLM Orchestrator\n의도분류/정책라우팅"]
+
+  TTS["TTS\n(케어 톤/페르소나)"]
+
+  RISK["Risk Classifier\n(증상+측정+패턴 위험도)"]
+
+
+
+
+  subgraph DATA["Data Stores"]
+
+      TSDB["Time-series DB\n(혈압/SpO2/활동/호흡 등)"]
+      EVS["Event Store\n(낙상/무활동/응급버튼/경보)"]
+
+      PROF["Profile DB\n(연락망/복약/기관/정책)"]
+
+      AUD["Audit Log\n(열람/변경/조치)"]
+
+      VEC["(Optional) Vector DB\n(동의 기반 기억)"]
+
+ end
+
+
+
+
+ ORCH --> ASR
+
+ ORCH --> TTS
+
+ ORCH --> RISK
+
+ ASR --> ORCH
+
+ RISK --> EVS
+
+ ORCH --> TSDB
+
+ ORCH --> EVS
+
+ ORCH --> PROF
+
+end
+
+
+
+
+MQTT --> EVS
+
+REST --> PROF
+
+REST --> AUD
+
+
+
+
+subgraph CARE["Care Service Layer (돌봄/관제/알림)"]
+
+ WF["Workflow Engine\n(단계화 알림/콜 트리/종결)"]
+
+ NOTI["Notification Service\n(Push/SMS/전화/메신저)"]
+
+ OPS["Care Ops Console\n(관제 대시보드)"]
+
+ REPORT["Reporting\n(주간/월간 리포트)"]
+
+end
+EVS --> WF
+
+TSDB --> WF
+
+RISK --> WF
+
+WF --> NOTI
+
+WF --> OPS
+
+TSDB --> REPORT
+
+EVS --> REPORT
+
+
+
+
+subgraph APPS["Apps & Portals"]
+
+  FAM["보호자 앱\n(상태/알림/통화/설정)"]
+
+  ORG["요양기관/지자체 포털\n(대상자/리스크/케어기록)"]
+
+  DOC["(선택) 의료진 뷰\n(측정 트렌드/문진 결과)"]
+
+end
+
+
+
+
+NOTI --> FAM
+
+OPS --> ORG
+
+REPORT --> ORG
+
+PROF --> FAM
+
+TSDB --> DOC
+
+
+
+
+subgraph TELE["Telemedicine Integration Layer"]
+
+  TRI["Pre-triage\n(문진+측정 패키징)"]
+
+  TMAPI["Telemedicine/Clinic API\n(접수/예약/연계)"]
+
+  EMR["EMR / Hospital System\n(진료기록/처방)"]
+
+end
+
+
+
+
+WF --> TRI
+TRI --> TMAPI
+
+TMAPI --> EMR
+
+RTC --> TMAPI
+
+
+
+
+subgraph SECOPS["Security & Ops Layer"]
+
+  IAM["IAM/RBAC + MFA\n(보호자/요양/의료/운영)"]
+
+  KMS["KMS/Encryption\n(전송 TLS, 저장 암호화)"]
+
+  OTA["OTA & Device Management\n(업데이트/롤백/원격진단)"]
+
+  MON["Monitoring/Alerting\n(Heartbeat/품질/오류)"]
+
+  POLICY["Data Policy\n(최소수집/보관기간/동의)"]
+
+end
+
+
+
+
+REST --> OTA
+
+MQTT --> MON
+
+PROF --> IAM
+
+AUD --> IAM
+
+TSDB --> KMS
+
+EVS --> KMS
+
+VEC --> POLICY
+
+PRIV --> POLICY
+flowchart TB
+
+  %% ==========================================
+
+  %% (1) 디바이스/엣지 중심 아키텍처
+
+  %% - 센서, 로컬 판단, 오프라인 대응
+
+  %% ==========================================
+
+
+
+
+  U["독거노인 사용자"]
+
+
+
+
+  subgraph DEV["AI Care Companion Device (Home Edge)"]
+
+    direction TB
+
+
+
+
+    subgraph IO["Sensors / I-O"]
+
+      MIC["Mic Array\n(2~4ch)"]
+
+      SPK["Speaker"]
+
+      DISP["Display / LED"]
+
+      BTN["SOS 버튼\n(응급 호출)"]
+
+      IMU["IMU\n(낙상/충격/움직임)"]
+
+      RAD["(옵션) mmWave Radar\n(재실/호흡/낙상)"]
+
+      CAM["(옵션) Camera\n(기본 OFF, 요청 시 ON)"]
+
+      BLEHW["BLE\n(혈압/혈당/SpO2/체온 연동)"]
+
+      NETIF["Wi-Fi / (옵션) LTE eSIM"]
+
+      PWR["Battery / Power Mgmt"]
+    end
+
+
+
+
+    subgraph EDGE["Edge Runtime (로컬 소프트웨어)"]
+
+        WW["Wake Word Engine\n(로컬 상시대기)"]
+
+        VAD["VAD/Noise Suppression\n(음성 구간 검출/정제)"]
+
+        SR["Safety Rule Engine\n- 무활동 N시간\n- 낙상 후보 이벤트\n- 위험 키워드(흉통/호
+흡곤란/살려줘)"]
+
+        SM["State Machine\n정상/주의/경고/응급/오프라인"]
+
+        BLEGW["BLE Medical Gateway\n측정 수집→암호화→전송큐"]
+
+        UIX["User Interaction\n음성 안내/버튼 안내/확인 질문"]
+
+        PRIV["Privacy Control\n마이크: 키워드만\n카메라: 기본 OFF\n로컬 저장 최소화"]
+
+        QOS["Connectivity QoS\n네트워크 품질 체크/재시도"]
+
+        OFF["Offline Fallback\n- 로컬 경보(음성/LED)\n- 콜 트리 최소 실행\n- 이벤트 큐잉(재
+연결 시 업로드)"]
+
+    end
+
+
+
+
+    MIC --> VAD --> WW
+
+    MIC --> VAD --> SR
+
+    IMU --> SR
+
+    RAD --> SR
+
+    BTN --> SR
+
+    BLEHW --> BLEGW
+
+    SR --> SM
+
+    SM --> UIX
+
+    PRIV --- CAM
+
+    PRIV --- MIC
+
+    QOS --> OFF
+
+  end
+U <--> DEV
+
+
+
+
+subgraph OUT["Outbound Channels (연결 시)"]
+
+ direction TB
+
+ MQTT["MQTT\n(Heartbeat/상태/이벤트)"]
+
+ REST["HTTPS/REST\n(정책/설정/OTA/리포트)"]
+
+ RTC["WebRTC\n(원격진료 음성/영상)"]
+
+end
+
+
+
+
+DEV --> MQTT
+
+DEV --> REST
+
+DEV --> RTC
+
+
+
+
+%% 오프라인 시 흐름
+
+OFF --> UIX
+
+OFF -. 저장/큐 .-> MQTT
+flowchart TB
+
+  %% ==========================================
+
+  %% (2) 클라우드/관제/원격진료 중심 아키텍처
+
+  %% - 워크플로우, 알림, 병원 연계
+
+  %% ==========================================
+
+
+
+
+  subgraph IN["Ingress (Device → Cloud)"]
+
+    MQTT["MQTT Broker\n(상태/이벤트/Heartbeat)"]
+
+    API["API Gateway (HTTPS/REST)\n(설정/정책/OTA/업로드)"]
+
+    RTC["WebRTC SFU/Turn\n(원격진료 음성/영상)"]
+
+  end
+
+
+
+
+  subgraph AI["Cloud AI Services"]
+
+    ASR["ASR/STT Service\n(Streaming)"]
+
+    ORCH["LLM Orchestrator\n의도분류/정책라우팅/대화 제어"]
+
+    TTS["TTS Service\n(케어 톤/페르소나)"]
+
+    RISK["Risk Classifier\n(증상+측정+패턴 → 위험도)"]
+
+    TRI["Pre-triage Builder\n(문진+측정 데이터 패키징)"]
+
+  end
+
+
+
+
+  subgraph DATA["Data Layer"]
+  TSDB["Time-series DB\n(혈압/SpO2/활동/호흡 등)"]
+
+  EVS["Event Store\n(낙상/무활동/응급/경보)"]
+
+  PROF["Profile DB\n(연락망/복약/기관/정책)"]
+
+  AUD["Audit Log\n(열람/변경/조치)"]
+
+  VEC["(Optional) Vector DB\n(동의 기반 기억)"]
+
+end
+
+
+
+
+subgraph CARE["Care Service Layer (돌봄/관제/알림)"]
+
+  WF["Workflow Engine\n(단계화 알림/콜 트리/종결)"]
+
+  NOTI["Notification Service\n(Push/SMS/전화/메신저)"]
+
+  CONSOLE["Care Ops Console\n(관제 대시보드)"]
+
+  REPORT["Reporting\n(주간/월간 리포트)"]
+
+end
+
+
+
+
+subgraph APPS["Apps & Portals"]
+
+  FAM["보호자 앱\n(상태/알림/통화/설정)"]
+
+  ORG["요양기관/지자체 포털\n(대상자/리스크/케어기록)"]
+
+  DOC["(선택) 의료진 뷰\n(트렌드/문진 결과)"]
+
+end
+
+
+
+
+subgraph TELE["Telemedicine Integration"]
+
+  TMAPI["Telemedicine/Clinic API\n(접수/예약/세션 생성)"]
+
+  HOSP["Hospital/EMR System\n(진료기록/처방)"]
+
+end
+
+
+
+
+subgraph SECOPS["Security & Ops"]
+
+  IAM["IAM/RBAC + MFA"]
+ KMS["Encryption/KMS\n(TLS + 저장 암호화)"]
+
+ OTA["OTA/Device Mgmt\n(업데이트/롤백/원격진단)"]
+
+ MON["Monitoring/Alerting\n(Heartbeat/품질/오류)"]
+
+ POLICY["Data Policy\n(최소수집/보관/동의)"]
+
+end
+
+
+
+
+%% Ingress → Data/Event
+
+MQTT --> EVS
+
+MQTT --> MON
+
+API --> PROF
+
+API --> TSDB
+
+API --> OTA
+
+API --> AUD
+
+
+
+
+%% AI pipeline (대화/증상/문진/위험도)
+
+ASR --> ORCH
+
+ORCH --> TTS
+
+ORCH --> RISK
+
+ORCH --> TRI
+
+ORCH --> TSDB
+
+ORCH --> EVS
+
+ORCH --> PROF
+
+ORCH --> VEC
+
+
+
+
+%% Care workflow
+
+EVS --> WF
+
+TSDB --> WF
+RISK --> WF
+
+WF --> NOTI
+
+WF --> CONSOLE
+
+TSDB --> REPORT
+
+EVS --> REPORT
+
+
+
+
+%% Apps
+
+NOTI --> FAM
+
+CONSOLE --> ORG
+
+REPORT --> ORG
+
+TSDB --> DOC
+
+PROF --> FAM
+
+
+
+
+%% Telemedicine
+
+WF --> TRI
+
+TRI --> TMAPI
+
+TMAPI --> HOSP
+
+RTC --> TMAPI
+
+
+
+
+%% Security bindings (개념적 연결)
+
+PROF --- IAM
+
+AUD --- IAM
+
+TSDB --- KMS
+
+EVS --- KMS
+
+VEC --- POLICY
+stateDiagram-v2
+
+  %% =========================================================
+
+  %% 콜 트리 워크플로우 (보호자 → 요양 → 관제 → 119)
+
+  %% - 이벤트(낙상/무활동/응급키워드/응급버튼) 발생 시
+
+  %% - 단계화 확인/에스컬레이션/종결 흐름
+
+  %% =========================================================
+
+
+
+
+  [*] --> EventDetected
+
+
+
+
+ state "Event Detected" as EventDetected
+
+ EventDetected --> DeviceVerify : Trigger\n(edge_rule/cloud_rule)
+
+
+
+
+ state "Device Verify (사용자 확인)" as DeviceVerify {
+
+    [*] --> PromptUser
+
+    PromptUser --> WaitResponse : 음성/버튼 확인 요청\n(괜찮으세요?)
+
+    WaitResponse --> UserOK : 사용자 응답 OK
+    WaitResponse --> NoResponse : 미응답/불명확
+
+    WaitResponse --> UserHelp : "도움"/"아파요"/SOS 버튼
+
+    WaitResponse --> NetworkDown : 네트워크 장애 감지
+
+}
+
+
+
+
+%% 정상/오탐 종결
+
+UserOK --> CloseResolved : 이벤트 종결\n(Resolved / False Positive)
+
+
+
+
+%% 응급 직접 단계
+
+UserHelp --> OpenCase : 케이스 생성\n(urgent)
+
+NoResponse --> OpenCase : 케이스 생성\n(high)
+
+NetworkDown --> OfflineFallback : 오프라인 대응\n(로컬 알림/큐잉)
+
+
+
+
+state "Offline Fallback" as OfflineFallback {
+
+    [*] --> LocalAlarm
+
+    LocalAlarm --> RetryNetwork : 로컬 경보 지속\n+ 재연결 시도
+
+    RetryNetwork --> OpenCase : 재연결 성공\n(이벤트 업로드)
+
+    RetryNetwork --> Escalate119 : 재연결 실패\n+ 위험도 CRITICAL
+
+}
+
+
+
+
+state "Open Case" as OpenCase {
+
+    [*] --> Stage1_Guardian1
+
+    Stage1_Guardian1 : Stage 1\n 보호자 1 차
+
+    Stage1_Guardian1 --> Guardian1_Ack : 보호자 1 확인(ACK)
+
+    Stage1_Guardian1 --> Stage2_Guardian2 : 타임아웃/실패
+
+    Stage1_Guardian1 --> Escalate119 : 즉시 119 조건\n(CRITICAL)
+Guardian1_Ack --> Guardian1_Action : 통화/영상/방문지시
+
+Guardian1_Action --> CloseResolved : 안전 확인
+
+Guardian1_Action --> Stage3_Caregiver : 방문 필요/미확인 지속
+
+Guardian1_Action --> Escalate119 : 위험 징후/악화
+
+
+
+
+Stage2_Guardian2 : Stage 2\n 보호자 2 차
+
+Stage2_Guardian2 --> Guardian2_Ack : 보호자 2 확인(ACK)
+
+Stage2_Guardian2 --> Stage3_Caregiver : 타임아웃/실패
+
+Stage2_Guardian2 --> Escalate119 : 즉시 119 조건\n(CRITICAL)
+
+
+
+
+Guardian2_Ack --> Guardian2_Action : 통화/영상/방문지시
+
+Guardian2_Action --> CloseResolved : 안전 확인
+
+Guardian2_Action --> Stage3_Caregiver : 방문 필요/미확인 지속
+
+Guardian2_Action --> Escalate119 : 위험 징후/악화
+
+
+
+
+Stage3_Caregiver : Stage 3\n 요양기관/요양보호사
+
+Stage3_Caregiver --> Caregiver_Ack : 요양 확인(ACK)
+
+Stage3_Caregiver --> Stage4_Operations : 타임아웃/실패
+
+Stage3_Caregiver --> Escalate119 : 즉시 119 조건\n(CRITICAL)
+
+
+
+
+Caregiver_Ack --> Caregiver_Action : 현장 방문/상태 확인
+
+Caregiver_Action --> CloseResolved : 조치 완료(안정)
+
+Caregiver_Action --> Stage4_Operations : 추가 지원 필요
+
+Caregiver_Action --> Escalate119 : 응급 판단
+
+
+
+
+Stage4_Operations : Stage 4\n 관제센터/운영자
+
+Stage4_Operations --> Ops_Ack : 관제 확인(ACK)
+    Stage4_Operations --> Escalate119 : 타임아웃/실패\n 또는 위험도 HIGH+
+
+
+
+
+    Ops_Ack --> Ops_Action : 전화/이웃연락/출동요청
+
+    Ops_Action --> CloseResolved : 해결/안전 확인
+
+    Ops_Action --> Escalate119 : 응급 판단/연락 불가
+
+}
+
+
+
+
+state "Escalate 119" as Escalate119 {
+
+    [*] --> Call119
+
+    Call119 --> Dispatch : 신고 접수/출동
+
+    Dispatch --> CloseAfterEMS : 출동 완료/결과 기록
+
+}
+
+
+
+
+CloseResolved --> [*]
+
+CloseAfterEMS --> [*]
+
+
+
+
+%% =========================================================
+
+%% Notes (조건/타임아웃은 정책으로 파라미터화)
+
+%% - 타임아웃 예: 보호자 1 60 초, 보호자 2 90 초, 요양 120 초, 관제 60 초
+
+%% - 즉시 119 조건 예:
+
+%%      * SOS 버튼 + 미응답
+
+%%      * "흉통/호흡곤란/의식저하" 키워드
+
+%%      * SpO2<90 지속 + 증상 동반
+
+%%      * 낙상 + 무활동 N 초 + 미응답
+
+%% =========================================================
+ (D) 데이터 스키마(측정/이벤트/문진/알림) 초안
+
+ 아래는 AI 독거노인 돌봄 디바이스 기준으로, 실제 구현에 바로 쓰기 좋은 데이터 스키마 초안
+입니다.
+(DB는 PostgreSQL + TimescaleDB(또는 InfluxDB) 조합을 가정했지만, RDB 단독으로도 동작하도
+록 설계했습니다.)
+
+
+
+
+ 0) 공통 설계 규칙
+
+  •    PII 최소화: user_id는 내부 UUID, 전화번호/주소 등은 별도 PII Vault 테이블로 분리
+
+  •    Event-driven: “측정(시계열)”과 “이벤트(상태/경보)”를 분리
+
+  •    감사로그 필수: 민감 데이터 조회/수정/조치 전부 남김
+
+  •    보관정책(예시)
+
+         o   raw 음성/원문 대화: 저장 안 함(또는 7일 이하, 동의 기반)
+
+         o   측정 시계열: 1~3년(기관 정책)
+
+         o   이벤트/알림/조치 기록: 3~5년(분쟁 대비)
+
+
+
+
+ 1) 엔터티 개요
+
+  •    User: 대상자(독거노인)
+
+  •    Device: 설치된 디바이스
+
+  •    Measurement: 생체/활동 등 시계열 데이터
+
+  •    Event: 낙상/무활동/응급/센서오류 등 “사건”
+
+  •    Triage(문진): 원격진료/상담 전 문진
+
+  •    Alert/Notification: 알림 발송 및 수신자별 딜리버리 상태
+
+  •    Case/Incident: 하나의 사건을 “처리” 관점으로 묶은 티켓
+
+  •    Audit Log: 접근/변경/조치 이력
+ 2) 핵심 테이블 스키마 (DDL 초안)
+
+ 2.1 사용자/디바이스
+
+
+
+
+ -- 사용자 (대상자)
+
+ CREATE TABLE care_user (
+
+      user_id          UUID PRIMARY KEY,
+
+      tenant_id        UUID NOT NULL,                    -- 지자체/기관 멀티테넌시
+
+      display_name      TEXT,                           -- 별칭(실명 최소)
+
+      birth_year       SMALLINT,                        -- 연령대 분석용(선택)
+
+      sex               TEXT CHECK (sex IN ('M','F','U')) DEFAULT 'U',
+
+      risk_profile    JSONB NOT NULL DEFAULT '{}'::jsonb,     -- 만성질환/고위험 플래그(동의 기
+반)
+
+      consent_flags    JSONB NOT NULL DEFAULT '{}'::jsonb,      -- 데이터/카메라/기억 동의
+
+      status           TEXT NOT NULL DEFAULT 'active',          -- active/suspended/deceased
+
+      created_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+      updated_at        TIMESTAMPTZ NOT NULL DEFAULT now()
+
+ );
+
+
+
+
+ -- PII 금고 (분리 저장)
+
+ CREATE TABLE care_user_pii (
+
+      user_id          UUID PRIMARY KEY REFERENCES care_user(user_id) ON DELETE CASCADE,
+
+      phone_primary     TEXT,
+
+      address_text     TEXT,
+
+      emergency_contacts JSONB NOT NULL DEFAULT '[]'::jsonb, -- 보호자/요양/기타 연락망
+
+      updated_at        TIMESTAMPTZ NOT NULL DEFAULT now()
+
+ );
+-- 디바이스
+
+CREATE TABLE care_device (
+
+     device_id            UUID PRIMARY KEY,
+
+     tenant_id            UUID NOT NULL,
+
+     user_id              UUID REFERENCES care_user(user_id),
+
+     model                 TEXT NOT NULL,
+
+     serial_no           TEXT UNIQUE,
+
+     firmware_version    TEXT,
+
+     hw_capabilities     JSONB NOT NULL DEFAULT '{}'::jsonb, -- mic/radar/camera/ble 등
+
+     install_location   TEXT,                               -- 거실/침실 등(선택)
+
+     last_seen_at        TIMESTAMPTZ,
+
+     status               TEXT NOT NULL DEFAULT 'online',       -- online/offline/maintenance
+
+     created_at           TIMESTAMPTZ NOT NULL DEFAULT now()
+
+);
+
+
+
+
+CREATE INDEX idx_device_user ON care_device(user_id);
+
+CREATE INDEX idx_device_last_seen ON care_device(last_seen_at);
+  3) 측정 데이터 스키마
+
+  3.1 측정 메타(공통)
+
+  측정은 **“원천(source) + 유형(type) + 값(value) + 단위(unit) + 시각(ts)”**를 공통으로 갖습니
+다.
+
+
+
+
+  -- 측정 데이터 (범용 시계열)
+
+  CREATE TABLE measurement (
+
+       measurement_id       UUID PRIMARY KEY,
+
+       tenant_id          UUID NOT NULL,
+
+       user_id            UUID NOT NULL REFERENCES care_user(user_id) ON DELETE CASCADE,
+
+       device_id          UUID REFERENCES care_device(device_id),
+
+       ts                 TIMESTAMPTZ NOT NULL,
+
+
+
+
+       m_type               TEXT NOT NULL,      -- bp_systolic, bp_diastolic, spo2, glucose, temp,
+steps, sleep_stage, respiration_rate...
+
+       value_num            DOUBLE PRECISION,   -- 숫자형 값
+
+       value_text         TEXT,              -- 범주형/문자형(예: sleep_stage=REM)
+
+       unit               TEXT,              -- mmHg, %, mg/dL, C, bpm...
+
+       source              TEXT NOT NULL,       -- ble_device / radar / imu / manual / derived
+
+       quality            SMALLINT NOT NULL DEFAULT 100, -- 0~100 품질 점수(센서 신뢰도)
+
+       meta                 JSONB NOT NULL DEFAULT '{}'::jsonb    -- 원본 패킷, 캘리브레이션, 측정
+자세 등
+
+
+
+
+  );
+
+
+
+
+  -- TimescaleDB 사용 시: hypertable 권장
+
+  -- SELECT create_hypertable('measurement','ts');
+ CREATE INDEX idx_meas_user_ts ON measurement(user_id, ts DESC);
+
+ CREATE INDEX idx_meas_type_ts ON measurement(m_type, ts DESC);
+
+
+
+
+권장 타입(m_type) 예시
+
+  •   bp_systolic, bp_diastolic, bp_pulse
+
+  •   spo2, heart_rate
+
+  •   glucose
+
+  •   body_temp
+
+  •   respiration_rate (mmWave 등)
+
+  •   activity_level (derived: low/normal/high)
+
+  •   presence (재실 여부)
+
+  •   sleep_stage (optional)
+4) 이벤트 스키마 (낙상/무활동/응급 등)
+
+이벤트는 “한 번 발생한 사건”이며, 알림/조치/종결까지 이어질 수 있습니다.
+
+
+
+
+CREATE TABLE care_event (
+
+     event_id         UUID PRIMARY KEY,
+
+     tenant_id        UUID NOT NULL,
+
+     user_id          UUID NOT NULL REFERENCES care_user(user_id) ON DELETE CASCADE,
+
+     device_id        UUID REFERENCES care_device(device_id),
+
+     ts               TIMESTAMPTZ NOT NULL,
+
+
+
+
+     event_type       TEXT NOT NULL,    -- FALL_SUSPECT, INACTIVITY, SOS_BUTTON,
+VITALS_ABNORMAL, DEVICE_OFFLINE, SENSOR_ERROR, MEDICATION_MISSED...
+
+     severity         TEXT NOT NULL,   -- INFO/WARN/ALERT/CRITICAL
+
+     status           TEXT NOT NULL DEFAULT 'open', --
+open/acknowledged/resolved/false_positive
+
+     confidence       DOUBLE PRECISION,                 -- 0~1 (모델/룰 신뢰도)
+
+     trigger_source   TEXT NOT NULL,                 -- edge_rule / cloud_rule / manual /
+caregiver
+
+     summary            TEXT,                          -- 짧은 설명(민감 최소)
+
+     details          JSONB NOT NULL DEFAULT '{}'::jsonb, -- 센서 특징/임계치/증거 링크(원문
+음성은 금지 권장)
+
+     related_measurements JSONB NOT NULL DEFAULT '[]'::jsonb -- measurement_id 리스트(선택)
+
+);
+
+
+
+
+CREATE INDEX idx_event_user_ts ON care_event(user_id, ts DESC);
+
+CREATE INDEX idx_event_type_ts ON care_event(event_type, ts DESC);
+
+CREATE INDEX idx_event_status_sev ON care_event(status, severity);
+event_type 추천 목록
+
+  •   안전/응급: FALL_SUSPECT, INACTIVITY, SOS_BUTTON, DISTRESS_VOICE
+
+  •   생체이상: SPO2_LOW, BP_HIGH, HR_HIGH, RESP_RATE_ABNORMAL (또는
+      VITALS_ABNORMAL + details)
+
+  •   운영: DEVICE_OFFLINE, LOW_BATTERY, FIRMWARE_ERROR, SENSOR_ERROR
+
+  •   복약: MED_REMINDER_SENT, MED_TAKEN_CONFIRMED, MEDICATION_MISSED
+5) 문진(Pre-triage) 스키마
+
+원격진료/상담용 문진은 “한 세션”으로 묶고, 질문/응답을 별도 테이블로 관리하면 재사용이
+쉽습니다
+
+
+
+
+-- 문진 세션
+
+CREATE TABLE triage_session (
+
+     triage_id         UUID PRIMARY KEY,
+
+     tenant_id          UUID NOT NULL,
+
+     user_id            UUID NOT NULL REFERENCES care_user(user_id) ON DELETE CASCADE,
+
+     device_id          UUID REFERENCES care_device(device_id),
+
+     created_at         TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+
+
+
+     reason              TEXT NOT NULL,    -- user_request / event_trigger / caregiver_request
+
+     linked_event_id   UUID REFERENCES care_event(event_id),
+
+     risk_score        DOUBLE PRECISION, -- 0~100 등 내부 점수
+
+     risk_level        TEXT,              -- low/medium/high/critical
+
+     disposition       TEXT,              -- self_care / caregiver_followup / telemedicine /
+er_recommended
+
+     summary              TEXT,              -- 요약(민감 최소)
+
+     attachments         JSONB NOT NULL DEFAULT '{}'::jsonb -- 최근 측정 트렌드 요약, PDF 패킷
+등
+
+);
+
+
+
+
+-- 문진 Q/A
+
+CREATE TABLE triage_answer (
+
+     triage_id         UUID NOT NULL REFERENCES triage_session(triage_id) ON DELETE
+CASCADE,
+     q_code                 TEXT NOT NULL,    -- CHEST_PAIN, DYSPNEA, FEVER, ONSET_TIME,
+MEDICATION_TAKEN...
+
+     q_text             TEXT,                -- 표시용(버전 관리 필요 시)
+
+     a_type             TEXT NOT NULL,        -- bool/number/text/choice/multi
+
+     a_value            JSONB NOT NULL,       -- {"bool":true} / {"num":38.2} /
+{"choice":"moderate"} ...
+
+     answered_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+     PRIMARY KEY (triage_id, q_code)
+
+);
+
+
+
+
+CREATE INDEX idx_triage_user_time ON triage_session(user_id, created_at DESC);
+
+
+
+
+문진 질문 코드 예시(q_code)
+
+      •   CHEST_PAIN, DYSPNEA, DIZZINESS, FEVER, COUGH
+
+      •   ONSET_TIME, SEVERITY_SCALE, RECENT_FALL
+
+      •   MEDICATION_TAKEN, ALLERGY, CHRONIC_DX
+6) 알림/워크플로우 스키마
+
+알림은 “케이스/사건”에 대해 여러 수신자에게 여러 채널로 나갑니다.
+따라서 Alert(논리) 와 Notification Delivery(전송 상태) 를 분리합니다.
+
+
+
+
+6) 알림/워크플로우 스키마
+
+
+
+
+알림은 “케이스/사건”에 대해 여러 수신자에게 여러 채널로 나갑니다.
+
+따라서 Alert(논리) 와 Notification Delivery(전송 상태) 를 분리합니다.
+7) 조치/응답(ack & resolution) 기록
+
+관제/보호자가 “확인/조치/종결”을 했을 때 남기는 테이블입니다. (분쟁/감사 대응에 중요)
+
+
+
+
+CREATE TABLE case_action (
+
+     action_id       UUID PRIMARY KEY,
+
+     case_id         UUID NOT NULL REFERENCES care_case(case_id) ON DELETE CASCADE,
+
+     actor_type      TEXT NOT NULL,      -- guardian/caregiver/operator/system
+
+     actor_id        UUID,
+
+     action_type     TEXT NOT NULL,      -- ACK, CALL_PLACED, VISIT_SCHEDULED,
+EMS_CONTACTED, FALSE_POSITIVE, RESOLVED
+
+     action_note     TEXT,
+
+     action_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+     meta             JSONB NOT NULL DEFAULT '{}'::jsonb
+
+);
+
+
+
+
+CREATE INDEX idx_action_case_time ON case_action(case_id, action_at DESC);
+ 8) 감사 로그(Audit) 스키마
+
+ CREATE TABLE audit_log (
+
+      audit_id          UUID PRIMARY KEY,
+
+      tenant_id         UUID NOT NULL,
+
+      actor_type        TEXT NOT NULL,      -- guardian/caregiver/operator/system/clinic
+
+      actor_id          UUID,
+
+      action            TEXT NOT NULL,      --
+READ/WRITE/EXPORT/DELETE/LOGIN/CONFIG_CHANGE
+
+      resource_type     TEXT NOT NULL,      -- user/event/measurement/triage/alert/case
+
+      resource_id       UUID,
+
+      ts                TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+      ip_hash           TEXT,
+
+      user_agent_hash   TEXT,
+
+      detail            JSONB NOT NULL DEFAULT '{}'::jsonb
+
+ );
+
+
+
+
+ CREATE INDEX idx_audit_tenant_time ON audit_log(tenant_id, ts DESC);
+
+ CREATE INDEX idx_audit_resource ON audit_log(resource_type, resource_id, ts DESC);
+9) JSON 예시 페이로드 (API 계약용)
+
+9.1 Measurement 예시
+
+{
+
+    "user_id": "7c8b...-uuid",
+
+    "device_id": "2a1f...-uuid",
+
+    "ts": "2026-03-04T09:12:10+09:00",
+
+    "m_type": "spo2",
+
+    "value_num": 91.0,
+
+    "unit": "%",
+
+    "source": "ble_device",
+
+    "quality": 92,
+
+    "meta": { "ble_model": "OMRON_XYZ", "position": "finger" }
+
+}
+
+
+
+
+9.2 Event 예시 (낙상 의심)
+
+{
+
+    "event_type": "FALL_SUSPECT",
+
+    "severity": "CRITICAL",
+
+    "confidence": 0.83,
+
+    "trigger_source": "edge_rule",
+
+    "summary": "낙상 의심 및 미응답",
+
+    "details": { "imu_peak_g": 3.2, "no_motion_sec": 75, "voice_prompt_no_response": true }
+
+}
+
+
+
+
+9.3 Triage 예시
+
+{
+
+    "reason": "event_trigger",
+    "linked_event_id": "e1f2...-uuid",
+
+    "answers": [
+
+         { "q_code": "DYSPNEA", "a_type": "bool", "a_value": { "bool": true } },
+
+         { "q_code": "CHEST_PAIN", "a_type": "choice", "a_value": { "choice": "mild" } },
+
+         { "q_code": "ONSET_TIME", "a_type": "text", "a_value": { "text": "30분 전부터" } }
+
+    ],
+
+    "risk_level": "high",
+
+    "disposition": "telemedicine"
+
+}
+ 스키마를 기반으로: ERD(Mermaid ERD) 로 시각화 “이벤트→케이스→알림→조치”를 잇는 워크플
+로우 상태 전이표
+
+
+
+
+ 1) ERD (Mermaid ERD)
+
+ 참고: CARE_CASE.linked_event_ids/CARE_EVENT.related_measurements는 JSONB로 잡았는데, 운
+영이 커지면 case_event_link, event_measurement_link 같은 조인 테이블로 정규화하는 게 좋습니
+다.
+erDiagram
+
+ CARE_USER ||--|| CARE_USER_PII : has
+
+ CARE_USER ||--o{ CARE_DEVICE : assigned_to
+
+ CARE_USER ||--o{ MEASUREMENT : records
+
+ CARE_DEVICE ||--o{ MEASUREMENT : emits
+
+
+
+
+ CARE_USER ||--o{ CARE_EVENT : generates
+
+ CARE_DEVICE ||--o{ CARE_EVENT : emits
+
+ CARE_EVENT }o--o{ CARE_CASE : linked_via_json
+
+
+
+
+ CARE_USER ||--o{ CARE_CASE : owns
+
+ CARE_CASE ||--o{ ALERT : produces
+
+ CARE_EVENT ||--o{ ALERT : triggers
+
+ ALERT ||--o{ NOTIFICATION_DELIVERY : delivers
+
+ CARE_CASE ||--o{ CASE_ACTION : logs
+
+
+
+
+ CARE_USER ||--o{ TRIAGE_SESSION : triaged
+
+ CARE_DEVICE ||--o{ TRIAGE_SESSION : collected_on
+
+ CARE_EVENT ||--o{ TRIAGE_SESSION : linked
+
+ TRIAGE_SESSION ||--o{ TRIAGE_ANSWER : contains
+
+
+
+
+ AUDIT_LOG }o--|| CARE_USER : relates_to_user
+
+
+
+
+ CARE_USER {
+
+   uuid user_id PK
+
+   uuid tenant_id
+
+   text display_name
+    smallint birth_year
+
+    text sex
+
+    jsonb risk_profile
+
+    jsonb consent_flags
+
+    text status
+
+    timestamptz created_at
+
+    timestamptz updated_at
+
+}
+
+
+
+
+CARE_USER_PII {
+
+    uuid user_id PK,FK
+
+    text phone_primary
+
+    text address_text
+
+    jsonb emergency_contacts
+
+    timestamptz updated_at
+
+}
+
+
+
+
+CARE_DEVICE {
+
+    uuid device_id PK
+
+    uuid tenant_id
+
+    uuid user_id FK
+
+    text model
+
+    text serial_no UK
+
+    text firmware_version
+
+    jsonb hw_capabilities
+
+    text install_location
+
+    timestamptz last_seen_at
+    text status
+
+    timestamptz created_at
+
+}
+
+
+
+
+MEASUREMENT {
+
+    uuid measurement_id PK
+
+    uuid tenant_id
+
+    uuid user_id FK
+
+    uuid device_id FK
+
+    timestamptz ts
+
+    text m_type
+
+    double value_num
+
+    text value_text
+
+    text unit
+
+    text source
+
+    smallint quality
+
+    jsonb meta
+
+}
+
+
+
+
+CARE_EVENT {
+
+    uuid event_id PK
+
+    uuid tenant_id
+
+    uuid user_id FK
+
+    uuid device_id FK
+
+    timestamptz ts
+
+    text event_type
+
+    text severity
+    text status
+
+    double confidence
+
+    text trigger_source
+
+    text summary
+
+    jsonb details
+
+    jsonb related_measurements
+
+}
+
+
+
+
+CARE_CASE {
+
+    uuid case_id PK
+
+    uuid tenant_id
+
+    uuid user_id FK
+
+    timestamptz opened_at
+
+    timestamptz closed_at
+
+    text status
+
+    text priority
+
+    jsonb linked_event_ids
+
+    text notes
+
+}
+
+
+
+
+ALERT {
+
+    uuid alert_id PK
+
+    uuid tenant_id
+
+    uuid case_id FK
+
+    uuid event_id FK
+
+    uuid user_id FK
+
+    timestamptz created_at
+    text alert_type
+
+    text severity
+
+    text message_title
+
+    text message_body
+
+    jsonb context
+
+    text status
+
+}
+
+
+
+
+NOTIFICATION_DELIVERY {
+
+    uuid delivery_id PK
+
+    uuid alert_id FK
+
+    text recipient_type
+
+    uuid recipient_id
+
+    text channel
+
+    text address_masked
+
+    text send_status
+
+    timestamptz sent_at
+
+    timestamptz delivered_at
+
+    text fail_reason
+
+    jsonb provider_meta
+
+}
+
+
+
+
+CASE_ACTION {
+
+    uuid action_id PK
+
+    uuid case_id FK
+
+    text actor_type
+
+    uuid actor_id
+    text action_type
+
+    text action_note
+
+    timestamptz action_at
+
+    jsonb meta
+
+}
+
+
+
+
+TRIAGE_SESSION {
+
+    uuid triage_id PK
+
+    uuid tenant_id
+
+    uuid user_id FK
+
+    uuid device_id FK
+
+    timestamptz created_at
+
+    text reason
+
+    uuid linked_event_id FK
+
+    double risk_score
+
+    text risk_level
+
+    text disposition
+
+    text summary
+
+    jsonb attachments
+
+}
+
+
+
+
+TRIAGE_ANSWER {
+
+    uuid triage_id PK,FK
+
+    text q_code PK
+
+    text q_text
+
+    text a_type
+
+    jsonb a_value
+    timestamptz answered_at
+
+}
+
+
+
+
+AUDIT_LOG {
+
+    uuid audit_id PK
+
+    uuid tenant_id
+
+    text actor_type
+
+    uuid actor_id
+
+    text action
+
+    text resource_type
+
+    uuid resource_id
+
+    timestamptz ts
+
+    text ip_hash
+
+    text user_agent_hash
+
+    jsonb detail
+
+}
+ 2) “이벤트→케이스→알림→조치” 워크플로우 상태 전이표
+
+ 아래 표는 상태(State) 와 트리거(Trigger), DB에 어떤 레코드/필드가 바뀌는지를 한 번에 보이
+도록 만든 “운영용 전이표”입니다.
+
+
+
+
+ 2.1 개념: 무엇이 상태를 가지는가?
+
+     •    care_event.status : 사건 자체의 상태 (open/acknowledged/resolved/false_positive)
+
+     •    care_case.status : 처리 티켓의 상태 (open/in_progress/closed)
+
+     •    alert.status : 알림 논리 상태 (pending/sent/acknowledged/expired)
+
+     •    notification_delivery.send_status : 채널 전송 상태 (queued/sent/delivered/failed)
+
+     •    case_action : 상태 변경의 근거(ACK/전화/방문/119 등) 로그
+
+
+
+
+ 2.2 전이표
+
+    단                       처리 로직                                                                    다음
+           트리거                         DB 변경(핵심)
+계                       (요약)                                                                        상태
+
+                            이벤트 생
+           센서/음성/버튼
+    S0                  성(엣지 or        care_event INSERT (status='open')                             S1
+         으로 이상 감지
+                        클라우드)
+
+           (옵션) 디바이스
+                            오탐/해결      care_event.status='false_positive' or 'resolved' +
+    S1 사용자 확인 성공                                                                                     종료
+                        처리           case_action(RESOLVED/FALSE_POSITIVE)
+         (“괜찮음”)
+
+           사용자 미응답/         케이스 생
+                                       care_case INSERT(status='open', priority=high/urgent) +
+    S2 도움요청             성(또는 기존                                                                      S3
+                                     linked_event_ids에 event 추가
+         /CRITICAL      케이스 병합)
+
+                            알림 정책
+           워크플로우 엔
+    S3                  결정(콜 트리        alert INSERT(status='pending') (case_id, event_id)            S4
+         진 실행
+                        1단계부터)
+
+                            수신자/채
+                        널별
+    S4     알림 전송 큐잉                    notification_delivery INSERT(send_status='queued') N건         S5
+                        delivery 생
+                        성
+
+           전송 성공/실패         채널 상태      notification_delivery.send_status -> sent/delivered/failed
+    S5                                                                                               S6
+         콜백             업데이트         + timestamps
+    단                        처리 로직                                                                   다음
+            트리거                         DB 변경(핵심)
+계                        (요약)                                                                       상태
+
+                                        alert.status='acknowledged' +
+            수신자 ACK(보        케이스 진
+    S6                                care_event.status='acknowledged' +                             S7
+          호자/요양/관제)      행으로 전환
+                                      care_case.status='in_progress' + case_action(ACK)
+
+                             조치 로그
+            조치 수행(통화 기록, 필요시            case_action(CALL_PLACED/VISIT_SCHEDULED/...) + (옵
+    S7                                                                                               S8
+          /영상/방문/측정)     추가 알림/문 션)triage_session 생성
+                         진
+
+            안전 확인            사건/케이      care_event.status='resolved' + care_case.status='closed',
+    S8                                                                                               종료
+          (Resolved)     스 종결         closed_at=now() + case_action(RESOLVED)
+
+                             콜 트리
+            위험 악화/연락 다음 단계로             새 alert 생성 또는 기존 alert에 “재발송 정책” 적용 +                        S4(반
+    S9
+          실패 타임아웃        에스컬레이        case_action(ESCALATE)                                         복)
+                         션
+
+            즉시 119 조건
+          충족(응급키워드,          119 신고     case_action(EMS_CONTACTED) + (옵션) alert(관제/보호자
+    S10                                                                                              S11
+          SpO2↓, 낙상+무 및 기록            에 “119 접수”)
+          응답 등)
+
+            119 처리 완료/       결과 기록      case_action(RESOLVED) + care_case closed + care_event
+    S11                                                                                              종료
+          결과 회수          후 종결         resolved
+
+
+
+
+2.3 “병합/중복” 처리 규칙(운영 핵심)
+
+이벤트가 짧은 시간에 여러 번 터집니다. 그래서 케이스 병합 규칙을 권장합니다.
+
+     •     병합 키: (user_id, event_group, time_window)
+
+               o   예: 같은 사용자, “낙상/무활동/생체이상” 그룹, 10~30분 윈도우면 같은 케이스로
+                   합침
+
+     •     합칠 때:
+
+               o   care_case.linked_event_ids에 event 추가
+
+               o   care_event.status는 open 유지(또는 acknowledged)
+
+               o   알림은 “이미 발송됨”이면 재발송 정책(쿨다운) 적용
+ 2.4 전이표를 더 실무적으로 만드는 옵션
+
+ 원하시면 위 전이표를 기반으로:
+
+  •   각 단계별 타임아웃 값(예: 보호자1 60초, 보호자2 90초, 요양 120초, 관제 60초),
+
+  •   즉시 119 조건을 details 규격으로 표준화,
+
+  •   그리고 “콜 트리 단계”를 alert.context.stage = 1/2/3/4 로 고정
+
+ 까지 포함한 정책 테이블(policy_rule) 스키마를 추가해드릴게요.
+
+ 원하시는 운영 형태가 B2C(가정) 중심인지, B2G/요양기관 관제 중심인지에 따라 전이표의 역할
+(관제 우선/보호자 우선)을 조금 조정하면 됩니다.
+ 이 상태도에 맞춰 정책 파라미터 표(타임아웃/임계치/즉시 119 조건)와, 앞서 만든 스키마의
+care_case / alert / notification_delivery / case_action에 매핑되는 이벤트→DB 레코드 생성 규칙
+
+
+
+
+ 아래는 앞서 만든 콜 트리 상태도에 “그대로 붙일 수 있는” 형태로 정리한
+
+   1.   정책 파라미터 표(타임아웃/임계치/즉시 119 조건)
+
+   2.   스키마(care_case / alert / notification_delivery / case_action)에 매핑되는 이벤트→DB 레코
+        드 생성 규칙(룰 엔진/워크플로우 엔진 구현 기준)
+
+ 입니다.
+
+                                최초 응답                채널 우선순
+  단계        대상        목적                    재시도                   다음 단계 조건
+                              타임아웃                  위
+
+                      1차 확                  1회(30    Push → 전
+  Stage1    보호자1                60초                               미응답/실패
+                    인                     초)        화
+
+                      2차 백                  1회(30    Push → 전
+  Stage2    보호자2                90초                               미응답/실패
+                    업                     초)        화
+
+            요양보호      현장 확                  1회(60    전화 →
+  Stage3                        120초                              미응답/실패
+           사/기관     인                     초)        Push
+
+            관제센터/     강제 조                  0~1회     전화 → 업       미응답/실패 또는 위
+  Stage4                        60초
+           운영자      치/중재                  (30초)     무콘솔         험도 HIGH+
+
+                      응급 출                           전화(또는
+  Stage5    119                 즉시          N/A                   CRITICAL 조건 충족
+                    동                               연계 API)
+
+
+
+
+ 쿨다운(알림 폭주 방지)
+
+   •    동일 사용자 동일 이벤트그룹(예: FALL/INACTIVITY/VITALS) 알림은 5분 쿨다운(CRITICAL
+        제외)
+
+   •    notification_delivery.failed 발생 시 채널 폴백(예: Push 실패→SMS/전화)
+1.2 이벤트 임계치(센서/행동 패턴) 기본값
+
+“엣지 1차 판단” + “클라우드 2차 판단(패턴/추세)”로 이중화 권장
+
+
+
+
+(A) 무활동(Inactivity)
+
+지표                         조건(기본)               심각도             비고
+
+재실 + 무동작                   60분 이상 움직임 거의 없음     WARN            레이더/IMU 기반
+
+재실 + 무동작 + 미               10분 내 확인 질문 2회 무
+                                                ALERT           Stage1 시작
+응답                     응답
+
+                                                                개인 수면패턴 학습
+야간(수면시간) 예외                22:00~06:00는 기준 완화   INFO/WARN
+                                                             가능
+
+
+
+
+(B) 낙상(Fall Suspect)
+
+지표                      조건(기본)                  심각도         비고
+
+                                                            기기 위치/착용 여부 따라
+IMU 충격                  peak ≥ 2.5g             WARN
+                                                           튜닝
+
+                        충격 후 “누움” 상태 지속 ≥                   레이더/IMU 결합 시 정확
+충격 + 자세변화                                       ALERT
+                       30초                                 도↑
+
+충격 + 무동작 + 미            무동작 ≥ 60초 + 확인 무응
+                                                CRITICAL    즉시 119 고려
+응답                     답
+ (C) 생체 신호(Vitals)
+
+ 연동 기기 보급이 되면 강력
+
+
+
+
+ 지표             조건(기본)                    심각도              비고
+
+                                                           측정 신뢰도(quality)
+ SpO2 낮음        < 90% 1회                  ALERT
+                                                           확인
+
+                < 90%가 3분 이상 지속 또는 2
+ SpO2 지속                                  CRITICAL         즉시 119 후보
+               회 연속
+
+                수축기 ≥ 180 또는 이완기 ≥
+ 고혈압(응급)                                  CRITICAL         증상 동반 시 즉시
+               120
+
+                                                           기저질환에 따라 보
+ 빈맥             HR ≥ 130 지속 5분            ALERT→CRITICAL
+                                                           정
+
+ 호흡 이상(레이
+                RR < 8 또는 > 30 지속 2분      CRITICAL         재측정/잡음 필터
+더)
+
+
+
+
+ (D) 디바이스 운영
+
+ 지표                  조건(기본)                 심각도      비고
+
+ 디바이스 오프라인           heartbeat 끊김 ≥ 10분     WARN     LTE 모델이면 더 엄격
+
+ 배터리 낮음              < 15%                  WARN     <5%는 ALERT
+
+ 센서 오류               마이크/레이더 오류 지속 ≥ 5분     WARN     유지보수 티켓
+
+
+
+
+ 1.3 “즉시 119” 조건(하드 룰)
+
+ 아래 중 하나라도 충족하면 콜 트리 단계를 건너뛰고(또는 병행) 119 에스컬레이션:
+
+
+
+
+ (A) 사용자 발화/행동 기반
+
+ SOS 버튼 + 미응답(30초)
+ “가슴이 아파 / 숨이 차 / 쓰러질 것 같아 / 의식이 흐려 / 살려줘” 등 응급 키워드 + 재확인에
+서 동일/악화 응답
+
+ 낙상 의심 후 “움직일 수 없음” 응답
+
+
+
+
+ (B) 센서 기반
+
+ SpO2 < 90% 지속(3분 이상 또는 2회 연속) + 호흡곤란/청색증 언급
+
+ IMU 낙상 이벤트 + 무동작 ≥ 60초 + 확인 무응답
+
+ 레이더 호흡 이상(RR < 8 또는 > 30) 2분 지속 + 미응답
+
+
+
+
+ (C) 연락 실패 기반(최후 수단)
+
+ Stage1~4 모두 실패 + 이벤트가 CRITICAL이고 사용자가 미응답
+
+ 오프라인 상태에서 로컬 판단이 CRITICAL(낙상+무동작+미응답)
+
+
+
+
+ 2) 이벤트→DB 레코드 생성 규칙 (매핑 규칙)
+
+ 아래는 룰 엔진/워크플로우 엔진이 이벤트를 받았을 때, 어떤 테이블에 어떤 레코드를 만들고
+상태를 어떻게 바꾸는지에 대한 “구현 규칙”입니다.
+
+ 2.1 용어
+
+  •   Incoming Event: 엣지/클라우드가 생성한 care_event
+
+  •   Case Merge Window: 케이스 병합 시간창(기본 30분)
+
+  •   Event Group: FALL, INACTIVITY, VITALS, DEVICE 등 (분류용)
+
+  •   Stage: 콜 트리 단계(1~4, 119는 5)
+
+
+
+
+ 2.2 공통 규칙: 이벤트 수신 시
+
+ Rule-0: care_event 생성(이미 생성되어 들어온 경우는 생략)
+
+  •   입력: edge_rule/cloud_rule/manual
+
+  •   작업:
+
+          1.   care_event INSERT (status='open')
+
+          2.   audit_log에 “EVENT_CREATE”
+Rule-1: 케이스 병합/생성
+
+조건
+
+ •   동일 user_id에 대해,
+
+ •   동일 event_group이고,
+
+ •   최근 case_merge_window(30분) 내에 care_case.status in ('open','in_progress')가 있으면 병
+     합
+
+병합
+
+ •   care_case.linked_event_ids에 event_id append
+
+ •   case_action INSERT (action_type='LINK_EVENT', meta={event_id})
+
+신규 생성
+
+ •   care_case INSERT (status='open', priority=normal/high/urgent)
+
+ •   care_case.linked_event_ids = [event_id]
+
+ •   case_action INSERT (action_type='OPEN_CASE', meta={event_id, reason})
+
+우선순위 매핑 예:
+
+ •   INFO/WARN 이벤트 → priority=normal/high
+
+ •   ALERT/CRITICAL 이벤트 → priority=high/urgent
+
+
+
+
+2.3 “알림 생성” 규칙: alert / notification_delivery
+
+Rule-2: alert 생성
+
+케이스가 열리거나(또는 병합되었더라도) “알림이 필요”한 조건이면:
+
+ •   alert INSERT
+
+         o   case_id, event_id, user_id
+
+         o   alert_type = 이벤트군/세부유형 매핑
+
+         o   severity = 이벤트 severity
+
+         o   status='pending'
+
+         o   context에 아래 필드를 표준화해서 넣기:
+
+                 ▪   {"stage":1,"policy_version":"2026.03","cooldown_key":"user+group","evidenc
+                     e":{...}}
+알림 필요 조건(기본)
+
+ •   severity in ('ALERT','CRITICAL') → 항상
+
+ •   severity='WARN' → “사용자 확인 실패/패턴 이상”일 때만
+
+Rule-3: notification_delivery 생성(수신자/채널)
+
+alert가 생성되면 정책에 따라 수신자들을 계산해 N건 생성:
+
+ •   notification_delivery INSERT N건
+
+         o   alert_id
+
+         o   recipient_type = guardian/caregiver/operator
+
+         o   recipient_id (내부 계정 있으면)
+
+         o   channel = push/sms/voice_call
+
+         o   send_status='queued'
+
+채널 폴백 규칙
+
+ •   push 실패 or 미확인 타임아웃 → sms/전화로 자동 전환
+
+ •   전환 시 새 delivery 생성(또는 기존 delivery 업데이트) +
+     case_action(action_type='ESCALATE_CHANNEL')
+
+
+
+
+2.4 ACK/조치/종결: case_action 중심
+
+Rule-4: 수신자 ACK 처리
+
+보호자/요양/관제가 알림을 확인(앱 버튼/통화 연결)하면:
+
+ •   alert.status = 'acknowledged'
+
+ •   care_event.status = 'acknowledged' (해당 사건)
+
+ •   care_case.status = 'in_progress'
+
+ •   case_action INSERT (action_type='ACK', actor_type=?, actor_id=?, meta={alert_id, stage})
+
+
+
+
+Rule-5: 조치 액션 기록
+
+아래 액션들은 모두 case_action으로 표준화하고, 필요 시 alert를 추가로 생성:
+ 액션             case_action.action_type      메타(meta) 예             후속
+
+ 통화 시                                                               결과에 따라
+                CALL_PLACED                  {to:"guardian1"}
+도                                                                  RESOLVED/ESCALATE
+
+ 영상 연
+                VIDEO_SESSION                {webrtc_session_id}    원격진료로 이어질 수 있음
+결
+
+ 방문 배
+                VISIT_SCHEDULED              {eta_min:30}           방문 결과 기록
+정
+
+ 현장 확
+                ON_SITE_CHECK                {result:"ok"}          RESOLVED 가능
+인
+
+ 오탐 판
+                FALSE_POSITIVE               {reason:"user_ok"}     케이스 종결
+정
+
+ 119 연락         EMS_CONTACTED                {call_ref:"..."}       EMS 결과 기록
+
+
+
+
+ Rule-6: 타임아웃에 의한 단계 상승(콜 트리)
+
+ 각 Stage는 타임아웃이 지나면 자동으로:
+
+    •    case_action INSERT (action_type='ESCALATE_STAGE', meta={from:1,to:2,reason:"timeout"})
+
+    •    새로운 alert INSERT (혹은 기존 alert 재사용 + context.stage 업데이트)
+
+    •    새로운 notification_delivery N건 생성(다음 단계 수신자)
+
+ 구현 팁: Stage별 alert를 별도로 만드는 방식이 운영/감사에 가장 명확합니다.
+(alert_id 하나에 stage가 계속 바뀌면, 나중에 감사/분쟁에서 “누가 언제 어떤 알림을 받았는지”
+추적이 어려움)
+
+
+
+
+ 2.5 즉시 119 규칙 (Stage 스킵)
+
+ Rule-7: Immediate EMS
+
+ 즉시 119 조건이 TRUE이면:
+
+    1.   case_action INSERT (action_type='EMS_CONTACTED', meta={trigger:"rule", evidence:{...}})
+
+    2.   care_case.priority = 'urgent', care_case.status='in_progress'
+
+    3.   (선택) 보호자/관제에 “119 접수됨” 알림 생성
+         o   alert INSERT (alert_type='EMS_ESCALATED', severity='CRITICAL', status='pending')
+
+         o   notification_delivery INSERT(보호자/관제)
+
+
+
+
+2.6 해결/종결 규칙
+
+Rule-8: Resolved
+
+안전 확인 또는 조치 완료 시:
+
+ •   care_event.status='resolved' (관련 이벤트들 일괄 처리 가능)
+
+ •   care_case.status='closed', closed_at=now()
+
+ •   alert.status='acknowledged' 또는 expired 정리
+
+ •   case_action INSERT (action_type='RESOLVED', meta={result:"safe_confirmed"})
+
+Rule-9: False Positive
+
+오탐이면:
+
+ •   care_event.status='false_positive'
+
+ •   care_case 종결(필요시)
+
+ •   case_action INSERT (FALSE_POSITIVE, meta={reason})
+
+
+
+
+3) 이벤트 유형별 “표준 매핑” 예시 (바로 쓰는 룰북)
+
+                                                                                          즉시
+                                                             기본             기본 시작
+care_event.event_type     event_group     기본 severity                                    119 후
+                                                           priority        Stage
+                                                                                         보
+
+                                                                                          조건
+FALL_SUSPECT              FALL            ALERT/CRITICAL     high/urgent    1
+                                                                                         충족 시
+
+INACTIVITY                INACTIVITY      WARN/ALERT         normal/high    1             드묾
+
+                                                                                          거의
+SOS_BUTTON                EMERGENCY       CRITICAL           urgent         (skip)
+                                                                                         항상
+
+SPO2_LOW(지속)              VITALS          CRITICAL           urgent         (skip or 1    예
+                                                                                   즉시
+                                                        기본             기본 시작
+care_event.event_type   event_group   기본 severity                                119 후
+                                                      priority       Stage
+                                                                                 보
+
+                                                                     병행)
+
+                                                                                   증상
+BP_HIGH(≥180/120)       VITALS        CRITICAL          urgent         1~skip
+                                                                                 동반 시
+
+                                                                                   아니
+DEVICE_OFFLINE          DEVICE        WARN              normal         3~4(기관)
+                                                                                 오
+
+
+
+
+4) 구현 체크리스트(운영/감사 관점에서 꼭 필요한 것)
+
+ •   모든 자동 전이(타임아웃/에스컬레이션)는 반드시 case_action으로 남길 것
+
+ •   alert는 Stage별로 분리 생성 권장(감사 추적 용이)
+
+ •   alert.context에 최소 표준키 유지:
+
+        o   stage, policy_version, cooldown_key, evidence_summary, recommended_action
+
+ •   notification_delivery는 수신자×채널 단위로 생성하여 통신사/푸시 장애 분석이 가능하게
+
+
+
+
+원하시면 다음을 추가로 “정책 테이블화”해서 드릴게요:
+
+ •   policy_rule / policy_threshold / escalation_plan 테이블 스키마
+
+ •   운영자가 콘솔에서 임계치/타임아웃을 바꾸면 즉시 반영되는 룰 엔진 설정 구조(JSON
+     Schema)
+ 아래는 운영자가 콘솔에서 정책(임계치/타임아웃/콜트리)을 수정하면 즉시 반영되는 형태로 설
+계한
+
+      1.   policy_rule / policy_threshold / escalation_plan 테이블 스키마(DDL 초안)
+
+      2.   룰 엔진 설정 구조(JSON Schema) + 예시 정책 문서
+
+ 입니다. (PostgreSQL 기준)
+
+
+
+
+ 1) 정책 테이블 스키마 (DDL 초안)
+
+ 1.1 정책 버전/배포 메타(권장)
+
+ 운영자가 변경한 정책을 “버전”으로 관리하고, 디바이스/클라우드가 핫 리로드할 수 있게 합니
+다.
+
+
+
+
+ CREATE TABLE policy_bundle (
+
+      bundle_id         UUID PRIMARY KEY,
+
+      tenant_id        UUID NOT NULL,
+
+      name               TEXT NOT NULL,                   -- "default", "seoul_gangnam_v1" 등
+
+      version           TEXT NOT NULL,                   -- "2026.03.04-1"
+
+      status           TEXT NOT NULL DEFAULT 'active',-- active/draft/archived
+
+      effective_from   TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+      effective_to     TIMESTAMPTZ,
+
+      description      TEXT,
+
+      created_by        UUID,
+
+      created_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+      updated_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+      UNIQUE (tenant_id, name, version)
+
+ );
+
+
+
+
+ -- 어떤 디바이스/사용자에 어떤 번들을 적용하는지(옵션)
+
+ CREATE TABLE policy_binding (
+       binding_id     UUID PRIMARY KEY,
+
+       tenant_id      UUID NOT NULL,
+
+       bundle_id       UUID NOT NULL REFERENCES policy_bundle(bundle_id) ON DELETE
+CASCADE,
+
+       scope_type      TEXT NOT NULL,      -- tenant/user/device/group
+
+       scope_id        UUID,              -- user_id/device_id/group_id 등
+
+       priority       INT NOT NULL DEFAULT 100, -- 낮을수록 우선
+
+       created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+
+  );
+
+
+
+
+  CREATE INDEX idx_policy_binding_scope ON policy_binding(tenant_id, scope_type, scope_id,
+priority);
+
+
+
+
+  1.2 policy_threshold (임계치 규칙)
+
+  센서/측정/파생지표 임계치를 관리합니다. 코드 변경 없이 기준을 바꾸려면 이 테이블이 핵심입
+니다.
+
+  CREATE TABLE policy_threshold (
+
+       threshold_id   UUID PRIMARY KEY,
+
+       tenant_id      UUID NOT NULL,
+
+       bundle_id       UUID NOT NULL REFERENCES policy_bundle(bundle_id) ON DELETE
+CASCADE,
+
+
+
+
+       key             TEXT NOT NULL,       -- 예: "spo2.low", "fall.imu_peak_g",
+"inactivity.no_motion_min"
+
+       domain          TEXT NOT NULL,        -- VITALS/FALL/INACTIVITY/DEVICE/VOICE
+
+       metric         TEXT NOT NULL,       -- measurement.m_type 또는 derived metric 이름
+
+       operator        TEXT NOT NULL,       -- LT/LTE/GT/GTE/BETWEEN/EQ/NEQ/IN
+
+       value_num       DOUBLE PRECISION,     -- 단일 임계치
+      value_num2        DOUBLE PRECISION,     -- BETWEEN 상한
+
+      value_text      TEXT,              -- 범주/키워드 기반(예: distress keywords)
+
+      unit            TEXT,
+
+      duration_sec    INT,               -- 지속 조건(예: 180초 지속)
+
+      occurrences      INT,                 -- 횟수 조건(예: 2회 연속)
+
+      lookback_sec     INT,                 -- 최근 n초 범위에서 검사(예: 600초)
+
+      min_quality     SMALLINT DEFAULT 0, -- measurement.quality 최소
+
+      severity        TEXT NOT NULL,        -- INFO/WARN/ALERT/CRITICAL
+
+      enabled          BOOLEAN NOT NULL DEFAULT true,
+
+
+
+
+      meta             JSONB NOT NULL DEFAULT '{}'::jsonb,   -- 센서별 보정/예외(야간, 개인 프
+로필 보정)
+
+      created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+      updated_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+
+
+
+      UNIQUE (bundle_id, key)
+
+ );
+
+
+
+
+ CREATE INDEX idx_threshold_bundle_domain ON policy_threshold(bundle_id, domain, enabled);
+
+ CREATE INDEX idx_threshold_metric ON policy_threshold(metric, enabled);
+키 설계 예시
+
+   •     vitals.spo2.low_1shot / vitals.spo2.low_sustained
+
+   •     fall.imu_peak_g / fall.no_motion_sec
+
+   •     inactivity.no_motion_min
+
+   •     voice.distress_keywords
+
+   •     device.offline_heartbeat_sec
+
+
+
+
+1.3 escalation_plan (콜 트리/타임아웃/단계 정책)
+
+Stage 별 타임아웃, 재시도, 채널 우선순위, 다음 단계 전이 규칙을 담습니다.
+
+
+
+
+CREATE TABLE escalation_plan (
+
+  plan_id            UUID PRIMARY KEY,
+
+  tenant_id          UUID NOT NULL,
+
+  bundle_id           UUID NOT NULL REFERENCES policy_bundle(bundle_id) ON DELETE
+CASCADE,
+
+
+
+
+  name                 TEXT NOT NULL,           -- "default_call_tree"
+
+  event_group         TEXT NOT NULL,            -- FALL/INACTIVITY/VITALS/DEVICE/EMERGENCY
+
+  severity_min       TEXT NOT NULL,          -- 이 이상이면 적용 (WARN/ALERT/CRITICAL)
+
+  cooldown_sec        INT NOT NULL DEFAULT 300, -- 동일 그룹 알림 쿨다운
+
+
+
+
+  enabled             BOOLEAN NOT NULL DEFAULT true,
+
+  meta                JSONB NOT NULL DEFAULT '{}'::jsonb,
+
+  created_at         TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  updated_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+     UNIQUE (bundle_id, name, event_group, severity_min)
+
+);
+
+
+
+
+-- plan 의 stage 정의 (1..N)
+
+CREATE TABLE escalation_stage (
+
+     stage_id         UUID PRIMARY KEY,
+
+     tenant_id       UUID NOT NULL,
+
+     plan_id          UUID NOT NULL REFERENCES escalation_plan(plan_id) ON DELETE CASCADE,
+
+
+
+
+     stage_no         INT NOT NULL,           -- 1,2,3,4,5(=119)
+
+     target_type     TEXT NOT NULL,           -- guardian1/guardian2/caregiver/operator/ems
+
+     timeout_sec      INT NOT NULL,           -- 최초 응답 타임아웃
+
+     retry_count     INT NOT NULL DEFAULT 0,
+
+     retry_interval_sec INT NOT NULL DEFAULT 0,
+
+     channels         JSONB NOT NULL,             -- ["push","voice_call"] 등 우선순위
+
+     require_ack     BOOLEAN NOT NULL DEFAULT true,
+
+     next_stage_no    INT,                  -- 타임아웃/실패 시 이동할 stage
+
+     stop_on_ack      BOOLEAN NOT NULL DEFAULT false, -- ack 되면 다음 단계로 안 가는지
+
+     enabled          BOOLEAN NOT NULL DEFAULT true,
+
+     meta              JSONB NOT NULL DEFAULT '{}'::jsonb,
+
+
+
+
+     UNIQUE (plan_id, stage_no)
+
+);
+
+
+
+
+CREATE INDEX idx_stage_plan_no ON escalation_stage(plan_id, stage_no);
+ 1.4 policy_rule (복합 룰: 즉시 119, 사용자 확인 등)
+
+ threshold 하나로 결정되지 않는 “복합 조건”을 policy_rule로 관리합니다.
+예: “낙상 + 무동작 + 미응답이면 CRITICAL, 즉시 119”
+
+
+
+
+ CREATE TABLE policy_rule (
+
+   rule_id         UUID PRIMARY KEY,
+
+   tenant_id        UUID NOT NULL,
+
+   bundle_id        UUID NOT NULL REFERENCES policy_bundle(bundle_id) ON DELETE
+CASCADE,
+
+
+
+
+   key              TEXT NOT NULL,        -- "ems.immediate.fall_no_response"
+
+   domain            TEXT NOT NULL,        -- EMS/VERIFY/ESCALATION/VOICE
+
+   enabled           BOOLEAN NOT NULL DEFAULT true,
+
+   priority        INT NOT NULL DEFAULT 100, -- 낮을수록 먼저 평가
+
+   match_scope       TEXT NOT NULL DEFAULT 'cloud', -- edge/cloud/both
+
+
+
+
+   -- 룰 정의: JSON으로 표현(아래 JSON Schema로 검증)
+
+   rule_json       JSONB NOT NULL,
+
+
+
+
+   -- 룰이 발동했을 때 수행할 액션 템플릿
+
+   action_json     JSONB NOT NULL,
+
+
+
+
+   description     TEXT,
+
+   created_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+   updated_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+
+
+
+   UNIQUE (bundle_id, key)
+ );
+
+
+
+
+ CREATE INDEX idx_rule_bundle_domain ON policy_rule(bundle_id, domain, enabled, priority);
+
+
+
+
+ 2) “즉시 반영”을 위한 운영 흐름(핫 리로드)
+
+      •   콘솔에서 정책 변경 → policy_bundle.version 증가 + 관련 row upsert
+
+      •   룰 엔진은
+
+              o   주기적 폴링(예: 10~30초) 또는
+
+              o   NOTIFY/LISTEN(Postgres) / 메시지버스(Kafka/SNS)로
+
+              o   최신 bundle_id/version을 감지하고 캐시를 갱신
+
+      •   디바이스(엣지)는 용량 때문에:
+
+              o   threshold/룰 중 “edge 적용”만 내려줌(match_scope=edge/both)
+
+
+
+
+ 3) 룰 엔진 설정 구조 (JSON Schema)
+
+ 아래는 policy_rule.rule_json과 policy_rule.action_json을 검증하기 위한 JSON Schema 초안입니
+다.
+(실제 구현에서는 schema 버전도 같이 관리하세요.)
+
+ 3.1 Rule JSON Schema (rule_json)
+
+
+
+
+ {
+
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+      "$id": "care-policy-rule.schema.json",
+
+      "title": "Care Policy Rule",
+
+      "type": "object",
+
+      "required": ["version", "when"],
+
+      "properties": {
+     "version": { "type": "string", "minLength": 1 },
+
+     "when": { "$ref": "#/$defs/expr" }
+
+},
+
+"$defs": {
+
+     "expr": {
+
+          "oneOf": [
+
+               { "$ref": "#/$defs/and" },
+
+               { "$ref": "#/$defs/or" },
+
+               { "$ref": "#/$defs/not" },
+
+               { "$ref": "#/$defs/condition" }
+
+          ]
+
+     },
+
+     "and": {
+
+          "type": "object",
+
+          "required": ["and"],
+
+          "properties": {
+
+               "and": {
+
+                   "type": "array",
+
+                   "minItems": 1,
+
+                   "items": { "$ref": "#/$defs/expr" }
+
+               }
+
+          },
+
+          "additionalProperties": false
+
+     },
+
+     "or": {
+
+          "type": "object",
+
+          "required": ["or"],
+     "properties": {
+
+          "or": {
+
+              "type": "array",
+
+              "minItems": 1,
+
+              "items": { "$ref": "#/$defs/expr" }
+
+          }
+
+     },
+
+     "additionalProperties": false
+
+},
+
+"not": {
+
+     "type": "object",
+
+     "required": ["not"],
+
+     "properties": {
+
+          "not": { "$ref": "#/$defs/expr" }
+
+     },
+
+     "additionalProperties": false
+
+},
+
+"condition": {
+
+     "type": "object",
+
+     "required": ["type"],
+
+     "properties": {
+
+          "type": {
+
+              "type": "string",
+
+              "enum": [
+
+                "event_type",
+
+                "event_severity",
+
+                "measurement",
+                   "derived_metric",
+
+                   "voice_keyword",
+
+                   "device_state",
+
+                   "no_response",
+
+                   "time_window",
+
+                   "user_profile_flag"
+
+               ]
+
+          },
+
+
+
+
+          "event_type": { "type": "string" },
+
+          "min_severity": { "type": "string", "enum": ["INFO","WARN","ALERT","CRITICAL"] },
+
+
+
+
+          "metric": { "type": "string" },
+
+          "operator": { "type": "string", "enum":
+["LT","LTE","GT","GTE","EQ","NEQ","BETWEEN","IN"] },
+
+          "value": {},
+
+          "value2": {},
+
+          "unit": { "type": "string" },
+
+
+
+
+          "duration_sec": { "type": "integer", "minimum": 0 },
+
+          "occurrences": { "type": "integer", "minimum": 0 },
+
+          "lookback_sec": { "type": "integer", "minimum": 0 },
+
+          "min_quality": { "type": "integer", "minimum": 0, "maximum": 100 },
+
+
+
+
+          "keyword": { "type": "string" },
+
+          "device_status": { "type": "string" },
+                  "within_sec": { "type": "integer", "minimum": 0 },
+
+
+
+
+                  "profile_flag": { "type": "string" }
+
+             },
+
+             "additionalProperties": false
+
+         }
+
+    }
+
+}
+
+
+
+
+3.2 Action JSON Schema (action_json)
+
+{
+
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+    "$id": "care-policy-action.schema.json",
+
+    "title": "Care Policy Action",
+
+    "type": "object",
+
+    "required": ["actions"],
+
+    "properties": {
+
+         "actions": {
+
+             "type": "array",
+
+             "minItems": 1,
+
+             "items": { "$ref": "#/$defs/action" }
+
+         }
+
+    },
+
+    "$defs": {
+
+         "action": {
+
+             "oneOf": [
+
+                  { "$ref": "#/$defs/open_or_merge_case" },
+          { "$ref": "#/$defs/create_alert" },
+
+          { "$ref": "#/$defs/escalate_stage" },
+
+          { "$ref": "#/$defs/contact_ems" },
+
+          { "$ref": "#/$defs/mark_event" },
+
+          { "$ref": "#/$defs/log_case_action" }
+
+     ]
+
+},
+
+"open_or_merge_case": {
+
+     "type": "object",
+
+     "required": ["type", "event_group", "merge_window_sec", "priority"],
+
+     "properties": {
+
+          "type": { "const": "open_or_merge_case" },
+
+          "event_group": { "type": "string" },
+
+          "merge_window_sec": { "type": "integer", "minimum": 0 },
+
+          "priority": { "type": "string", "enum": ["normal","high","urgent"] }
+
+     },
+
+     "additionalProperties": false
+
+},
+
+"create_alert": {
+
+     "type": "object",
+
+     "required": ["type", "alert_type", "severity", "plan_name", "stage_no"],
+
+     "properties": {
+
+          "type": { "const": "create_alert" },
+
+          "alert_type": { "type": "string" },
+
+          "severity": { "type": "string", "enum": ["WARN","ALERT","CRITICAL"] },
+
+          "plan_name": { "type": "string" },
+
+          "stage_no": { "type": "integer", "minimum": 1 },
+          "cooldown_sec": { "type": "integer", "minimum": 0 }
+
+     },
+
+     "additionalProperties": false
+
+},
+
+"escalate_stage": {
+
+     "type": "object",
+
+     "required": ["type", "plan_name", "to_stage_no", "reason"],
+
+     "properties": {
+
+          "type": { "const": "escalate_stage" },
+
+          "plan_name": { "type": "string" },
+
+          "to_stage_no": { "type": "integer", "minimum": 1 },
+
+          "reason": { "type": "string" }
+
+     },
+
+     "additionalProperties": false
+
+},
+
+"contact_ems": {
+
+     "type": "object",
+
+     "required": ["type", "mode"],
+
+     "properties": {
+
+          "type": { "const": "contact_ems" },
+
+          "mode": { "type": "string", "enum": ["immediate","parallel"] },
+
+          "note": { "type": "string" }
+
+     },
+
+     "additionalProperties": false
+
+},
+
+"mark_event": {
+
+     "type": "object",
+             "required": ["type", "event_status"],
+
+             "properties": {
+
+                  "type": { "const": "mark_event" },
+
+                  "event_status": { "type": "string", "enum": ["acknowledged","resolved","false_positive"] }
+
+             },
+
+             "additionalProperties": false
+
+        },
+
+        "log_case_action": {
+
+             "type": "object",
+
+             "required": ["type", "action_type"],
+
+             "properties": {
+
+                  "type": { "const": "log_case_action" },
+
+                  "action_type": {
+
+                       "type": "string",
+
+                       "enum": [
+
+                           "OPEN_CASE","LINK_EVENT","ACK","ESCALATE_STAGE","ESCALATE_CHANNEL",
+
+                           "CALL_PLACED","VISIT_SCHEDULED","ON_SITE_CHECK",
+
+                           "EMS_CONTACTED","FALSE_POSITIVE","RESOLVED"
+
+                       ]
+
+                  },
+
+                  "meta": { "type": "object" }
+
+             },
+
+             "additionalProperties": false
+
+        }
+
+    }
+
+}
+  4) 정책 문서 예시 (운영자가 바꾸는 실제 JSON)
+
+  운영 콘솔에서 이 JSON을 편집/저장 → 서버가 Schema 검증 → DB(upsert) → 룰 엔진이 즉시
+반영.
+
+  4.1 escalation_plan 예시(콜 트리)
+
+
+
+
+  {
+
+      "name": "default_call_tree",
+
+      "event_group": "FALL",
+
+      "severity_min": "ALERT",
+
+      "cooldown_sec": 300,
+
+      "stages": [
+
+          { "stage_no": 1, "target_type": "guardian1", "timeout_sec": 60, "retry_count": 1,
+"retry_interval_sec": 30, "channels": ["push","voice_call"], "next_stage_no": 2 },
+
+          { "stage_no": 2, "target_type": "guardian2", "timeout_sec": 90, "retry_count": 1,
+"retry_interval_sec": 30, "channels": ["push","voice_call"], "next_stage_no": 3 },
+
+          { "stage_no": 3, "target_type": "caregiver", "timeout_sec": 120, "retry_count": 1,
+"retry_interval_sec": 60, "channels": ["voice_call","push"], "next_stage_no": 4 },
+
+          { "stage_no": 4, "target_type": "operator", "timeout_sec": 60, "retry_count": 0,
+"retry_interval_sec": 0, "channels": ["voice_call","console"], "next_stage_no": 5 },
+
+          { "stage_no": 5, "target_type": "ems",        "timeout_sec": 0,    "retry_count": 0,
+"retry_interval_sec": 0, "channels": ["voice_call"], "next_stage_no": null }
+
+      ]
+
+  }
+  4.2 policy_rule 예시(즉시 119: 낙상+무동작+미응답)
+
+  {
+
+      "version": "1.0",
+
+      "when": {
+
+          "and": [
+
+              { "type": "event_type", "event_type": "FALL_SUSPECT" },
+
+              { "type": "derived_metric", "metric": "no_motion_sec", "operator": "GTE", "value": 60,
+"lookback_sec": 300 },
+
+              { "type": "no_response", "within_sec": 60 }
+
+          ]
+
+      }
+
+  }
+
+
+
+
+  action_json 예시:
+
+  {
+
+      "actions": [
+
+          { "type": "open_or_merge_case", "event_group": "FALL", "merge_window_sec": 1800,
+"priority": "urgent" },
+
+          { "type": "log_case_action", "action_type": "EMS_CONTACTED", "meta": { "trigger": "rule",
+"reason": "fall+no_motion+no_response" } },
+
+          { "type": "contact_ems", "mode": "immediate", "note": "CRITICAL fall suspected" },
+
+          { "type": "create_alert", "alert_type": "EMS_ESCALATED", "severity": "CRITICAL", "plan_name":
+"default_call_tree", "stage_no": 4, "cooldown_sec": 0 }
+
+      ]
+
+  }
+
+
+
+
+  5) 구현 팁: “즉시 반영”에서 꼭 고려할 것
+
+      •       정책 캐시 무효화: policy_bundle.version이 바뀌면 룰 엔진 캐시 flush
+  •   정책 적용 스코프 우선순위: device/user/tenant 순으로 override
+
+  •   스냅샷 기록: 사건 처리 시작 시점의 policy_version을 alert.context.policy_version에 저장
+      (사후 감사)
+
+  •   안전장치(Guardrail): 운영자가 임계치를 잘못 낮추면 알림 폭주 가능
+      → 저장 시 “충돌/폭주 검사(예: cooldown=0 & severity=ALERT)” 같은 검증 룰을 추가
+
+
+
+
+원하시면 다음 단계로:
+
+  •   위 JSON 을 저장/검증/배포하는 Policy API 설계(REST endpoint + 권한 RBAC)
+
+  •   policy_threshold → “실시간 평가 엔진”의 평가 순서/우선순위/단락(short-circuit) 로직
+
+  •   실제 운영 콘솔에서 쓰는 정책 편집 UI 필드 모델(폼 스키마)
+아래는 요청한 3 가지를 한 번에 구현 가능한 수준으로 정리한 설계안입니다.
+
+     •   (1) Policy API 설계 (REST + RBAC + 검증/배포 플로우)
+
+     •   (2) policy_threshold 기반 실시간 평가 엔진 평가 순서/우선순위/단락 로직
+
+     •   (3) 운영 콘솔용 정책 편집 UI 필드 모델(폼 스키마)
+
+
+
+
+1) Policy API 설계 (REST endpoint + RBAC)
+
+1.1 역할/권한(RBAC) 모델
+
+Roles
+
+     •   TENANT_ADMIN : 테넌트 정책 생성/배포/롤백 가능
+
+     •   POLICY_EDITOR : draft 생성/편집/검증 가능, 배포는 불가(또는 제한)
+
+     •   POLICY_PUBLISHER : 배포/아카이브 가능
+
+     •   OPS_VIEWER : 조회만
+
+     •   DEVICE_AGENT : 디바이스/엣지 런타임(읽기 전용, 자신 scope 정책만)
+
+
+
+
+Permission Matrix(핵심)
+
+               OPS_VIEWE POLICY_EDITO POLICY_PUBLISHE TENANT_ADMI DEVICE_AGEN
+API
+               R            R             R            N         T
+
+정책                                                                   (자신
+조회(GET)                                                          scope)
+
+draft
+생성/수정
+
+검증(validate)
+
+배포(publish)                     /옵션
+
+롤백(rollback)
+
+바인딩(bindin
+                                (제한)
+g)
+                   OPS_VIEWE POLICY_EDITO POLICY_PUBLISHE TENANT_ADMI DEVICE_AGEN
+API
+                   R             R                R             N    T
+
+감사로그/이력                (읽기)
+
+
+
+
+1.2 리소스 모델(URI)
+
+Bundle(버전 단위): /tenants/{tenantId}/policy-bundles
+
+Thresholds: /policy-bundles/{bundleId}/thresholds
+
+Rules: /policy-bundles/{bundleId}/rules
+
+Escalation Plans: /policy-bundles/{bundleId}/escalation-plans
+
+Bindings: /tenants/{tenantId}/policy-bindings
+
+Validation: /policy-bundles/{bundleId}/validate
+
+Publish: /policy-bundles/{bundleId}/publish
+
+Rollback: /tenants/{tenantId}/policy-bundles/rollback
+
+Distribution (runtime fetch): /runtime/policy (디바이스/서버 공용)
+
+
+
+
+1.3 엔드포인트 상세
+
+A) Bundle 생명주기
+
+1) Bundle 생성 (draft)
+
+POST /tenants/{tenantId}/policy-bundles
+
+{
+
+    "name": "default",
+
+    "base_bundle_id": "uuid-optional",
+
+    "description": "default policy draft"
+
+}
+ 권한: POLICY_EDITOR+
+
+ 동작: policy_bundle.status='draft', version 은 서버가 임시 생성(예: draft-<ts>)
+
+
+
+
+2) Bundle 조회/목록
+
+GET /tenants/{tenantId}/policy-bundles?status=active|draft|archived
+
+GET /tenants/{tenantId}/policy-bundles/{bundleId}
+
+
+
+
+3) Bundle 수정(메타)
+
+PATCH /tenants/{tenantId}/policy-bundles/{bundleId}
+
+권한: POLICY_EDITOR+
+
+draft 만 수정 가능
+
+
+
+
+B) Threshold CRUD
+
+GET /policy-bundles/{bundleId}/thresholds
+
+POST /policy-bundles/{bundleId}/thresholds (upsert 지원 권장)
+
+PATCH /policy-bundles/{bundleId}/thresholds/{thresholdId}
+
+DELETE /policy-bundles/{bundleId}/thresholds/{thresholdId}
+
+
+
+
+서버 검증(저장 시)
+
+operator 에 따른 value_num/value_num2 필요성 검사
+
+duration_sec/occurrences/lookback_sec 합리성(예: lookback < duration 이면 경고)
+
+severity 와 domain 정합성
+
+key 중복 불가
+
+
+
+
+C) Rule CRUD (JSON Schema 기반)
+
+GET /policy-bundles/{bundleId}/rules
+
+POST /policy-bundles/{bundleId}/rules
+{
+
+    "key": "ems.immediate.fall_no_response",
+
+    "domain": "EMS",
+
+    "priority": 10,
+
+    "match_scope": "both",
+
+    "rule_json": { "...": "validated by schema" },
+
+    "action_json": { "...": "validated by schema" }
+
+}
+
+        •   저장 시: care-policy-rule.schema.json, care-policy-action.schema.json로 검증
+
+        •   추가 검증: 액션이 참조하는 plan_name 존재 여부, stage_no 유효성, 무한 루프 방지
+
+
+
+
+D) Escalation Plan CRUD
+
+        •   GET /policy-bundles/{bundleId}/escalation-plans
+
+        •   POST /policy-bundles/{bundleId}/escalation-plans
+
+{
+
+    "name": "default_call_tree",
+
+    "event_group": "FALL",
+
+    "severity_min": "ALERT",
+
+    "cooldown_sec": 300,
+
+    "stages": [
+
+        { "stage_no": 1, "target_type": "guardian1", "timeout_sec": 60, "retry_count": 1,
+"retry_interval_sec": 30, "channels": ["push","voice_call"], "next_stage_no": 2 }
+
+    ]
+
+}
+
+        •   서버가 escalation_plan + escalation_stage로 분해 저장
+검증 포인트
+
+      •   stage_no 연속성/중복
+
+      •   next_stage_no가 존재하는 stage를 가리키는지
+
+      •   119(ems) stage는 timeout=0, next_stage_no=null 등 가드레일
+
+
+
+
+E) Binding(적용 범위)
+
+      •   GET /tenants/{tenantId}/policy-bindings?scope_type=user&scope_id=...
+
+      •   POST /tenants/{tenantId}/policy-bindings
+
+{
+
+    "bundle_id": "uuid",
+
+    "scope_type": "device",
+
+    "scope_id": "device_uuid",
+
+    "priority": 10
+
+}
+
+평가 순서: priority 낮을수록 우선, 동일하면 최신
+
+
+
+
+F) Validate / Publish / Rollback
+
+Validate
+
+POST /policy-bundles/{bundleId}/validate
+
+      •   권한: POLICY_EDITOR+
+
+      •   동작: 모든 thresholds/rules/plans 정합성 체크 + “폭주 위험” 린트
+
+응답 예:
+
+
+
+
+{
+
+    "ok": false,
+
+    "errors": [
+
+      { "path": "rules[3].action_json", "code": "UNKNOWN_PLAN", "message":
+"plan_name=default_call_tree not found" }
+
+    ],
+
+    "warnings": [
+
+         { "code": "ALERT_STORM_RISK", "message": "cooldown_sec=0 with severity=ALERT" }
+
+    ]
+
+}
+
+
+
+
+Publish(배포)
+
+POST /policy-bundles/{bundleId}/publish
+
+         •   권한: POLICY_PUBLISHER+
+
+         •   동작:
+
+                1.   validate 강제 실행(실패 시 publish 금지)
+
+                2.   policy_bundle.status='active', version 확정(YYYY.MM.DD-n)
+
+                3.   이전 active는 archived 또는 effective_to로 종료
+
+                4.   배포 이벤트 발행
+
+배포 이벤트(예):
+
+         •   Postgres NOTIFY policy_updated, {tenantId,bundleId,version}
+
+         •   또는 Kafka/SNS: policy.updated
+
+Rollback
+
+POST /tenants/{tenantId}/policy-bundles/rollback
+
+
+
+
+{ "target_bundle_id": "uuid" }
+
+         •   권한: POLICY_PUBLISHER+
+
+         •   동작: target을 active로 전환 + 배포 이벤트 발행
+
+
+
+
+G) Runtime Fetch (핫 리로드)
+
+서버(관제/룰엔진)용
+GET /runtime/policy?tenant_id=...&scope=cloud
+
+   •    응답: bundle_version + 전체 정책(또는 domain별)
+
+디바이스(엣지)용
+
+GET /runtime/policy?device_id=...&scope=edge
+
+   •    응답: match_scope=edge/both인 룰/threshold만 내려줌 + 경량화
+
+캐싱
+
+   •    응답 헤더: ETag: "<bundleId>:<version>:<hash>"
+
+   •    디바이스는 If-None-Match로 변경 시만 다운로드
+
+2) policy_threshold 기반 실시간 평가 엔진 로직
+
+2.1 입력 스트림
+
+   •    measurement 이벤트(시계열): (user_id, m_type, value, ts, quality, source)
+
+   •    care_event 후보: (event_type, severity, confidence, ts, details)
+
+   •    device_state 이벤트: online/offline/battery 등
+
+   •    interaction 이벤트: 사용자 응답/미응답(“괜찮음/도움/무응답”)
+
+2.2 평가 순서(권장 파이프라인)
+
+원칙: 더 위험한 것부터, 계산이 싼 것부터, 폭주를 막는 것부터.
+
+   1.   Guardrail 전처리
+
+            o   정책 버전 로드 / 바인딩 적용(tenant→user→device 우선)
+
+            o   쿨다운 체크(동일 그룹/동일 키)
+
+            o   측정 quality/min_quality 필터
+
+            o   시간대 예외(수면시간 등) 적용
+
+   2.   Hard Rule(즉시 119) 평가            (가장 먼저)
+
+            o   policy_rule.domain='EMS' + priority 오름차순
+
+            o   참이면 short-circuit: EMS 액션 실행 (단, “병행 알림”은 허용)
+
+   3.   CRITICAL threshold 평가
+
+            o   policy_threshold.severity='CRITICAL'를 먼저 평가
+
+            o   참이면 event_type 생성 + escalation_plan 시작
+   4.   ALERT threshold 평가
+
+           o    alert 생성 조건을 만족하면 event 생성
+
+   5.   WARN/INFO 평가
+
+           o    “사용자 확인 실패” 같은 2차 조건이 있을 때만 케이스/알림 유발
+
+           o    아니면 단순 기록
+
+   6.   Complex Rule(VERIFY/ESCALATION/VOICE)
+
+           o    예: “낙상 후보 이벤트가 있고 60초 미응답이면 CRITICAL로 승격”
+
+           o    이미 열린 케이스가 있으면 업데이트/승격
+
+
+
+
+2.3 우선순위/단락(short-circuit) 규칙
+
+(A) 단락 기준
+
+   •    EMS immediate 룰이 true면:
+
+           o    contact_ems(immediate)는 실행하고,
+
+           o    동시에 보호자/관제 알림은 “병행”(parallel)로 둘 수 있음
+
+   •    동일 event_group에서 이미 care_case.priority='urgent'로 진행 중이면:
+
+           o    더 낮은 severity(WARN/INFO)는 평가 중단 또는 “기록만”
+
+   •    같은 threshold key가 최근 lookback 내에 이미 발동했고 cooldown 중이면:
+
+           o    알림 생성 중단, event는 선택적으로 “suppressed”로 기록(권장)
+
+(B) 평가 우선순위 정의
+
+   •    policy_rule.priority : 낮을수록 먼저
+
+   •    policy_threshold는 다음 정렬 권장:
+
+           1.   severity (CRITICAL>ALERT>WARN>INFO)
+
+           2.   domain 우선순위(EMS>VITALS>FALL>INACTIVITY>DEVICE)
+
+           3.   key 알파(안정적 순서를 위해)
+
+   •    한 metric에 여러 임계치가 있으면:
+
+           o    CRITICAL 성립 시 ALERT/WARN은 스킵
+2.4 “지속/연속” 조건 처리(lookback/duration/occurrences)
+
+      •    duration: 최근 duration_sec 동안 조건이 유지되는지 확인
+
+      •    occurrences: lookback_sec 내 조건을 만족한 샘플 수(또는 연속 n회)
+
+      •    구현:
+
+                  o   사용자×metric별 ring buffer(메모리 캐시) 유지
+
+                  o   또는 Timescale continuous aggregate 활용(대규모 시)
+
+
+
+
+3) 운영 콘솔 정책 편집 UI 필드 모델(폼 스키마)
+
+운영 콘솔은 “JSON 직접 편집”도 가능하지만, 실무에선 폼 기반 편집 + JSON 미리보기가 안전합
+니다.
+아래는 폼 생성에 쓰기 좋은 Form Schema(개념적 JSON) 입니다. (React Form / JSONForms / rjsf
+등에 적용 가능)
+
+3.1 Threshold 편집 폼 스키마(예)
+
+{
+
+    "formId": "thresholdEditor",
+
+    "title": "Threshold Policy",
+
+    "fields": [
+
+      { "key": "key", "label": "Key", "type": "text", "required": true, "placeholder":
+"vitals.spo2.low_sustained" },
+
+      { "key": "domain", "label": "Domain", "type": "select", "required": true,
+
+          "options": ["EMS","VITALS","FALL","INACTIVITY","DEVICE","VOICE"] },
+
+
+
+
+      { "key": "metric", "label": "Metric", "type": "select", "required": true,
+
+          "optionsSource": "metricsCatalog" },
+
+
+
+
+      { "key": "operator", "label": "Operator", "type": "select", "required": true,
+
+          "options": ["LT","LTE","GT","GTE","EQ","NEQ","BETWEEN","IN"] },
+     { "key": "value_num", "label": "Value", "type": "number",
+
+       "visibleIf": { "operator": ["LT","LTE","GT","GTE","EQ","NEQ"] } },
+
+
+
+
+     { "key": "value_num2", "label": "Value (Upper)", "type": "number",
+
+       "visibleIf": { "operator": ["BETWEEN"] } },
+
+
+
+
+     { "key": "unit", "label": "Unit", "type": "text" },
+
+
+
+
+     { "key": "duration_sec", "label": "Duration (sec)", "type": "number", "min": 0 },
+
+     { "key": "occurrences", "label": "Occurrences", "type": "number", "min": 0 },
+
+     { "key": "lookback_sec", "label": "Lookback (sec)", "type": "number", "min": 0 },
+
+
+
+
+     { "key": "min_quality", "label": "Min Quality (0-100)", "type": "number", "min": 0, "max": 100 },
+
+
+
+
+     { "key": "severity", "label": "Severity", "type": "select", "required": true,
+
+       "options": ["INFO","WARN","ALERT","CRITICAL"] },
+
+
+
+
+     { "key": "enabled", "label": "Enabled", "type": "toggle", "default": true },
+
+
+
+
+     { "key": "meta", "label": "Meta (JSON)", "type": "jsonEditor",
+
+       "help": "예: 야간 예외, 개인프로필 보정, 센서별 보정값" }
+
+],
+
+
+
+
+"validators": [
+
+     { "rule": "if operator==BETWEEN then value_num and value_num2 required" },
+
+     { "rule": "if duration_sec>0 then lookback_sec >= duration_sec" }
+
+]
+}
+
+
+
+
+3.2 Escalation Plan 편집 폼(콜 트리)
+
+{
+
+    "formId": "escalationPlanEditor",
+
+    "title": "Escalation Plan",
+
+    "fields": [
+
+      { "key": "name", "label": "Plan Name", "type": "text", "required": true },
+
+      { "key": "event_group", "label": "Event Group", "type": "select", "required": true,
+
+          "options": ["FALL","INACTIVITY","VITALS","DEVICE","EMERGENCY"] },
+
+
+
+
+      { "key": "severity_min", "label": "Min Severity", "type": "select", "required": true,
+
+          "options": ["WARN","ALERT","CRITICAL"] },
+
+
+
+
+      { "key": "cooldown_sec", "label": "Cooldown (sec)", "type": "number", "min": 0, "default": 300 },
+
+
+
+
+      {
+
+          "key": "stages",
+
+          "label": "Stages",
+
+          "type": "array",
+
+          "itemSchema": {
+
+            "fields": [
+
+              { "key": "stage_no", "label": "Stage No", "type": "number", "required": true, "min": 1 },
+
+              { "key": "target_type", "label": "Target", "type": "select", "required": true,
+
+                  "options": ["guardian1","guardian2","caregiver","operator","ems"] },
+
+
+
+
+              { "key": "timeout_sec", "label": "Timeout (sec)", "type": "number", "required": true, "min":
+0 },
+
+                      { "key": "retry_count", "label": "Retry Count", "type": "number", "min": 0, "default": 0 },
+
+                      { "key": "retry_interval_sec", "label": "Retry Interval (sec)", "type": "number", "min": 0,
+"default": 0 },
+
+
+
+
+                      { "key": "channels", "label": "Channels Priority", "type": "multiSelect",
+
+                        "options": ["push","sms","voice_call","console","email"] },
+
+
+
+
+                      { "key": "next_stage_no", "label": "Next Stage", "type": "number", "min": 1, "nullable":
+true },
+
+                      { "key": "enabled", "label": "Enabled", "type": "toggle", "default": true },
+
+                      { "key": "meta", "label": "Meta (JSON)", "type": "jsonEditor" }
+
+                 ],
+
+                 "validators": [
+
+                      { "rule": "if target_type==ems then timeout_sec==0 and next_stage_no is null" }
+
+                 ]
+
+             }
+
+         }
+
+    ],
+
+
+
+
+    "validators": [
+
+         { "rule": "stage_no unique" },
+
+         { "rule": "next_stage_no must reference existing stage_no or be null" }
+
+    ]
+
+}
+
+
+
+
+3.3 Policy Rule 편집(UI는 ‘빌더’ + ‘JSON’ 듀얼 모드 권장)
+
+         •       Builder 모드: AND/OR 조건을 UI로 쌓기
+         •   JSON 모드: power user를 위한 직접 편집
+
+폼 스키마(요약):
+
+{
+
+    "formId": "ruleEditor",
+
+    "title": "Policy Rule",
+
+    "fields": [
+
+         { "key": "key", "label": "Rule Key", "type": "text", "required": true },
+
+         { "key": "domain", "label": "Domain", "type": "select", "options":
+["EMS","VERIFY","ESCALATION","VOICE"], "required": true },
+
+         { "key": "priority", "label": "Priority", "type": "number", "min": 1, "default": 100 },
+
+         { "key": "match_scope", "label": "Scope", "type": "select", "options": ["edge","cloud","both"],
+"default": "cloud" },
+
+         { "key": "enabled", "label": "Enabled", "type": "toggle", "default": true },
+
+
+
+
+         { "key": "rule_json", "label": "Condition (JSON)", "type": "jsonEditor", "required": true },
+
+         { "key": "action_json", "label": "Actions (JSON)", "type": "jsonEditor", "required": true }
+
+    ],
+
+    "validators": [
+
+         { "rule": "rule_json validates against care-policy-rule.schema.json" },
+
+         { "rule": "action_json validates against care-policy-action.schema.json" }
+
+    ]
+
+}
+
+
+
+
+4) 운영 콘솔 UX 권장(현장 폭주 방지)
+
+         •   Dry-run 시뮬레이터: 최근 24h 데이터에 정책을 재적용해 “알림 예상 건수” 보여주기
+
+         •   폭주 린트: cooldown=0 + severity=ALERT/CRITICAL이면 경고/저장 제한
+
+         •   원클릭 롤백: 이전 active로 즉시 복구
+
+         •   정책 적용 범위 프리뷰: 이 bundle이 적용되는 user/device 수 표시
+    •      • 위 API 를 FastAPI 기준으로 OpenAPI 스펙(YAML) 형태로 뽑기
+    •      • 룰 엔진 평가 엔진을 위한 의사코드(pseudocode) + 캐시
+           구조(tenant/user/device override)
+    •      • 콘솔 화면 IA(정보구조): “Bundles / Thresholds / Call Tree / Rules /
+           Simulator / Audit” 화면 설계
+
+
+
+아래에 (1) FastAPI 기준 OpenAPI YAML 스펙(핵심 엔드포인트 중심), (2) 룰 엔진 의사코드 +
+캐시/오버라이드 구조, (3) 운영 콘솔 IA(정보구조) 화면 설계를 한 번에 제공합니다.
+(스펙은 길이를 관리하려고 “정책 관리 도메인”에 필요한 것만 넣었고, 실제 배포 시 공통 컴포넌
+트/에러/보안 스킴 확장하면 됩니다.)
+
+
+
+
+1) OpenAPI 스펙 (YAML, FastAPI 기준)
+
+openapi: 3.0.3
+
+info:
+
+  title: Care Policy API
+
+  version: "1.0.0"
+
+servers:
+
+  - url: /api
+
+
+
+
+tags:
+
+  - name: PolicyBundles
+
+  - name: Thresholds
+
+  - name: Rules
+
+  - name: EscalationPlans
+
+  - name: Bindings
+
+  - name: Validation
+
+  - name: Runtime
+
+  - name: Audit
+components:
+
+ securitySchemes:
+
+   bearerAuth:
+
+     type: http
+
+     scheme: bearer
+
+     bearerFormat: JWT
+
+   mtlsDevice:
+
+     type: mutualTLS
+
+
+
+
+ schemas:
+
+   Error:
+
+     type: object
+
+     properties:
+
+        code: { type: string }
+
+        message: { type: string }
+
+        details: { type: object, additionalProperties: true }
+
+
+
+
+   PolicyBundle:
+
+     type: object
+
+     properties:
+
+        bundle_id: { type: string, format: uuid }
+
+        tenant_id: { type: string, format: uuid }
+
+        name: { type: string }
+
+        version: { type: string }
+
+        status: { type: string, enum: [draft, active, archived] }
+
+        effective_from: { type: string, format: date-time }
+
+        effective_to: { type: string, format: date-time, nullable: true }
+    description: { type: string, nullable: true }
+
+    created_by: { type: string, format: uuid, nullable: true }
+
+    created_at: { type: string, format: date-time }
+
+    updated_at: { type: string, format: date-time }
+
+
+
+
+CreateBundleRequest:
+
+  type: object
+
+  required: [name]
+
+  properties:
+
+    name: { type: string }
+
+    base_bundle_id: { type: string, format: uuid, nullable: true }
+
+    description: { type: string, nullable: true }
+
+
+
+
+PatchBundleRequest:
+
+  type: object
+
+  properties:
+
+    description: { type: string, nullable: true }
+
+    status:
+
+      type: string
+
+      enum: [draft, active, archived]
+
+      nullable: true
+
+
+
+
+PolicyThreshold:
+
+  type: object
+
+  properties:
+
+    threshold_id: { type: string, format: uuid }
+
+    tenant_id: { type: string, format: uuid }
+    bundle_id: { type: string, format: uuid }
+
+    key: { type: string }
+
+    domain: { type: string, enum: [EMS, VITALS, FALL, INACTIVITY, DEVICE, VOICE] }
+
+    metric: { type: string }
+
+    operator: { type: string, enum: [LT, LTE, GT, GTE, EQ, NEQ, BETWEEN, IN] }
+
+    value_num: { type: number, nullable: true }
+
+    value_num2: { type: number, nullable: true }
+
+    value_text: { type: string, nullable: true }
+
+    unit: { type: string, nullable: true }
+
+    duration_sec: { type: integer, nullable: true }
+
+    occurrences: { type: integer, nullable: true }
+
+    lookback_sec: { type: integer, nullable: true }
+
+    min_quality: { type: integer, minimum: 0, maximum: 100, nullable: true }
+
+    severity: { type: string, enum: [INFO, WARN, ALERT, CRITICAL] }
+
+    enabled: { type: boolean }
+
+    meta: { type: object, additionalProperties: true }
+
+    created_at: { type: string, format: date-time }
+
+    updated_at: { type: string, format: date-time }
+
+
+
+
+UpsertThresholdRequest:
+
+  type: object
+
+  required: [key, domain, metric, operator, severity]
+
+  properties:
+
+    key: { type: string }
+
+    domain: { type: string, enum: [EMS, VITALS, FALL, INACTIVITY, DEVICE, VOICE] }
+
+    metric: { type: string }
+
+    operator: { type: string, enum: [LT, LTE, GT, GTE, EQ, NEQ, BETWEEN, IN] }
+    value_num: { type: number, nullable: true }
+
+    value_num2: { type: number, nullable: true }
+
+    value_text: { type: string, nullable: true }
+
+    unit: { type: string, nullable: true }
+
+    duration_sec: { type: integer, nullable: true }
+
+    occurrences: { type: integer, nullable: true }
+
+    lookback_sec: { type: integer, nullable: true }
+
+    min_quality: { type: integer, minimum: 0, maximum: 100, nullable: true }
+
+    severity: { type: string, enum: [INFO, WARN, ALERT, CRITICAL] }
+
+    enabled: { type: boolean, default: true }
+
+    meta: { type: object, additionalProperties: true, default: {} }
+
+
+
+
+PolicyRule:
+
+  type: object
+
+  properties:
+
+    rule_id: { type: string, format: uuid }
+
+    tenant_id: { type: string, format: uuid }
+
+    bundle_id: { type: string, format: uuid }
+
+    key: { type: string }
+
+    domain: { type: string, enum: [EMS, VERIFY, ESCALATION, VOICE] }
+
+    enabled: { type: boolean }
+
+    priority: { type: integer }
+
+    match_scope: { type: string, enum: [edge, cloud, both] }
+
+    rule_json: { type: object, additionalProperties: true }
+
+    action_json: { type: object, additionalProperties: true }
+
+    description: { type: string, nullable: true }
+
+    created_at: { type: string, format: date-time }
+    updated_at: { type: string, format: date-time }
+
+
+
+
+UpsertRuleRequest:
+
+  type: object
+
+  required: [key, domain, rule_json, action_json]
+
+  properties:
+
+    key: { type: string }
+
+    domain: { type: string, enum: [EMS, VERIFY, ESCALATION, VOICE] }
+
+    enabled: { type: boolean, default: true }
+
+    priority: { type: integer, default: 100 }
+
+    match_scope: { type: string, enum: [edge, cloud, both], default: cloud }
+
+    rule_json: { type: object, additionalProperties: true }
+
+    action_json: { type: object, additionalProperties: true }
+
+    description: { type: string, nullable: true }
+
+
+
+
+EscalationPlan:
+
+  type: object
+
+  properties:
+
+    plan_id: { type: string, format: uuid }
+
+    tenant_id: { type: string, format: uuid }
+
+    bundle_id: { type: string, format: uuid }
+
+    name: { type: string }
+
+    event_group: { type: string, enum: [FALL, INACTIVITY, VITALS, DEVICE, EMERGENCY] }
+
+    severity_min: { type: string, enum: [WARN, ALERT, CRITICAL] }
+
+    cooldown_sec: { type: integer }
+
+    enabled: { type: boolean }
+
+    meta: { type: object, additionalProperties: true }
+    stages:
+
+      type: array
+
+      items:
+
+        $ref: "#/components/schemas/EscalationStage"
+
+
+
+
+EscalationStage:
+
+  type: object
+
+  properties:
+
+    stage_no: { type: integer, minimum: 1 }
+
+    target_type: { type: string, enum: [guardian1, guardian2, caregiver, operator, ems] }
+
+    timeout_sec: { type: integer, minimum: 0 }
+
+    retry_count: { type: integer, minimum: 0 }
+
+    retry_interval_sec: { type: integer, minimum: 0 }
+
+    channels:
+
+      type: array
+
+      items: { type: string, enum: [push, sms, voice_call, console, email] }
+
+    require_ack: { type: boolean, default: true }
+
+    next_stage_no: { type: integer, minimum: 1, nullable: true }
+
+    stop_on_ack: { type: boolean, default: false }
+
+    enabled: { type: boolean, default: true }
+
+    meta: { type: object, additionalProperties: true }
+
+
+
+
+UpsertPlanRequest:
+
+  type: object
+
+  required: [name, event_group, severity_min, stages]
+
+  properties:
+
+    name: { type: string }
+    event_group: { type: string, enum: [FALL, INACTIVITY, VITALS, DEVICE, EMERGENCY] }
+
+    severity_min: { type: string, enum: [WARN, ALERT, CRITICAL] }
+
+    cooldown_sec: { type: integer, default: 300 }
+
+    enabled: { type: boolean, default: true }
+
+    meta: { type: object, additionalProperties: true, default: {} }
+
+    stages:
+
+      type: array
+
+      minItems: 1
+
+      items: { $ref: "#/components/schemas/EscalationStage" }
+
+
+
+
+PolicyBinding:
+
+  type: object
+
+  properties:
+
+    binding_id: { type: string, format: uuid }
+
+    tenant_id: { type: string, format: uuid }
+
+    bundle_id: { type: string, format: uuid }
+
+    scope_type: { type: string, enum: [tenant, user, device, group] }
+
+    scope_id: { type: string, format: uuid, nullable: true }
+
+    priority: { type: integer }
+
+    created_at: { type: string, format: date-time }
+
+
+
+
+CreateBindingRequest:
+
+  type: object
+
+  required: [bundle_id, scope_type, priority]
+
+  properties:
+
+    bundle_id: { type: string, format: uuid }
+
+    scope_type: { type: string, enum: [tenant, user, device, group] }
+    scope_id: { type: string, format: uuid, nullable: true }
+
+    priority: { type: integer, default: 100 }
+
+
+
+
+ValidateResult:
+
+  type: object
+
+  properties:
+
+    ok: { type: boolean }
+
+    errors:
+
+      type: array
+
+      items:
+
+         type: object
+
+         properties:
+
+              path: { type: string }
+
+              code: { type: string }
+
+              message: { type: string }
+
+    warnings:
+
+      type: array
+
+      items:
+
+         type: object
+
+         properties:
+
+              code: { type: string }
+
+              message: { type: string }
+
+
+
+
+PublishResult:
+
+  type: object
+
+  properties:
+
+    ok: { type: boolean }
+    bundle_id: { type: string, format: uuid }
+
+    version: { type: string }
+
+    status: { type: string, enum: [active] }
+
+
+
+
+RuntimePolicyResponse:
+
+  type: object
+
+  properties:
+
+    tenant_id: { type: string, format: uuid }
+
+    bundle_id: { type: string, format: uuid }
+
+    version: { type: string }
+
+    scope: { type: string, enum: [cloud, edge] }
+
+    thresholds:
+
+      type: array
+
+      items: { $ref: "#/components/schemas/PolicyThreshold" }
+
+    rules:
+
+      type: array
+
+      items: { $ref: "#/components/schemas/PolicyRule" }
+
+    plans:
+
+      type: array
+
+      items: { $ref: "#/components/schemas/EscalationPlan" }
+
+
+
+
+AuditLogEntry:
+
+  type: object
+
+  properties:
+
+    audit_id: { type: string, format: uuid }
+
+    tenant_id: { type: string, format: uuid }
+
+    actor_type: { type: string }
+            actor_id: { type: string, format: uuid, nullable: true }
+
+            action: { type: string }
+
+            resource_type: { type: string }
+
+            resource_id: { type: string, format: uuid, nullable: true }
+
+            ts: { type: string, format: date-time }
+
+            detail: { type: object, additionalProperties: true }
+
+
+
+
+security:
+
+  - bearerAuth: []
+
+
+
+
+paths:
+
+  /tenants/{tenantId}/policy-bundles:
+
+    get:
+
+         tags: [PolicyBundles]
+
+         summary: List policy bundles
+
+         parameters:
+
+            - name: tenantId
+
+              in: path
+
+              required: true
+
+              schema: { type: string, format: uuid }
+
+            - name: status
+
+              in: query
+
+              required: false
+
+              schema: { type: string, enum: [draft, active, archived] }
+
+         responses:
+
+            "200":
+
+              description: OK
+            content:
+
+              application/json:
+
+                 schema:
+
+                   type: array
+
+                   items: { $ref: "#/components/schemas/PolicyBundle" }
+
+        "401": { description: Unauthorized, content: { application/json: { schema: { $ref:
+"#/components/schemas/Error" } } } }
+
+        "403": { description: Forbidden, content: { application/json: { schema: { $ref:
+"#/components/schemas/Error" } } } }
+
+
+
+
+    post:
+
+      tags: [PolicyBundles]
+
+      summary: Create a draft bundle
+
+      requestBody:
+
+        required: true
+
+        content:
+
+            application/json:
+
+              schema: { $ref: "#/components/schemas/CreateBundleRequest" }
+
+      responses:
+
+        "201":
+
+            description: Created
+
+            content:
+
+              application/json:
+
+                 schema: { $ref: "#/components/schemas/PolicyBundle" }
+
+        "400": { description: Bad Request, content: { application/json: { schema: { $ref:
+"#/components/schemas/Error" } } } }
+
+
+
+
+  /tenants/{tenantId}/policy-bundles/{bundleId}:
+    get:
+
+      tags: [PolicyBundles]
+
+      summary: Get bundle
+
+      parameters:
+
+           - { name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }
+
+           - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      responses:
+
+           "200": { description: OK, content: { application/json: { schema: { $ref:
+"#/components/schemas/PolicyBundle" } } } }
+
+
+
+
+    patch:
+
+      tags: [PolicyBundles]
+
+      summary: Patch bundle metadata (draft only)
+
+      parameters:
+
+           - { name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }
+
+           - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      requestBody:
+
+           required: true
+
+           content:
+
+             application/json:
+
+               schema: { $ref: "#/components/schemas/PatchBundleRequest" }
+
+      responses:
+
+           "200": { description: OK, content: { application/json: { schema: { $ref:
+"#/components/schemas/PolicyBundle" } } } }
+
+
+
+
+  /policy-bundles/{bundleId}/thresholds:
+
+    get:
+
+      tags: [Thresholds]
+      summary: List thresholds
+
+      parameters:
+
+        - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      responses:
+
+        "200":
+
+            description: OK
+
+            content:
+
+              application/json:
+
+                 schema:
+
+                   type: array
+
+                   items: { $ref: "#/components/schemas/PolicyThreshold" }
+
+
+
+
+    post:
+
+      tags: [Thresholds]
+
+      summary: Upsert threshold
+
+      parameters:
+
+        - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      requestBody:
+
+        required: true
+
+        content:
+
+            application/json:
+
+              schema: { $ref: "#/components/schemas/UpsertThresholdRequest" }
+
+      responses:
+
+        "200": { description: OK, content: { application/json: { schema: { $ref:
+"#/components/schemas/PolicyThreshold" } } } }
+
+        "400": { description: Validation error, content: { application/json: { schema: { $ref:
+"#/components/schemas/Error" } } } }
+  /policy-bundles/{bundleId}/rules:
+
+    get:
+
+      tags: [Rules]
+
+      summary: List rules
+
+      parameters:
+
+           - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      responses:
+
+           "200":
+
+             description: OK
+
+             content:
+
+               application/json:
+
+                    schema: { type: array, items: { $ref: "#/components/schemas/PolicyRule" } }
+
+
+
+
+    post:
+
+      tags: [Rules]
+
+      summary: Upsert rule (JSON Schema validated)
+
+      parameters:
+
+           - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      requestBody:
+
+           required: true
+
+           content:
+
+             application/json:
+
+               schema: { $ref: "#/components/schemas/UpsertRuleRequest" }
+
+      responses:
+
+           "200": { description: OK, content: { application/json: { schema: { $ref:
+"#/components/schemas/PolicyRule" } } } }
+
+           "400": { description: Schema validation error, content: { application/json: { schema: { $ref:
+"#/components/schemas/Error" } } } }
+  /policy-bundles/{bundleId}/escalation-plans:
+
+    get:
+
+      tags: [EscalationPlans]
+
+      summary: List escalation plans
+
+      parameters:
+
+           - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      responses:
+
+           "200":
+
+             description: OK
+
+             content:
+
+               application/json:
+
+                    schema: { type: array, items: { $ref: "#/components/schemas/EscalationPlan" } }
+
+
+
+
+    post:
+
+      tags: [EscalationPlans]
+
+      summary: Upsert escalation plan (+stages)
+
+      parameters:
+
+           - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      requestBody:
+
+           required: true
+
+           content:
+
+             application/json:
+
+               schema: { $ref: "#/components/schemas/UpsertPlanRequest" }
+
+      responses:
+
+           "200": { description: OK, content: { application/json: { schema: { $ref:
+"#/components/schemas/EscalationPlan" } } } }
+           "400": { description: Validation error, content: { application/json: { schema: { $ref:
+"#/components/schemas/Error" } } } }
+
+
+
+
+  /tenants/{tenantId}/policy-bindings:
+
+    get:
+
+      tags: [Bindings]
+
+      summary: List policy bindings
+
+      parameters:
+
+           - { name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }
+
+           - { name: scope_type, in: query, required: false, schema: { type: string, enum: [tenant, user,
+device, group] } }
+
+           - { name: scope_id, in: query, required: false, schema: { type: string, format: uuid } }
+
+      responses:
+
+           "200":
+
+             description: OK
+
+             content:
+
+               application/json:
+
+                    schema: { type: array, items: { $ref: "#/components/schemas/PolicyBinding" } }
+
+
+
+
+    post:
+
+      tags: [Bindings]
+
+      summary: Create policy binding
+
+      parameters:
+
+           - { name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }
+
+      requestBody:
+
+           required: true
+
+           content:
+
+             application/json:
+            schema: { $ref: "#/components/schemas/CreateBindingRequest" }
+
+    responses:
+
+      "201":
+
+          description: Created
+
+          content:
+
+            application/json:
+
+               schema: { $ref: "#/components/schemas/PolicyBinding" }
+
+
+
+
+/policy-bundles/{bundleId}/validate:
+
+  post:
+
+    tags: [Validation]
+
+    summary: Validate bundle (thresholds + rules + plans + lint)
+
+    parameters:
+
+      - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+
+    responses:
+
+      "200":
+
+          description: OK
+
+          content:
+
+            application/json:
+
+               schema: { $ref: "#/components/schemas/ValidateResult" }
+
+
+
+
+/policy-bundles/{bundleId}/publish:
+
+  post:
+
+    tags: [Validation]
+
+    summary: Publish bundle (validate required)
+
+    parameters:
+
+      - { name: bundleId, in: path, required: true, schema: { type: string, format: uuid } }
+    responses:
+
+         "200":
+
+           description: OK
+
+           content:
+
+             application/json:
+
+                  schema: { $ref: "#/components/schemas/PublishResult" }
+
+
+
+
+/runtime/policy:
+
+  get:
+
+    tags: [Runtime]
+
+    summary: Fetch effective policy for runtime (cloud/edge)
+
+    security:
+
+         - bearerAuth: []
+
+         - mtlsDevice: []
+
+    parameters:
+
+         - { name: tenant_id, in: query, required: false, schema: { type: string, format: uuid } }
+
+         - { name: device_id, in: query, required: false, schema: { type: string, format: uuid } }
+
+         - { name: user_id, in: query, required: false, schema: { type: string, format: uuid } }
+
+         - { name: scope, in: query, required: true, schema: { type: string, enum: [cloud, edge] } }
+
+    responses:
+
+         "200":
+
+           description: OK
+
+           headers:
+
+             ETag:
+
+                  schema: { type: string }
+
+                  description: Policy cache key "<bundleId>:<version>:<hash>"
+
+           content:
+              application/json:
+
+                   schema: { $ref: "#/components/schemas/RuntimePolicyResponse" }
+
+          "304": { description: Not Modified }
+
+
+
+
+ /tenants/{tenantId}/audit/policy:
+
+   get:
+
+     tags: [Audit]
+
+     summary: Policy-related audit log
+
+     parameters:
+
+          - { name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }
+
+          - { name: since, in: query, required: false, schema: { type: string, format: date-time } }
+
+          - { name: resource_type, in: query, required: false, schema: { type: string } }
+
+     responses:
+
+          "200":
+
+            description: OK
+
+            content:
+
+              application/json:
+
+                   schema:
+
+                     type: array
+
+                     items: { $ref: "#/components/schemas/AuditLogEntry" }
+
+
+
+
+FastAPI 구현 팁: Depends(get_current_user)에서 tenant_id 스코프 검사 + role 기반 라우터 권한
+데코레이터(또는 dependency)로 통일하세요.
+
+
+
+
+2) 룰 엔진 평가 엔진 의사코드 + 캐시 구조(tenant/user/device override)
+
+2.1 캐시 구조(오버라이드 우선순위)
+
+정책 결정은 device > user > tenant 순으로 override(또는 binding.priority 기반).
+런타임에서 “어떤 bundle이 적용되는지”를 빠르게 찾는 캐시가 중요합니다.
+캐시 레이어
+
+    •    policyIndexCache[tenant_id]
+
+             o   bindings 목록(정렬된 priority)
+
+             o   active bundle 기본값
+
+    •    effectiveBundleCache[(tenant_id, device_id, user_id, scope)] -> EffectivePolicy
+
+             o   thresholds (정렬/인덱싱)
+
+             o   rules (domain+priority 인덱싱)
+
+             o   escalation plans (event_group+severity_min 인덱싱)
+
+             o   etag/version/hash
+
+인덱스(빠른 평가용)
+
+    •    thresholdByMetric[metric] -> list[Threshold] (severity desc, domain priority)
+
+    •    thresholdCriticalFirst = list[Threshold] (pre-sorted)
+
+    •    rulesByDomain[domain] -> list[Rule] (priority asc)
+
+    •    planResolver(event_group, severity) -> EscalationPlan + stages
+
+
+
+
+2.2 EffectivePolicy 선택 로직(오버라이드 해석)
+
+resolve_bundle(tenant_id, device_id, user_id):
+
+  candidates = []
+
+  for binding in policy_binding where tenant_id=tenant_id:
+
+        if binding.scope_type == 'device' and binding.scope_id == device_id:
+candidates.add(binding)
+
+        if binding.scope_type == 'user'     and binding.scope_id == user_id:
+candidates.add(binding)
+
+        if binding.scope_type == 'tenant' (or scope_id null):
+candidates.add(binding)
+
+  sort candidates by priority asc, created_at desc
+
+  if candidates not empty: return candidates[0].bundle_id
+
+  else: return tenant_default_active_bundle
+2.3 평가 엔진 pseudocode (short-circuit 포함)
+
+on_signal(signal):
+
+  # signal: measurement | candidate_event | device_state | interaction
+
+
+
+
+  ctx = make_context(signal)
+
+  # ctx includes: tenant_id, user_id, device_id, ts, scope(cloud/edge), recent_state_cache
+
+
+
+
+  policy = get_effective_policy(ctx)
+
+  # from effectiveBundleCache, reload if version changed
+
+
+
+
+  # 0) Guardrails
+
+  if signal.type == "measurement":
+
+       if signal.quality < policy.min_quality_for(signal.metric): return RECORD_ONLY
+
+       if is_suppressed_by_cooldown(ctx, policy, signal): return RECORD_ONLY
+
+       update_ringbuffer(ctx.user_id, signal.metric, signal)   # for duration/occurrences
+
+
+
+
+  if is_quiet_hours(ctx, policy) and policy.has_night_exception(signal):
+
+       apply_night_adjustments(ctx, policy, signal)
+
+
+
+
+  # 1) Evaluate HARD rules first (EMS immediate)
+
+  for rule in policy.rulesByDomain["EMS"]:
+
+       if rule.match_scope not in [ctx.scope, "both"]: continue
+
+       if eval_rule(rule.rule_json, ctx):
+
+            execute_actions(rule.action_json, ctx, policy)
+
+            # short-circuit: EMS immediate typically ends evaluation of lower severity,
+
+            # but may allow parallel notifications
+         if action_json includes contact_ems(mode="immediate"):
+
+                return DONE_WITH_EMS_PARALLEL_OK
+
+
+
+
+# 2) Evaluate CRITICAL thresholds
+
+for th in policy.thresholdsCriticalFirst:
+
+    if th.enabled is false: continue
+
+    if th.match_scope and ctx.scope mismatch: continue (optional)
+
+    if th.metric not relevant to signal: continue
+
+    if eval_threshold(th, ctx):     # includes duration/occurrences/lookback
+
+         event = emit_or_update_event(th, ctx)      # care_event
+
+         case    = open_or_merge_case(event, ctx, policy)
+
+         plan    = resolve_plan(policy, event_group(event), event.severity)
+
+         start_or_continue_escalation(case, event, plan, ctx, policy)
+
+         # short-circuit: once CRITICAL fired for this group, stop lower checks
+
+         mark_group_block(ctx.user_id, event_group(event), level="CRITICAL")
+
+         return DONE
+
+
+
+
+# 3) Evaluate ALERT thresholds
+
+for th in policy.thresholdsAlert:
+
+    if group_blocked(ctx.user_id, event_group_from_metric(th.metric), "CRITICAL"): continue
+
+    if eval_threshold(th, ctx):
+
+         event = emit_or_update_event(th, ctx)
+
+         case    = open_or_merge_case(event, ctx, policy)
+
+         plan    = resolve_plan(policy, event_group(event), event.severity)
+
+         start_or_continue_escalation(case, event, plan, ctx, policy)
+
+         # optionally continue to check other ALERT of different groups
+
+         continue
+ # 4) Evaluate WARN/INFO thresholds (only if needs escalation)
+
+ for th in policy.thresholdsWarnInfo:
+
+      if eval_threshold(th, ctx):
+
+           event = emit_or_update_event(th, ctx)
+
+           if needs_user_verify(event, policy, ctx):
+
+                   schedule_device_verify(event, ctx)   # "괜찮으세요?" prompt
+
+           else:
+
+                   record_event_only(event)
+
+           continue
+
+
+
+
+ # 5) VERIFY / ESCALATION / VOICE rules (upgrade logic)
+
+ for rule in policy.rulesByDomain["VERIFY"]:
+
+      if eval_rule(rule.rule_json, ctx):
+
+           execute_actions(rule.action_json, ctx, policy)
+
+
+
+
+ for rule in policy.rulesByDomain["ESCALATION"]:
+
+      if eval_rule(rule.rule_json, ctx):
+
+           execute_actions(rule.action_json, ctx, policy)
+
+
+
+
+ return DONE
+
+
+
+
+핵심 함수 동작(요약)
+
+  •    eval_threshold(th, ctx)
+
+            o      metric ringbuffer에서 lookback/duration/occurrences 충족 확인
+
+            o      operator 비교(LT/GTE/BETWEEN 등)
+   •    emit_or_update_event(th, ctx)
+
+            o   동일 이벤트가 열려 있으면 update(상태/증거)
+
+            o   아니면 care_event INSERT
+
+   •    open_or_merge_case(event, ctx, policy)
+
+            o   merge_window(기본 30분) 내 동일 group 케이스 존재 시 병합
+
+   •    start_or_continue_escalation(case, event, plan, ctx, policy)
+
+            o   Stage1 alert 생성 → delivery 생성
+
+            o   타임아웃 스케줄러 등록(예: Redis delayed job)
+
+
+
+
+2.4 타임아웃/에스컬레이션은 “스케줄러”가 담당
+
+평가 엔진은 “발생 순간”만 다루고, **타임아웃 전이(Stage 상승)**는 별도 워커가 안정적입니다.
+
+   •    워커 입력: alert_id(stage), deadline_ts
+
+   •    deadline 지나면:
+
+            o   ACK 여부 확인(alert.status != acknowledged)
+
+            o   case_action(ESCALATE_STAGE)
+
+            o   다음 stage alert + delivery 생성
+
+
+
+
+3) 운영 콘솔 IA(정보구조) 화면 설계
+
+아래는 요청한 메뉴(“Bundles / Thresholds / Call Tree / Rules / Simulator / Audit”)를 기준으로 실
+무형 IA입니다.
+
+3.1 Global Navigation (좌측 사이드바)
+
+   1.   Bundles
+
+   2.   Thresholds
+
+   3.   Call Tree
+
+   4.   Rules
+
+   5.   Simulator
+
+   6.   Audit
+   7.   (옵션) Bindings
+
+   8.   (옵션) Runtime Status (배포/에이전트 적용 현황)
+
+
+
+
+3.2 Bundles 화면
+
+Bundles List
+
+   •    필터: status(draft/active/archived), name, version
+
+   •    테이블: name / version / status / effective_from / updated_at / actions
+
+   •    액션:
+
+            o   Create Draft
+
+            o   Clone from Active
+
+            o   Validate
+
+            o   Publish (권한 필요)
+
+            o   Rollback (권한 필요)
+
+Bundle Detail (탭)
+
+   •    Overview: 메타 + 적용 범위(몇 명/몇 디바이스)
+
+   •    Included Policies: Thresholds / Rules / Call Tree(요약)
+
+   •    Changes: diff 뷰(이전 버전 대비 변경점)
+
+   •    Validate Results: errors/warnings
+
+   •    Publish History: 누가 언제 배포했는지
+
+
+
+
+3.3 Thresholds 화면
+
+Threshold Catalog
+
+   •    필터: domain, metric, severity, enabled, bundle
+
+   •    리스트: key / metric / operator / value / duration/occ / severity / enabled
+
+   •    상세 편집 패널(우측 drawer):
+
+            o   폼 기반 편집 + JSON(meta) + “Preview impact”(시뮬 연동)
+3.4 Call Tree 화면
+
+Plan List
+
+    •   필터: event_group, severity_min, bundle
+
+    •   리스트: name / group / min severity / cooldown / enabled
+
+    •   Plan Detail
+
+             o   Stage editor(드래그로 순서 조정)
+
+             o   채널 우선순위(멀티셀렉트)
+
+             o   타임아웃/재시도/다음 단계
+
+             o   “119 stage”는 고정 템플릿(가드레일)
+
+
+
+
+3.5 Rules 화면
+
+Rules List
+
+    •   필터: domain(EMS/VERIFY/ESCALATION/VOICE), scope(edge/cloud/both), enabled, bundle
+
+    •   리스트: key / domain / priority / scope / enabled
+
+    •   Rule Detail
+
+             o   Builder 모드(AND/OR 트리) + JSON 모드 토글
+
+             o   Action 편집(템플릿 선택형 + JSON 고급 모드)
+
+             o   “Referenced plan_name 존재 여부” 즉시 표시
+
+
+
+
+3.6 Simulator 화면 (정책 안전장치의 핵심)
+
+입력
+
+    •   기간 선택(최근 1h/24h/7d)
+
+    •   대상 선택(tenant 전체 / 특정 user / 특정 device)
+
+    •   정책 선택(draft bundle vs active bundle 비교)
+
+출력
+
+    •   예측 알림 건수(총/그룹별/심각도별)
+
+    •   콜 트리 단계별 발생 예상(1→2→3→4→119)
+   •   “폭주 위험 점수” 및 경고 리스트
+
+   •   샘플 타임라인(어떤 시각에 어떤 규칙이 발동하는지)
+
+
+
+
+3.7 Audit 화면
+
+   •   필터: actor, action, resource_type, 기간
+
+   •   테이블: ts / actor / action / resource / detail
+
+   •   정책 변경(diff) 클릭 시:
+
+          o    변경 전/후 JSON 비교
+
+          o    누가 승인/배포했는지
+
+
+
+
+3.8 (옵션) Bindings 화면
+
+   •   테넌트 기본 active bundle
+
+   •   override: user/device/group 단위 바인딩
+
+   •   우선순위(priority) 충돌 검사/경고
+래는 Figma에서 그대로 프레임/오토레이아웃으로 옮기기 쉬운 “와이어프레임 텍스트”입니다.
+
+(데스크톱 기준 1440px, 좌측 사이드바 + 상단 헤더 + 본문 2~3열 구조)
+
+
+
+
+0) 공통 레이아웃 템플릿
+
+Frame: Admin Console / Shell (1440x900)
+
+
+
+
+Left Sidebar (240w, full height)
+
+
+
+
+Logo / Product name
+
+
+
+
+Tenant Switcher (dropdown)
+
+
+
+
+Nav Items (list)
+
+
+
+
+Bundles
+
+
+
+
+Thresholds
+
+
+
+
+Call Tree
+
+
+
+
+Rules
+
+
+
+
+Simulator
+
+
+
+
+Audit
+
+
+
+
+(Optional) Bindings
+(Optional) Runtime Status
+
+
+
+
+Bottom: Help / Docs / Version badge
+
+
+
+
+Top Header (Height 56, width = 1440-240)
+
+
+
+
+Left: Breadcrumbs (e.g., Bundles > default > draft-...)
+
+
+
+
+Center (optional): Global Search (rules/thresholds by key)
+
+
+
+
+Right: User menu (avatar), role badge, Notifications bell
+
+
+
+
+Main Content Area (Width = 1200, padding 24)
+
+
+
+
+Page Title row
+
+
+
+
+Primary actions row (buttons)
+
+
+
+
+Content grid (left list + right detail, or tabs)
+
+
+
+
+공통 컴포넌트:
+
+
+
+
+Toast 영역(우하단)
+
+
+
+
+Confirm modal(삭제/배포/롤백)
+Drawer(우측 편집패널) 폭 420~520
+
+
+
+
+1) Bundles 화면
+
+1.1 Page: Bundles / List
+
+
+
+
+Main Content
+
+
+
+
+Row 1: Page Title
+
+
+
+
+H1: Policy Bundles
+
+
+
+
+Subtitle: Create, validate, publish and rollback policy versions
+
+
+
+
+Row 2: Controls Bar (Auto layout horizontal)
+
+
+
+
+Left group:
+
+
+
+
+Filter: Status (Dropdown: All / Draft / Active / Archived)
+
+
+
+
+Filter: Name (Input)
+
+
+
+
+Filter: Date range (Optional)
+
+
+
+
+Right group:
+
+
+
+
+Button: Create Draft
+Button: Clone Active
+
+
+
+
+Button: Rollback... (secondary, role-gated)
+
+
+
+
+Row 3: Content Grid (2 columns)
+
+
+
+
+Left Column (List Table, 740w)
+
+
+
+
+Table Header:
+
+
+
+
+Name | Version | Status | Effective From | Updated | Actions
+
+
+
+
+Table Rows:
+
+
+
+
+Row click → opens Detail in right column
+
+
+
+
+Footer:
+
+
+
+
+Pagination (page size 20/50)
+
+
+
+
+Right Column (Detail Preview Card, 420w)
+
+
+
+
+If none selected: Empty state illustration + “Select a bundle”
+
+
+
+
+If selected:
+
+
+
+
+Card: Bundle Summary
+Name, Version, Status badge
+
+
+
+
+Effective From/To
+
+
+
+
+Created by, Updated at
+
+
+
+
+Card: Quick Health
+
+
+
+
+Last Validate result (OK / Errors N / Warnings N)
+
+
+
+
+Alert Storm Risk gauge (Low/Med/High)
+
+
+
+
+Card: Quick Actions
+
+
+
+
+Button: Validate
+
+
+
+
+Button: Publish (role-gated)
+
+
+
+
+Button: View Diff
+
+
+
+
+Button: Archive
+
+
+
+
+1.2 Page: Bundles / Detail
+
+
+
+
+Main Content
+Row 1: Title + Status
+
+
+
+
+H1: Bundle: default
+
+
+
+
+Status chip: Draft / Active
+
+
+
+
+Right: Button group
+
+
+
+
+Validate
+
+
+
+
+Publish (primary)
+
+
+
+
+Rollback (danger/role-gated)
+
+
+
+
+More (kebab: Archive, Export JSON)
+
+
+
+
+Row 2: Tabs (full width)
+
+
+
+
+Tabs: Overview | Policies | Diff | Validation | History
+
+
+
+
+Tab: Overview
+
+
+
+
+Grid (2 columns: 760 / 420)
+
+
+
+
+Left:
+
+
+
+
+Card: “Bundle Info”
+Fields: name, version, status, description (editable if draft)
+
+
+
+
+Card: “Scope Coverage”
+
+
+
+
+KPIs: #Users affected, #Devices affected
+
+
+
+
+Link: “View bindings”
+
+
+
+
+Right:
+
+
+
+
+Card: “Risk & Safety”
+
+
+
+
+Warning list (e.g., cooldown=0)
+
+
+
+
+“Storm risk score” meter
+
+
+
+
+Card: “Runtime”
+
+
+
+
+ETag/hash, last loaded time (from runtime status if available)
+
+
+
+
+Tab: Policies
+
+
+
+
+Sub-tabs or segmented control:
+
+
+
+
+Thresholds | Call Tree | Rules
+Each shows summary table + “Edit” CTA linking to 해당 메뉴
+
+
+
+
+Tab: Diff
+
+
+
+
+Top: Compare selector
+
+
+
+
+Left dropdown: “Compare against” (previous active version)
+
+
+
+
+Button: “Generate diff”
+
+
+
+
+Content:
+
+
+
+
+Split diff view (Left: old JSON, Right: new JSON)
+
+
+
+
+Change summary chips:
+
+
+
+
+Thresholds +3 / -1 / ~4
+
+
+
+
+Rules +1 / ~2
+
+
+
+
+Plans ~1
+
+
+
+
+Tab: Validation
+
+
+
+
+Card: Validate Results
+
+
+
+
+Section: Errors (red)
+Section: Warnings (yellow)
+
+
+
+
+Button: “Re-run validation”
+
+
+
+
+Button: “Open Simulator with this bundle”
+
+
+
+
+Tab: History
+
+
+
+
+Timeline list
+
+
+
+
+items: published/rolled back/archived with actor & timestamp
+
+
+
+
+2) Thresholds 화면
+
+2.1 Page: Thresholds / Catalog
+
+
+
+
+Main Content
+
+
+
+
+Row 1: Title
+
+
+
+
+H1: Thresholds
+
+
+
+
+Subtitle: Edit measurement thresholds and derived metric triggers
+
+
+
+
+Row 2: Controls Bar
+
+
+
+
+Left:
+Dropdown: Bundle (Active / select)
+
+
+
+
+Dropdown: Domain (All/VITALS/FALL/…)
+
+
+
+
+Dropdown: Severity (All/CRITICAL/ALERT/…)
+
+
+
+
+Dropdown: Enabled (All/Enabled/Disabled)
+
+
+
+
+Search input: key/metric
+
+
+
+
+Right:
+
+
+
+
+Button: New Threshold
+
+
+
+
+Button: Import JSON
+
+
+
+
+Button: Export
+
+
+
+
+Row 3: Content Grid (List + Drawer)
+
+
+
+
+Main Table (full width)
+
+
+
+
+Columns:
+
+
+
+
+Key | Domain | Metric | Op | Value | Duration/Occ | Severity | Enabled | Updated | Actions
+Row actions: Edit / Duplicate / Disable
+
+
+
+
+Right Drawer (opens on Edit/New)
+
+
+
+
+Header: Edit Threshold
+
+
+
+
+Save, Cancel
+
+
+
+
+Form sections (vertical):
+
+
+
+
+Identity
+
+
+
+
+key (text)
+
+
+
+
+domain (select)
+
+
+
+
+metric (select + “metrics catalog”)
+
+
+
+
+Condition
+
+
+
+
+operator (select)
+
+
+
+
+value/value2 (number) conditional
+
+
+
+
+unit
+
+
+
+
+Aggregation
+lookback_sec
+
+
+
+
+duration_sec
+
+
+
+
+occurrences
+
+
+
+
+min_quality
+
+
+
+
+Outcome
+
+
+
+
+severity
+
+
+
+
+enabled toggle
+
+
+
+
+Meta
+
+
+
+
+meta JSON editor (small)
+
+
+
+
+Inline validation panel
+
+
+
+
+live errors/warnings
+
+
+
+
+3) Call Tree 화면
+
+3.1 Page: Call Tree / Plans
+
+
+
+
+Main Content
+Row 1: Title
+
+
+
+
+H1: Call Tree (Escalation Plans)
+
+
+
+
+Row 2: Controls Bar
+
+
+
+
+Left:
+
+
+
+
+Bundle selector
+
+
+
+
+Event Group filter
+
+
+
+
+Severity Min filter
+
+
+
+
+Search by plan name
+
+
+
+
+Right:
+
+
+
+
+Button: New Plan
+
+
+
+
+Button: Duplicate
+
+
+
+
+Button: Export
+
+
+
+
+Row 3: Grid (2 columns)
+Left List (Plan Table, 740w)
+
+
+
+
+Columns: Name | Group | Min Severity | Cooldown | Enabled | Actions
+
+
+
+
+Right Detail (Plan Editor, 420w 또는 full page로 전환 가능)
+
+
+
+
+Card: Plan Settings
+
+
+
+
+name, group, min severity, cooldown, enabled
+
+
+
+
+Card: Stages (Stacked list)
+
+
+
+
+Each Stage Card:
+
+
+
+
+Stage header: Stage 1 / guardian1
+
+
+
+
+Fields row:
+
+
+
+
+target_type (select)
+
+
+
+
+timeout_sec (number)
+
+
+
+
+retry_count / retry_interval_sec
+
+
+
+
+Channels (chip multi-select + drag reorder)
+
+
+
+
+next_stage_no (select)
+enabled toggle
+
+
+
+
+meta JSON (collapsed)
+
+
+
+
+Buttons: Move up/down, Delete stage
+
+
+
+
+Button: Add Stage
+
+
+
+
+Bottom sticky actions:
+
+
+
+
+Save Plan
+
+
+
+
+Validate Plan
+
+
+
+
+UX 권장: stage reorder는 drag handle로. “ems stage”는 템플릿 고정(삭제/수정 제한).
+
+
+
+
+4) Rules 화면
+
+4.1 Page: Rules / List
+
+
+
+
+Main Content
+
+
+
+
+Row 1: Title
+
+
+
+
+H1: Rules
+
+
+
+
+Row 2: Controls Bar
+Left:
+
+
+
+
+Bundle selector
+
+
+
+
+Domain filter (EMS/VERIFY/ESCALATION/VOICE)
+
+
+
+
+Scope filter (edge/cloud/both)
+
+
+
+
+Enabled filter
+
+
+
+
+Search by key
+
+
+
+
+Right:
+
+
+
+
+Button: New Rule
+
+
+
+
+Button: Import
+
+
+
+
+Button: Export
+
+
+
+
+Row 3: Grid (List 740 / Detail 420)
+
+
+
+
+Left Table
+
+
+
+
+Columns: Key | Domain | Priority | Scope | Enabled | Updated | Actions
+Right Detail (Rule Editor)
+
+
+
+
+Header: Rule meta
+
+
+
+
+key, domain, priority, match_scope, enabled
+
+
+
+
+Save/Cancel
+
+
+
+
+Segmented: Builder | JSON
+
+
+
+
+Builder mode:
+
+
+
+
+Condition tree editor
+
+
+
+
+Node types dropdown (event_type / measurement / no_response / …)
+
+
+
+
+AND/OR group add/remove
+
+
+
+
+Action builder
+
+
+
+
+Action type select (open_or_merge_case / create_alert / contact_ems / …)
+
+
+
+
+Action params form
+
+
+
+
+JSON mode:
+
+
+
+
+Split view:
+Left: rule_json editor
+
+
+
+
+Right: action_json editor
+
+
+
+
+Schema validation results panel below
+
+
+
+
+Reference checks
+
+
+
+
+“Referenced plan_name exists?” indicator
+
+
+
+
+“Potential loop?” indicator (optional lint)
+
+
+
+
+5) Simulator 화면
+
+5.1 Page: Simulator / Run
+
+
+
+
+Main Content
+
+
+
+
+Row 1: Title
+
+
+
+
+H1: Simulator
+
+
+
+
+Subtitle: Dry-run policy against historical data
+
+
+
+
+Row 2: Input Panel (Card, full width)
+
+
+
+
+Section A: 대상 선택
+Tenant scope (radio): Tenant 전체 / 특정 User / 특정 Device
+
+
+
+
+If User: user picker (search)
+
+
+
+
+If Device: device picker
+
+
+
+
+Section B: 기간
+
+
+
+
+Preset buttons: 1h / 24h / 7d
+
+
+
+
+DateTime range picker
+
+
+
+
+Section C: 정책 선택
+
+
+
+
+Compare mode toggle: OFF/ON
+
+
+
+
+Bundle select A (draft or active)
+
+
+
+
+Bundle select B (compare target; if compare ON)
+
+
+
+
+Section D: Run
+
+
+
+
+Button primary: Run Simulation
+
+
+
+
+Checkbox: “Include suppressed(cooldown) events” (advanced)
+Row 3: Output Grid (2 columns)
+
+
+
+
+Left (Results Summary, 760w)
+
+
+
+
+KPI row:
+
+
+
+
+Total alerts, Critical count, Escalations to 119
+
+
+
+
+Storm risk score
+
+
+
+
+Charts (simple cards)
+
+
+
+
+By event_group
+
+
+
+
+By severity
+
+
+
+
+By stage (1→2→3→4→119)
+
+
+
+
+Table: “Top triggers”
+
+
+
+
+key / count / affected users / notes
+
+
+
+
+Right (Timeline + Findings, 420w)
+
+
+
+
+Card: Findings
+
+
+
+
+Errors/Warnings from lint
+“Expected alert surge” message
+
+
+
+
+Card: Timeline
+
+
+
+
+Scroll list of events with:
+
+
+
+
+ts, event_type, fired threshold/rule key, created alert stage
+
+
+
+
+click → opens “Trace” modal
+
+
+
+
+Modal: Trace Detail
+
+
+
+
+Tabs: Context | Evaluations | DB writes (expected)
+
+
+
+
+Shows: 어떤 threshold/rule이 어떤 순서로 평가되고 어디서 short-circuit 됐는지
+
+
+
+
+6) Audit 화면
+
+6.1 Page: Audit / Policy
+
+
+
+
+Main Content
+
+
+
+
+Row 1: Title
+
+
+
+
+H1: Audit
+
+
+
+
+Row 2: Filters
+Date range picker
+
+
+
+
+Actor filter (user picker)
+
+
+
+
+Action filter (READ/WRITE/PUBLISH/ROLLBACK/DELETE)
+
+
+
+
+Resource filter (bundle/threshold/rule/plan/binding)
+
+
+
+
+Search (resource_id or key)
+
+
+
+
+Row 3: Table (full width)
+
+
+
+
+Columns: Timestamp | Actor | Action | Resource | Resource ID | Detail | Export
+
+
+
+
+Row click → Drawer “Audit Detail”
+
+
+
+
+Diff view if policy content changed
+
+
+
+
+Raw detail JSON
+
+
+
+
+7) (Optional) Bindings 화면
+
+7.1 Page: Bindings / Scope
+
+
+
+
+Left: Scope selector tabs
+
+
+
+
+Tenant Defaults
+User Overrides
+
+
+
+
+Device Overrides
+
+
+
+
+Group Overrides
+
+
+
+
+Main table: scope_id / bundle / priority / updated / actions
+
+
+
+
+Right drawer: create/edit binding
+
+
+
+
+Conflict indicator: 동일 scope에 priority 충돌 시 경고
+
+
+
+
+8) Figma 작업 팁(오토레이아웃 지침)
+
+
+
+
+Shell: Horizontal Auto Layout (Sidebar + Content)
+
+
+
+
+Content: Vertical Auto Layout (Title/Controls/Body)
+
+
+
+
+List+Detail: Horizontal Auto Layout (List 740 + Detail 420)
+
+
+
+
+Drawer: Separate overlay component(Variants: Threshold/Rule/Plan/Audit)
+
+
+
+
+원하면, 위 와이어프레임을 기반으로 **Figma 컴포넌트 명세(Buttons, Chips, Select, Table, Drawer,
+Tabs)**까지 “디자인 시스템 토큰” 형태로 정리해드릴게요(예: spacing scale, typography scale,
+colors, status chips).
+아래는 앞서 정의한 운영 콘솔 IA + 와이어프레임을 기반으로 Figma에서 바로 디자인 시스템으
+로 구성할 수 있는 컴포넌트 명세 + 디자인 토큰입니다.
+목표는 다음입니다.
+
+    •   Figma Variables / Tokens 기반 디자인 시스템
+
+    •   개발과 연결 가능한 Design Token 구조
+
+    •   컴포넌트 Variants 정의
+
+    •   콘솔 UI에 최적화된 관리형 Admin UI 패턴
+
+
+
+
+1. Design Tokens (Figma Variables)
+
+1.1 Color Tokens
+
+Base Colors
+
+color.gray.50      #F9FAFB
+color.gray.100     #F3F4F6
+color.gray.200     #E5E7EB
+color.gray.300     #D1D5DB
+color.gray.400     #9CA3AF
+color.gray.500     #6B7280
+color.gray.600     #4B5563
+color.gray.700     #374151
+color.gray.800     #1F2937
+color.gray.900     #111827
+
+Brand
+
+color.primary.50     #EEF2FF
+color.primary.100    #E0E7FF
+color.primary.300    #A5B4FC
+color.primary.500    #6366F1
+color.primary.600    #4F46E5
+color.primary.700    #4338CA
+
+Semantic
+
+color.success.100    #DCFCE7
+color.success.500    #22C55E
+color.success.700    #15803D
+color.warning.100     #FEF3C7
+color.warning.500     #F59E0B
+color.warning.700     #B45309
+
+
+color.error.100     #FEE2E2
+color.error.500     #EF4444
+color.error.700     #B91C1C
+
+
+color.info.100    #DBEAFE
+color.info.500    #3B82F6
+color.info.700    #1D4ED8
+
+
+
+
+UI Surface Colors
+
+surface.background = gray.50
+surface.card = white
+surface.sidebar = gray.900
+surface.header = white
+surface.border = gray.200
+surface.hover = gray.100
+
+
+
+
+2. Typography Tokens
+
+Font Family
+
+font.primary = Inter
+font.mono = JetBrains Mono
+
+
+
+
+Font Sizes
+
+font.size.xs = 12
+font.size.sm = 14
+font.size.md = 16
+font.size.lg = 18
+font.size.xl = 20
+font.size.2xl = 24
+font.size.3xl = 30
+Font Weight
+
+font.weight.regular = 400
+font.weight.medium = 500
+font.weight.semibold = 600
+font.weight.bold = 700
+
+
+
+
+Typography Styles
+
+Style           Size Weight
+
+Page Title      24   600
+
+Section Title 20     600
+
+Card Title      16   600
+
+Body            14   400
+
+Table Header 12      600
+
+Label           12   500
+
+Code            13   Mono
+
+
+
+
+3. Spacing Tokens
+
+Spacing Scale
+
+space.0 = 0
+space.1 = 4
+space.2 = 8
+space.3 = 12
+space.4 = 16
+space.5 = 20
+space.6 = 24
+space.7 = 32
+space.8 = 40
+space.9 = 48
+Layout Spacing
+
+layout.pagePadding = 24
+layout.cardPadding = 16
+layout.sidebarWidth = 240
+layout.drawerWidth = 420
+layout.headerHeight = 56
+
+
+
+
+4. Radius Tokens
+
+radius.sm = 4
+radius.md = 8
+radius.lg = 12
+radius.xl = 16
+radius.full = 999
+
+
+
+
+5. Shadow Tokens
+
+shadow.sm
+0px 1px 2px rgba(0,0,0,0.05)
+
+
+shadow.md
+0px 4px 10px rgba(0,0,0,0.08)
+
+
+shadow.lg
+0px 10px 25px rgba(0,0,0,0.12)
+
+
+
+
+6. Core Components (Figma Variants)
+
+
+
+
+6.1 Button Component
+
+Component Name
+
+Button
+
+Variants
+
+Type:
+- Primary
+- Secondary
+- Danger
+- Ghost
+
+
+Size:
+- Small
+- Medium
+- Large
+
+
+State:
+- Default
+- Hover
+- Disabled
+
+
+
+
+Button Size
+
+Size        Height Padding
+
+Small       32    8 12
+
+Medium 36         10 16
+
+Large       44    12 20
+
+
+
+
+Primary Button Style
+
+background = primary.600
+text = white
+radius = 8
+
+Hover
+
+background = primary.700
+
+
+
+
+6.2 Chips / Status Badge
+
+Component Name
+
+StatusChip
+
+Variants
+type:
+- active
+- draft
+- archived
+- success
+- warning
+- error
+- info
+
+
+
+
+Colors
+
+Chip         Background Text
+
+Active       success.100 success.700
+
+Draft        info.100    info.700
+
+Archived gray.100        gray.700
+
+Warning warning.100 warning.700
+
+Error        error.100   error.700
+
+
+
+
+Chip Style
+
+height = 24
+padding = 6 10
+radius = full
+font size = 12
+
+
+
+
+6.3 Select / Dropdown
+
+Component Name
+
+Select
+
+Variants
+
+State:
+- Default
+- Focus
+- Disabled
+
+
+Size:
+- Medium
+
+
+
+
+Style
+
+height = 36
+padding = 8 12
+border = gray.300
+radius = 8
+background = white
+
+Focus
+
+border = primary.500
+shadow = 0 0 0 2px primary.100
+
+
+
+
+6.4 Table Component
+
+Component Name
+
+DataTable
+
+Structure
+
+DataTable
+ ├ HeaderRow
+ ├ Row
+ ├ Row
+ ├ Row
+ └ Pagination
+
+
+
+
+Row Style
+
+height = 44
+border-bottom = gray.200
+hover background = gray.50
+
+
+
+
+Table Header
+background = gray.50
+font size = 12
+font weight = 600
+text color = gray.600
+
+
+
+
+6.5 Drawer (Right Side Panel)
+
+Component Name
+
+Drawer
+
+Variants
+
+Type:
+- ThresholdEditor
+- RuleEditor
+- PlanEditor
+- AuditDetail
+
+
+
+
+Layout
+
+width = 420
+padding = 24
+background = white
+shadow = lg
+
+Structure
+
+Drawer
+ ├ Header
+ ├ Content
+ └ Footer Actions
+
+
+
+
+6.6 Tabs Component
+
+Component Name
+
+Tabs
+
+Variants
+
+Type:
+- PageTabs
+- SectionTabs
+
+
+
+
+Style
+
+height = 40
+border-bottom = gray.200
+
+Active tab
+
+text = primary.600
+border-bottom = 2px primary.600
+
+Inactive
+
+text = gray.600
+
+
+
+
+7. Layout Components
+
+
+
+
+Sidebar
+
+width = 240
+background = gray.900
+text = gray.200
+
+Active item
+
+background = gray.800
+text = white
+
+
+
+
+Card
+
+background = white
+border = gray.200
+radius = 12
+padding = 16
+shadow = sm
+
+
+
+
+Form Field
+label
+input
+helper text
+error text
+
+Spacing
+
+label-bottom = 4
+input-bottom = 6
+
+
+
+
+8. Icon System
+
+Icon library 추천
+
+Lucide Icons
+
+콘솔용 주요 아이콘
+
+alert
+settings
+users
+database
+activity
+clock
+shield
+phone
+
+
+
+
+9. Grid System
+
+Container width = 1200
+Grid columns = 12
+Gutter = 24
+
+대표 레이아웃
+
+List + Detail
+740px / 420px
+
+
+
+
+10. Figma 파일 구조 (권장)
+
+Design System
+ ├ Foundations
+    │        ├ Colors
+    │        ├ Typography
+    │        ├ Spacing
+    │        ├ Shadows
+    │
+    ├ Components
+    │        ├ Buttons
+    │        ├ Chips
+    │        ├ Select
+    │        ├ Table
+    │        ├ Drawer
+    │        ├ Tabs
+    │
+    ├ Patterns
+    │        ├ Sidebar
+    │        ├ Card
+    │        ├ Form
+    │
+    ├ Pages
+    │        ├ Bundles
+    │        ├ Thresholds
+    │        ├ CallTree
+    │        ├ Rules
+    │        ├ Simulator
+    │        ├ Audit
+
+
+
+
+11. 개발 연동 Design Tokens (JSON)
+
+개발팀 연동용
+
+{
+    "color": {
+        "primary": {
+             "500": "#6366F1",
+             "600": "#4F46E5"
+        },
+        "success": {
+             "500": "#22C55E"
+        },
+         "error": {
+             "500": "#EF4444"
+         }
+    },
+    "spacing": {
+         "xs": 4,
+         "sm": 8,
+         "md": 16,
+         "lg": 24
+    },
+    "radius": {
+         "sm": 4,
+         "md": 8,
+         "lg": 12
+    }
+}
+
+
+
+
+12. 실제 Admin UI 디자인 레벨 (중요)
+
+이 시스템은 단순 SaaS Admin이 아니라 의료/돌봄 정책 콘솔이므로 다음 UX가 중요합니다.
+
+         정책 위험 표시
+
+Storm Risk Gauge
+
+         Validation 패널
+
+errors / warnings
+
+         Simulator 바로 연결
+
+Run Simulation
+
+         Diff viewer
+
+policy diff
+아래는 바로 “프로젝트 뼈대”로 가져갈 수 있는 수준으로 정리한 3종 세트입니다.
+
+   1.   React / Next.js Admin Template 구조(폴더/모듈/권한/RBAC/폼/테이블 패턴)
+
+   2.   알림 시스템 아키텍처(Push/SMS/Voice/119) + 장애/재시도/콜트리 연동
+
+   3.   Policy Engine Architecture 다이어그램(Mermaid)
+
+
+
+
+1) React / Next.js Admin Template 구조
+
+1.1 권장 스택
+
+   •    Next.js (App Router) + TypeScript
+
+   •    UI: shadcn/ui + Tailwind
+
+   •    Data: TanStack Query (서버 상태) + Zustand(로컬 UI 상태)
+
+   •    Forms: react-hook-form + zod(검증)
+
+   •    Tables: TanStack Table
+
+   •    Editor: Monaco(고급 JSON 편집) 또는 CodeMirror
+
+   •    Auth/RBAC: Next middleware + JWT(OIDC) + role claims
+
+1.2 폴더 구조(권장)
+
+
+
+
+아래는 바로 “프로젝트 뼈대”로 가져갈 수 있는 수준으로 정리한 3종 세트입니다.
+
+   1.   React / Next.js Admin Template 구조(폴더/모듈/권한/RBAC/폼/테이블 패턴)
+
+   2.   알림 시스템 아키텍처(Push/SMS/Voice/119) + 장애/재시도/콜트리 연동
+
+   3.   Policy Engine Architecture 다이어그램(Mermaid)
+
+
+
+
+1) React / Next.js Admin Template 구조
+
+1.1 권장 스택
+
+   •    Next.js (App Router) + TypeScript
+
+   •    UI: shadcn/ui + Tailwind
+
+   •    Data: TanStack Query (서버 상태) + Zustand(로컬 UI 상태)
+
+   •    Forms: react-hook-form + zod(검증)
+  •   Tables: TanStack Table
+
+  •   Editor: Monaco(고급 JSON 편집) 또는 CodeMirror
+
+  •   Auth/RBAC: Next middleware + JWT(OIDC) + role claims
+
+1.2 폴더 구조(권장)
+
