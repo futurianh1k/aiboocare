@@ -133,6 +133,13 @@ class Settings(BaseSettings):
     AI_TEMPERATURE: float = 0.7  # LLM 창의성 (0.0~2.0)
     AI_MAX_TOKENS: int = 1024  # LLM 최대 응답 토큰
     
+    # ============== 푸시 알림 설정 (FCM) ==============
+    FCM_SERVER_KEY: str = ""  # Firebase Cloud Messaging 서버 키
+    
+    # ============== 워커 활성화 설정 ==============
+    ENABLE_MQTT_WORKER: bool = False
+    ENABLE_ESCALATION_SCHEDULER: bool = False
+    
     @field_validator("SECRET_KEY")
     @classmethod
     def validate_secret_key(cls, v: str) -> str:

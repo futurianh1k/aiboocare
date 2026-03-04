@@ -173,6 +173,7 @@ class Guardian(Base, UUIDMixin, TimestampMixin, SoftDeleteMixin):
     """보호자 정보 테이블
     
     보호자도 PII를 포함하므로 민감 필드는 암호화합니다.
+    보호자 앱 로그인을 위한 인증 필드 포함.
     """
     
     __tablename__ = "guardian"
@@ -207,6 +208,40 @@ class Guardian(Base, UUIDMixin, TimestampMixin, SoftDeleteMixin):
     email_encrypted: Mapped[Optional[str]] = mapped_column(
         Text,
         nullable=True,
+    )
+    
+    # ============== 인증 관련 필드 ==============
+    # 비밀번호 해시 (BCrypt) - 보호자 앱 로그인용
+    password_hash: Mapped[Optional[str]] = mapped_column(
+        String(255),
+        nullable=True,
+        comment="BCrypt 해싱된 비밀번호",
+    )
+    
+    # Refresh Token 해시
+    refresh_token_hash: Mapped[Optional[str]] = mapped_column(
+        String(255),
+        nullable=True,
+    )
+    
+    # FCM 푸시 토큰 (Firebase Cloud Messaging)
+    fcm_token: Mapped[Optional[str]] = mapped_column(
+        String(255),
+        nullable=True,
+        comment="FCM 디바이스 토큰",
+    )
+    
+    # 마지막 로그인
+    last_login_at: Mapped[Optional[datetime]] = mapped_column(
+        nullable=True,
+    )
+    
+    # 앱 활성화 여부
+    app_enabled: Mapped[bool] = mapped_column(
+        Boolean,
+        default=False,
+        nullable=False,
+        comment="보호자 앱 활성화 여부",
     )
     
     # 알림 수신 여부
