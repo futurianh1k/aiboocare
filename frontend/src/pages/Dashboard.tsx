@@ -5,255 +5,310 @@ import {
   Activity,
   TrendingUp,
   Clock,
-  CheckCircle,
-  XCircle,
-  ArrowUpRight,
-  ArrowDownRight
+  ChevronRight,
+  Shield
 } from 'lucide-react'
 import { 
-  LineChart, 
-  Line, 
+  AreaChart, 
+  Area, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
   ResponsiveContainer,
-  BarChart,
-  Bar,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  BarChart,
+  Bar
 } from 'recharts'
+import { Link } from 'react-router-dom'
 
 // 더미 데이터
-const stats = [
-  { 
-    label: '돌봄 대상자', 
-    value: 1234, 
-    change: '+12', 
-    trend: 'up',
-    icon: Users,
-    color: 'primary'
-  },
-  { 
-    label: '활성 케이스', 
-    value: 23, 
-    change: '-5', 
-    trend: 'down',
-    icon: AlertTriangle,
-    color: 'warning'
-  },
-  { 
-    label: '온라인 디바이스', 
-    value: 567, 
-    change: '+3', 
-    trend: 'up',
-    icon: Cpu,
-    color: 'secondary'
-  },
-  { 
-    label: '오늘 이벤트', 
-    value: 89, 
-    change: '+15', 
-    trend: 'up',
-    icon: Activity,
-    color: 'accent'
-  },
+const alertTrend = [
+  { time: '00:00', count: 12 },
+  { time: '04:00', count: 8 },
+  { time: '08:00', count: 25 },
+  { time: '12:00', count: 18 },
+  { time: '16:00', count: 22 },
+  { time: '20:00', count: 15 },
 ]
 
-const eventData = [
-  { time: '00:00', events: 12 },
-  { time: '04:00', events: 8 },
-  { time: '08:00', events: 45 },
-  { time: '12:00', events: 32 },
-  { time: '16:00', events: 28 },
-  { time: '20:00', events: 41 },
-  { time: '24:00', events: 15 },
+const casesByStatus = [
+  { name: 'Open', value: 12, color: '#EF4444' },
+  { name: 'In Progress', value: 8, color: '#F59E0B' },
+  { name: 'Escalated', value: 3, color: '#6366F1' },
+  { name: 'Resolved', value: 45, color: '#22C55E' },
 ]
 
-const casesByType = [
-  { name: '낙상', value: 35, color: '#EF4444' },
-  { name: '무활동', value: 28, color: '#F97316' },
-  { name: '응급버튼', value: 20, color: '#F59E0B' },
-  { name: '생체이상', value: 17, color: '#10B981' },
+const deviceStatus = [
+  { name: 'Online', count: 456, color: '#22C55E' },
+  { name: 'Offline', count: 12, color: '#6B7280' },
+  { name: 'Alert', count: 8, color: '#EF4444' },
 ]
 
 const recentCases = [
-  { id: 'CS-001', user: '김영희', type: '낙상 감지', severity: 'critical', time: '5분 전', status: 'open' },
-  { id: 'CS-002', user: '이철수', type: '무활동', severity: 'warning', time: '12분 전', status: 'in_progress' },
-  { id: 'CS-003', user: '박민수', type: '응급버튼', severity: 'critical', time: '23분 전', status: 'resolved' },
-  { id: 'CS-004', user: '최순자', type: '생체이상', severity: 'info', time: '1시간 전', status: 'resolved' },
+  { id: 'CASE-001', user: '김영수', type: 'fall', severity: 'CRITICAL', status: 'open', time: '5분 전' },
+  { id: 'CASE-002', user: '박순이', type: 'vitals', severity: 'ALERT', status: 'in_progress', time: '12분 전' },
+  { id: 'CASE-003', user: '이철호', type: 'inactivity', severity: 'WARNING', status: 'escalated', time: '23분 전' },
+  { id: 'CASE-004', user: '정미영', type: 'device', severity: 'INFO', status: 'resolved', time: '1시간 전' },
 ]
 
-const severityColors: Record<string, string> = {
-  critical: 'bg-danger text-white',
-  warning: 'bg-warning text-white',
-  info: 'bg-primary text-white',
+const severityConfig: Record<string, string> = {
+  CRITICAL: 'badge-error',
+  ALERT: 'badge-warning',
+  WARNING: 'badge-info',
+  INFO: 'badge-gray',
 }
 
-const statusColors: Record<string, string> = {
-  open: 'text-danger',
+const statusConfig: Record<string, string> = {
+  open: 'text-error',
   in_progress: 'text-warning',
-  resolved: 'text-secondary',
+  escalated: 'text-primary',
+  resolved: 'text-success',
 }
 
 export default function Dashboard() {
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="animate-fade-in space-y-6">
+      {/* 페이지 헤더 */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">대시보드</h1>
-          <p className="text-text-secondary">전체 시스템 현황을 한눈에 확인하세요.</p>
+          <h1 className="text-2xl font-semibold text-gray-900">대시보드</h1>
+          <p className="text-gray-500 mt-1">실시간 모니터링 현황</p>
         </div>
-        <div className="flex items-center gap-2 text-text-secondary">
+        <div className="flex items-center gap-2 text-sm text-gray-500">
           <Clock size={16} />
-          <span className="text-sm">마지막 업데이트: 방금 전</span>
+          <span>마지막 업데이트: 방금 전</span>
         </div>
       </div>
 
-      {/* 통계 카드 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat) => (
-          <div 
-            key={stat.label}
-            className="bg-bg-card rounded-2xl p-6 border border-border hover:border-border-light transition-colors"
-          >
-            <div className="flex items-start justify-between">
-              <div className={`p-3 rounded-xl bg-${stat.color}/20`}>
-                <stat.icon className={`w-6 h-6 text-${stat.color}`} style={{ color: `var(--${stat.color})` }} />
-              </div>
-              <div className={`flex items-center gap-1 text-sm ${
-                stat.trend === 'up' ? 'text-secondary' : 'text-danger'
-              }`}>
-                {stat.trend === 'up' ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
-                {stat.change}
-              </div>
+      {/* KPI Cards */}
+      <div className="grid grid-cols-4 gap-4">
+        <div className="card card-body">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-info-50 flex items-center justify-center">
+              <Users size={24} className="text-info" />
             </div>
-            <div className="mt-4">
-              <p className="text-3xl font-bold">{stat.value.toLocaleString()}</p>
-              <p className="text-text-secondary text-sm mt-1">{stat.label}</p>
+            <div>
+              <p className="text-2xl font-bold">1,234</p>
+              <p className="text-sm text-gray-500">돌봄 대상자</p>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* 차트 영역 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* 이벤트 추이 */}
-        <div className="lg:col-span-2 bg-bg-card rounded-2xl p-6 border border-border">
-          <h3 className="font-semibold mb-6">오늘 이벤트 추이</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={eventData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="time" stroke="var(--text-muted)" />
-              <YAxis stroke="var(--text-muted)" />
-              <Tooltip 
-                contentStyle={{ 
-                  background: 'var(--bg-card)', 
-                  border: '1px solid var(--border)',
-                  borderRadius: '8px'
-                }}
-              />
-              <Line 
-                type="monotone" 
-                dataKey="events" 
-                stroke="var(--primary)" 
-                strokeWidth={3}
-                dot={{ fill: 'var(--primary)', strokeWidth: 2 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <div className="mt-4 pt-4 border-t flex items-center justify-between text-sm">
+            <span className="text-success">+12 이번 주</span>
+            <Link to="/users" className="text-primary hover:underline flex items-center gap-1">
+              상세보기 <ChevronRight size={14} />
+            </Link>
+          </div>
         </div>
 
-        {/* 케이스 유형 분포 */}
-        <div className="bg-bg-card rounded-2xl p-6 border border-border">
-          <h3 className="font-semibold mb-6">케이스 유형 분포</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <PieChart>
-              <Pie
-                data={casesByType}
-                cx="50%"
-                cy="50%"
-                innerRadius={50}
-                outerRadius={80}
-                paddingAngle={5}
-                dataKey="value"
-              >
-                {casesByType.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip 
-                contentStyle={{ 
-                  background: 'var(--bg-card)', 
-                  border: '1px solid var(--border)',
-                  borderRadius: '8px'
-                }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="grid grid-cols-2 gap-2 mt-4">
-            {casesByType.map((item) => (
-              <div key={item.name} className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ background: item.color }}></div>
-                <span className="text-sm text-text-secondary">{item.name}</span>
-                <span className="text-sm font-medium ml-auto">{item.value}</span>
+        <div className="card card-body">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-error-50 flex items-center justify-center">
+              <AlertTriangle size={24} className="text-error" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-error">23</p>
+              <p className="text-sm text-gray-500">열린 케이스</p>
+            </div>
+          </div>
+          <div className="mt-4 pt-4 border-t flex items-center justify-between text-sm">
+            <span className="text-error">3 Critical</span>
+            <Link to="/cases" className="text-primary hover:underline flex items-center gap-1">
+              상세보기 <ChevronRight size={14} />
+            </Link>
+          </div>
+        </div>
+
+        <div className="card card-body">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-success-50 flex items-center justify-center">
+              <Cpu size={24} className="text-success" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold">476</p>
+              <p className="text-sm text-gray-500">활성 디바이스</p>
+            </div>
+          </div>
+          <div className="mt-4 pt-4 border-t flex items-center justify-between text-sm">
+            <span className="text-gray-500">12 오프라인</span>
+            <Link to="/devices" className="text-primary hover:underline flex items-center gap-1">
+              상세보기 <ChevronRight size={14} />
+            </Link>
+          </div>
+        </div>
+
+        <div className="card card-body">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-warning-50 flex items-center justify-center">
+              <Shield size={24} className="text-warning" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-warning">Medium</p>
+              <p className="text-sm text-gray-500">시스템 위험도</p>
+            </div>
+          </div>
+          <div className="mt-4 pt-4 border-t flex items-center justify-between text-sm">
+            <span className="text-gray-500">정책 기준</span>
+            <Link to="/simulator" className="text-primary hover:underline flex items-center gap-1">
+              시뮬레이션 <ChevronRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Charts Row */}
+      <div className="grid grid-cols-3 gap-6">
+        {/* Alert Trend */}
+        <div className="col-span-2 card card-body">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">알림 추이 (24시간)</h3>
+            <select className="text-sm py-1 px-2">
+              <option>오늘</option>
+              <option>이번 주</option>
+              <option>이번 달</option>
+            </select>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={alertTrend}>
+                <defs>
+                  <linearGradient id="colorCount" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#6366F1" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#6366F1" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                <XAxis dataKey="time" tick={{ fontSize: 12 }} stroke="#9CA3AF" />
+                <YAxis tick={{ fontSize: 12 }} stroke="#9CA3AF" />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: 'white', 
+                    border: '1px solid #E5E7EB',
+                    borderRadius: '8px'
+                  }}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="count" 
+                  stroke="#6366F1" 
+                  strokeWidth={2}
+                  fillOpacity={1} 
+                  fill="url(#colorCount)" 
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Case Status */}
+        <div className="card card-body">
+          <h3 className="font-semibold mb-4">케이스 현황</h3>
+          <div className="h-48">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={casesByStatus}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={70}
+                  paddingAngle={2}
+                >
+                  {casesByStatus.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3 mt-2">
+            {casesByStatus.map((item) => (
+              <div key={item.name} className="flex items-center gap-2 text-sm">
+                <div 
+                  className="w-3 h-3 rounded-full" 
+                  style={{ backgroundColor: item.color }}
+                />
+                <span className="text-gray-600">{item.name}</span>
+                <span className="font-medium">{item.value}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* 최근 케이스 */}
-      <div className="bg-bg-card rounded-2xl border border-border overflow-hidden">
-        <div className="p-6 border-b border-border">
-          <div className="flex items-center justify-between">
+      {/* Bottom Row */}
+      <div className="grid grid-cols-3 gap-6">
+        {/* Recent Cases */}
+        <div className="col-span-2 card">
+          <div className="card-header flex items-center justify-between">
             <h3 className="font-semibold">최근 케이스</h3>
-            <a href="/cases" className="text-primary text-sm hover:underline">
-              전체 보기 →
-            </a>
+            <Link to="/cases" className="text-sm text-primary hover:underline">
+              전체 보기
+            </Link>
+          </div>
+          <div className="overflow-x-auto">
+            <table>
+              <thead>
+                <tr>
+                  <th>Case ID</th>
+                  <th>대상자</th>
+                  <th>유형</th>
+                  <th>심각도</th>
+                  <th>상태</th>
+                  <th>시간</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentCases.map((c) => (
+                  <tr key={c.id} className="cursor-pointer hover:bg-gray-50">
+                    <td className="font-mono text-sm text-primary">{c.id}</td>
+                    <td>{c.user}</td>
+                    <td className="text-sm">{c.type}</td>
+                    <td>
+                      <span className={`badge ${severityConfig[c.severity]}`}>
+                        {c.severity}
+                      </span>
+                    </td>
+                    <td className={`font-medium ${statusConfig[c.status]}`}>
+                      {c.status.replace('_', ' ')}
+                    </td>
+                    <td className="text-gray-500 text-sm">{c.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table>
-            <thead>
-              <tr>
-                <th>케이스 ID</th>
-                <th>대상자</th>
-                <th>유형</th>
-                <th>심각도</th>
-                <th>발생 시간</th>
-                <th>상태</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentCases.map((caseItem) => (
-                <tr key={caseItem.id} className="hover:bg-bg-tertiary">
-                  <td className="font-mono text-primary">{caseItem.id}</td>
-                  <td>{caseItem.user}</td>
-                  <td>{caseItem.type}</td>
-                  <td>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${severityColors[caseItem.severity]}`}>
-                      {caseItem.severity === 'critical' ? '위험' : caseItem.severity === 'warning' ? '주의' : '정보'}
-                    </span>
-                  </td>
-                  <td className="text-text-secondary">{caseItem.time}</td>
-                  <td>
-                    <span className={`flex items-center gap-1 ${statusColors[caseItem.status]}`}>
-                      {caseItem.status === 'resolved' ? (
-                        <CheckCircle size={14} />
-                      ) : caseItem.status === 'open' ? (
-                        <XCircle size={14} />
-                      ) : (
-                        <Clock size={14} />
-                      )}
-                      {caseItem.status === 'open' ? '미처리' : caseItem.status === 'in_progress' ? '처리 중' : '해결됨'}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+        {/* Device Status */}
+        <div className="card card-body">
+          <h3 className="font-semibold mb-4">디바이스 상태</h3>
+          <div className="h-48">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={deviceStatus} layout="vertical">
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                <XAxis type="number" />
+                <YAxis dataKey="name" type="category" width={60} />
+                <Tooltip />
+                <Bar dataKey="count" radius={[0, 4, 4, 0]}>
+                  {deviceStatus.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="mt-4 pt-4 border-t">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-500">총 디바이스</span>
+              <span className="font-semibold">{deviceStatus.reduce((a, b) => a + b.count, 0)}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
