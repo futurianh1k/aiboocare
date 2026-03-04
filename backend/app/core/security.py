@@ -38,6 +38,10 @@ def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 
 
+# Alias for backward compatibility
+get_password_hash = hash_password
+
+
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """비밀번호 검증
     

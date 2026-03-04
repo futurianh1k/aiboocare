@@ -143,3 +143,27 @@ class RoleChecker:
 require_admin = RoleChecker(["admin"])
 require_operator = RoleChecker(["admin", "operator"])
 require_guardian = RoleChecker(["admin", "operator", "guardian"])
+
+
+def require_roles(allowed_roles: list) -> RoleChecker:
+    """Role 기반 권한 검사 의존성 함수
+    
+    사용 예:
+        @router.get("/admin")
+        async def admin_endpoint(
+            user: dict = Depends(require_roles([UserRole.ADMIN]))
+        ):
+            ...
+    
+    Args:
+        allowed_roles: 허용할 Role 목록 (UserRole enum 또는 문자열)
+        
+    Returns:
+        RoleChecker 인스턴스
+    """
+    # UserRole enum을 문자열로 변환
+    role_strings = [
+        r.value if hasattr(r, 'value') else str(r)
+        for r in allowed_roles
+    ]
+    return RoleChecker(role_strings)
