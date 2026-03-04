@@ -13,6 +13,7 @@ from app.api.v1.endpoints import (
     guardian_app,
     guardians,
     policies,
+    telemedicine,
     users,
     websocket,
 )
@@ -41,3 +42,4 @@ api_router.include_router(ai.router, prefix="/ai", tags=["AI Services"])
 api_router.include_router(guardian_app.router, prefix="/guardian-app", tags=["Guardian App"])
 api_router.include_router(websocket.router, prefix="/ws", tags=["WebSocket"])
 api_router.include_router(device_provision.router, prefix="/device-mgmt", tags=["Device Management"])
+api_router.include_router(telemedicine.router, prefix="/telemedicine", tags=["Telemedicine"])

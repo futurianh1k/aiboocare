@@ -40,6 +40,14 @@ from app.models.user import (
     Guardian,
     UserRole,
 )
+from app.models.telemedicine import (
+    MedicalRecordSync,
+    PreTriage,
+    SessionStatus,
+    TelemedicineSession,
+    TriageStatus,
+    TriageUrgency,
+)
 
 __all__ = [
     # Base
@@ -81,4 +89,11 @@ __all__ = [
     "EscalationPlan",
     "PolicyRule",
     "RuleConditionType",
+    # Telemedicine
+    "PreTriage",
+    "TriageUrgency",
+    "TriageStatus",
+    "TelemedicineSession",
+    "SessionStatus",
+    "MedicalRecordSync",
 ]
