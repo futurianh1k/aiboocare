@@ -4,7 +4,7 @@ API v1 라우터 통합 모듈
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import auth, devices, events, guardians, policies, users
+from app.api.v1.endpoints import ai, auth, devices, events, guardians, policies, users
 
 api_router = APIRouter()
 
@@ -26,3 +26,4 @@ api_router.include_router(guardians.router, prefix="", tags=["Guardians"])
 api_router.include_router(devices.router, prefix="/devices", tags=["Devices"])
 api_router.include_router(events.router, prefix="", tags=["Events & Cases"])
 api_router.include_router(policies.router, prefix="/policies", tags=["Policies"])
+api_router.include_router(ai.router, prefix="/ai", tags=["AI Services"])

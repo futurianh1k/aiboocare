@@ -102,6 +102,37 @@ class Settings(BaseSettings):
     COOKIE_HTTPONLY: bool = True
     COOKIE_SAMESITE: str = "lax"  # strict, lax, none
     
+    # ============== AI 서비스 설정 ==============
+    # OpenAI
+    OPENAI_API_KEY: str = ""  # 환경변수로 주입
+    OPENAI_MODEL: str = "gpt-4o-mini"  # 대화 처리용 모델
+    OPENAI_STT_MODEL: str = "whisper-1"  # STT 모델
+    OPENAI_TTS_MODEL: str = "tts-1"  # TTS 모델
+    OPENAI_TTS_VOICE: str = "nova"  # TTS 음성 (alloy, echo, fable, onyx, nova, shimmer)
+    
+    # Google Cloud (STT/TTS 대안)
+    GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
+    GOOGLE_CLOUD_PROJECT: Optional[str] = None
+    
+    # Anthropic Claude (LLM 대안)
+    ANTHROPIC_API_KEY: str = ""
+    ANTHROPIC_MODEL: str = "claude-3-5-sonnet-20241022"
+    
+    # CLOVA (네이버, 한국어 TTS 대안)
+    CLOVA_CLIENT_ID: str = ""
+    CLOVA_CLIENT_SECRET: str = ""
+    
+    # AI 서비스 선택 (기본 프로바이더)
+    AI_STT_PROVIDER: str = "openai"  # openai, google
+    AI_LLM_PROVIDER: str = "openai"  # openai, anthropic
+    AI_TTS_PROVIDER: str = "openai"  # openai, google, clova
+    
+    # AI 서비스 공통 설정
+    AI_MAX_AUDIO_DURATION_SECONDS: int = 300  # 최대 오디오 길이 (5분)
+    AI_MAX_TEXT_LENGTH: int = 4000  # 최대 텍스트 길이
+    AI_TEMPERATURE: float = 0.7  # LLM 창의성 (0.0~2.0)
+    AI_MAX_TOKENS: int = 1024  # LLM 최대 응답 토큰
+    
     @field_validator("SECRET_KEY")
     @classmethod
     def validate_secret_key(cls, v: str) -> str:

@@ -35,6 +35,12 @@ apscheduler==3.10.4
 # HTTP Client
 httpx==0.26.0
 
+# AI Services
+openai==1.12.0
+anthropic==0.18.0
+google-cloud-speech==2.24.0
+google-cloud-texttospeech==2.16.0
+
 # Utilities
 python-dotenv==1.0.1
 loguru==0.7.2
