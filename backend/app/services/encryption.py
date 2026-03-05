@@ -27,14 +27,16 @@ class PIIEncryption:
         Args:
             key: Base64 인코딩된 32바이트 암호화 키
         """
+        # key 인자가 없으면 settings에서 가져옴
+        encryption_key = key or settings.PII_ENCRYPTION_KEY
+        
         # PII_ENCRYPTION_KEY가 설정되지 않았으면 더미 키 사용 (개발용)
-        if not settings.PII_ENCRYPTION_KEY:
-            # 개발 환경에서 32바이트 더미 키 생성
+        if not encryption_key:
             import base64
-            dummy_key = base64.b64encode(b"dev_dummy_key_32bytes_long!!")
-            self._encryptor = PIIEncryptor(dummy_key.decode())
-        else:
-            self._encryptor = PIIEncryptor(key)
+            # 32바이트 더미 키 (개발 전용) - 정확히 32바이트
+            encryption_key = base64.b64encode(b"dev_dummy_key_32bytes_long!!____").decode()
+        
+        self._encryptor = PIIEncryptor(encryption_key)
     
     def encrypt(self, plaintext: str) -> str:
         """문자열 암호화"""
@@ -62,3 +64,13 @@ def get_pii_encryption() -> PIIEncryption:
     if _pii_encryption is None:
         _pii_encryption = PIIEncryption()
     return _pii_encryption
+
+
+def encrypt_pii(plaintext: str) -> str:
+    """PII 암호화 헬퍼 함수"""
+    return get_pii_encryption().encrypt(plaintext)
+
+
+def decrypt_pii(ciphertext: str) -> str:
+    """PII 복호화 헬퍼 함수"""
+    return get_pii_encryption().decrypt(ciphertext)

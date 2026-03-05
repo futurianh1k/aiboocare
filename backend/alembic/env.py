@@ -1,16 +1,13 @@
 """
 Alembic 마이그레이션 환경 설정
 
-비동기 SQLAlchemy + PostgreSQL 지원
+동기 SQLAlchemy + PostgreSQL 지원
 """
 
-import asyncio
 from logging.config import fileConfig
 
 from alembic import context
-from sqlalchemy import pool
-from sqlalchemy.engine import Connection
-from sqlalchemy.ext.asyncio import async_engine_from_config
+from sqlalchemy import create_engine, pool
 
 # 앱 모델 및 설정 임포트
 from app.core.config import settings
@@ -31,7 +28,7 @@ target_metadata = Base.metadata
 
 
 def get_url() -> str:
-    """데이터베이스 URL 반환"""
+    """데이터베이스 URL 반환 (동기 드라이버용)"""
     return settings.DATABASE_URL
 
 
@@ -52,37 +49,24 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-def do_run_migrations(connection: Connection) -> None:
-    """마이그레이션 실행 헬퍼"""
-    context.configure(connection=connection, target_metadata=target_metadata)
-
-    with context.begin_transaction():
-        context.run_migrations()
-
-
-async def run_async_migrations() -> None:
-    """비동기 마이그레이션 실행"""
-    configuration = config.get_section(config.config_ini_section, {})
-    configuration["sqlalchemy.url"] = get_url()
-    
-    connectable = async_engine_from_config(
-        configuration,
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
-
-    async with connectable.connect() as connection:
-        await connection.run_sync(do_run_migrations)
-
-    await connectable.dispose()
-
-
 def run_migrations_online() -> None:
     """온라인 모드 마이그레이션 실행
     
     실제 DB에 연결하여 마이그레이션 적용
     """
-    asyncio.run(run_async_migrations())
+    connectable = create_engine(
+        get_url(),
+        poolclass=pool.NullPool,
+    )
+
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata,
+        )
+
+        with context.begin_transaction():
+            context.run_migrations()
 
 
 if context.is_offline_mode():
